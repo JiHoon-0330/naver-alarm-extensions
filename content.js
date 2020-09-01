@@ -23,6 +23,15 @@ const getStorageAllData = () => {
   chrome.storage.local.get(null, result => {
     const keys = Object.keys(result);
     keys.sort();
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+      console.log(``, result[key].key + 1, parseInt(Date.now() / 1000));
+      if (result[key].key + 1 < parseInt(Date.now() / 1000)) {
+        console.log(key);
+        chrome.alarms.clear(key);
+        chrome.storage.local.remove(key);
+      }
+    }
     printData(result, keys);
   });
 };

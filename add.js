@@ -29,7 +29,7 @@ form.addEventListener("submit", e => {
   const currentDate = new Date().getTime();
   const addDate = new Date(`${date.value} ${time.value}:00`).getTime();
   const scheduleDate = (addDate - currentDate) / 1000;
-  const key = addDate / 10000;
+  const key = addDate / 1000;
   if (scheduleDate <= 0) {
     alert("등록할 수 없는 시간입니다.");
     return;
@@ -47,7 +47,7 @@ form.addEventListener("submit", e => {
 
   console.log(dataStorage);
   chrome.storage.local.set(dataStorage, () => {
-    chrome.alarms.create(`""${addDate}`, {
+    chrome.alarms.create(`""${key}`, {
       //   when: Date.now() + scheduleDate
       when: Date.now() + (addDate - currentDate)
     });
