@@ -40,7 +40,9 @@ form.addEventListener("submit", e => {
     date: date.value,
     time: time.value,
     music: music.value,
-    key: key
+    key: key,
+    daily: false,
+    weekly: false
   };
 
   dataStorage[key] = data;
