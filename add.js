@@ -29,6 +29,7 @@ form.addEventListener("submit", e => {
   const currentDate = new Date().getTime();
   const addDate = new Date(`${date.value} ${time.value}:00`).getTime();
   const scheduleDate = (addDate - currentDate) / 1000;
+  const key = addDate / 10000;
   if (scheduleDate <= 0) {
     alert("등록할 수 없는 시간입니다.");
     return;
@@ -39,30 +40,22 @@ form.addEventListener("submit", e => {
     date: date.value,
     time: time.value,
     music: music.value,
-    scheduleDate: scheduleDate
+    key: key
   };
 
-  dataStorage[addDate] = data;
+  dataStorage[key] = data;
 
   console.log(dataStorage);
-  chrome.storage.sync.set(dataStorage, () => {
+  chrome.storage.local.set(dataStorage, () => {
+    chrome.alarms.create(`""${addDate}`, {
+      //   when: Date.now() + scheduleDate
+      when: Date.now() + (addDate - currentDate)
+    });
     console.log(`저장 완료`);
   });
   console.log(``, data, addDate);
 });
 
-const getStorageAllData = () => {
-  chrome.storage.sync.get(null, result => {
-    const resultData = result;
-    const keys = Object.keys(resultData);
-    keys.sort();
-    console.log(``, resultData, keys);
-    for (let i = 0; i < keys.length; i++) {
-      console.log(``, resultData[keys[i]]);
-      printData(resultData, keys);
-      //   console.log(``, resultData[keys[i]].schedule);
-    }
-  });
-};
+const initAdd = () => {};
 
-getStorageAllData();
+initAdd();

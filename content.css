@@ -1,0 +1,43 @@
+.content {
+  height: calc(100vh - 250px);
+  width: 90vw;
+  font-size: 2em;
+  overflow: auto;
+}
+
+.content > ul {
+  padding-right: 10px;
+}
+
+.content > ul > li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 90vw;
+  position: relative;
+}
+.content > ul > li > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 10px 0px;
+}
+
+.content > ul > li > div > .schedule {
+  width: calc(90vw - 35px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.content > ul > li > div > .datetime {
+  font-size: 0.8em;
+  padding-left: 2px;
+}
+
+.content > ul > li > i {
+  position: absolute;
+  background-color: var(--main-bg-color);
+  right: 3px;
+}

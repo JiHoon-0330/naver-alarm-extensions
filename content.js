@@ -7,20 +7,27 @@ const main = document.querySelector(".content > ul");
 
 const printData = (data, key) => {
   let mainContent = "";
+
   for (let i = 0; i < key.length; i++) {
     mainContent += `<li id="${key[i]}">
-    <div
-    <span>${data[key[i]].schedule}</span>
-    <span>${data[key[i]].date} ${data[key[i]].time}</span>
+    <div>
+    <span class="schedule">${data[key[i]].schedule}</span>
+    <span class="datetime">${data[key[i]].date} ${data[key[i]].time}</span>
     </div>
     <i class="fas fa-trash-alt"></i></li>`;
   }
   main.innerHTML = mainContent;
-  console.log(mainContent);
 };
 
+const getStorageAllData = () => {
+  chrome.storage.local.get(null, result => {
+    const keys = Object.keys(result);
+    keys.sort();
+    printData(result, keys);
+  });
+};
 const initContent = () => {
-  printData();
+  getStorageAllData();
 };
 
 initContent();

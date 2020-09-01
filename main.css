@@ -39,38 +39,6 @@ header {
   font-size: 5em;
 }
 
-.content {
-  height: calc(100vh - 250px);
-  width: 90vw;
-  font-size: 2em;
-  overflow: auto;
-}
-
-.content > ul {
-  padding-right: 10px;
-}
-
-.content > ul > li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 90vw;
-  position: relative;
-}
-.content > ul > li > span {
-  padding-right: 15px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.content > ul > li > i {
-  position: absolute;
-  background-color: var(--main-bg-color);
-  right: 3px;
-}
-
-.button {
-  /* margin-bottom: 20px; */
-}
 .add {
   all: unset;
   border: 2px solid var(--main-text-color);
@@ -81,72 +49,4 @@ header {
 
 .hidden {
   display: none;
-}
-
-form {
-  min-width: 50vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-form > input,
-form > div {
-  margin: 10px 0px;
-}
-
-input {
-  all: unset;
-  border-bottom: 2px solid var(--main-text-color);
-  font-size: 2em;
-  min-width: 80vw;
-  min-height: 5vh;
-  background: var(--main-bg-color);
-}
-
-.add__schedule,
-.add__music {
-  margin-top: 20px;
-}
-
-.schedule__container,
-.music__container {
-  position: relative;
-}
-
-label {
-  position: absolute;
-  font-size: 1.5em;
-  top: 20px;
-  left: 0px;
-  transition: 0.3s ease-in-out;
-}
-
-.add__schedule:focus ~ label,
-.add__schedule:valid ~ label,
-.add__music:focus ~ label,
-.add__music:valid ~ label {
-  font-size: 1em;
-  top: 0px;
-}
-.add__date,
-.add__time {
-  text-align: center;
-}
-.add__button {
-  margin-top: 30px;
-  min-width: 75vw;
-  display: flex;
-  justify-content: space-between;
-}
-
-.add__button > button {
-  all: unset;
-  text-align: center;
-  width: 30vw;
-  font-size: 1.5em;
-  border: 2px solid var(--main-text-color);
-  padding: 10px 10px;
-  border-radius: 40px;
 }
