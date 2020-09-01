@@ -18,12 +18,18 @@
     <div class="content">
       <ul></ul>
     </div>
-    <div class="add__container">
-      <form class="add__form"></form>
-    </div>
+
+    <form class="add__form hidden">
+      <input type="text" id="add__schedule" />
+      <label for="add__schedule">일정</label>
+      <input type="date" id="add__date" />
+      <input type="time" id="add__time" />
+    </form>
+
     <div class="button">
       <button class="add">일정 추가</button>
     </div>
     <script src="clock.js"></script>
+    <script src="add.js"></script>
   </body>
 </html>

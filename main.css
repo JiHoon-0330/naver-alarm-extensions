@@ -77,3 +77,7 @@ header {
   border-radius: 40px;
   font-size: 2em;
 }
+
+.hidden {
+  display: none;
+}

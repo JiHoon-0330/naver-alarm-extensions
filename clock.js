@@ -1,6 +1,5 @@
 const clock = document.querySelector(".clock");
 const ampm = document.querySelector(".ampm");
-const button = document.querySelector(".add");
 
 const getDateTime = option => {
   const date = new Date();
