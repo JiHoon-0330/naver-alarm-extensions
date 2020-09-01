@@ -37,3 +37,14 @@ header {
   padding: 10px 10px;
   font-size: 5em;
 }
+
+.button {
+  margin-bottom: 20px;
+}
+.add {
+  all: unset;
+  border: 2px solid var(--main-text-color);
+  padding: 10px 10px;
+  border-radius: 40px;
+  font-size: 2em;
+}
