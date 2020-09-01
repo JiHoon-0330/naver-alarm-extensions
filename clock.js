@@ -50,10 +50,10 @@ const setDate = () => {
   }`;
 };
 
-const init = () => {
+const initClock = () => {
   getTime();
   setDate();
   setInterval(getTime, 1000);
 };
 
-init();
+initClock();

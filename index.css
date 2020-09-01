@@ -1,0 +1,93 @@
+
+* {
+    font-family: 'Jua', sans-serif;
+}
+
+
+#clock {
+    font-family: 'Jua', sans-serif;
+    
+    
+
+}
+
+
+#tabs::-webkit-scrollbar { 
+    display: none; 
+}
+#tabs {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;   
+    position: relative; 
+    top: 150px;                      /*일정리스트 스크롤*/  
+    width: 390px;
+    height: 0;
+    padding-bottom: 100%;
+    overflow: auto;
+    
+}
+
+#tabs li {
+    padding: 3%;
+    list-style: none;
+    text-align: center;
+    background:rgba(255, 255, 255, 0.836);
+    color: rgb(0, 0, 0);
+    border-radius: 40px 40px;
+    margin: 1% 1% 1% 1%;
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+	   -moz-box-shadow: 0 10px 6px -6px #777;
+	        box-shadow: 0 10px 6px -6px #777;
+}
+#tabs li div {
+    font-size:15px;
+    position: relative;
+}
+#tabs li div span {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width:270px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.trash {
+    position: relative;
+    left: 78%;
+    top:-45px;
+    width: 100px;
+    height: 0;
+}
+
+#tutorial {
+    font-size:30px;
+    margin-top: 300px;
+    display: none;
+}
+
+
+
+footer {         /*하단 일정추가하기 고정 버튼*/ 
+    position:fixed; 
+    left:0px; 
+    bottom:0px; 
+    height:80px; 
+    width:100%; 
+    z-index: 999;
+}
+
+.footerplus {
+    width: 70px;
+    height: 70px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.footerplus image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
