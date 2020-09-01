@@ -19,11 +19,21 @@
       <ul></ul>
     </div>
 
-    <form class="add__form hidden">
-      <input type="text" id="add__schedule" />
-      <label for="add__schedule">일정</label>
-      <input type="date" id="add__date" />
-      <input type="time" id="add__time" />
+    <form action="" class="add__form hidden">
+      <div class="schedule__container">
+        <input type="text" id="schedule" class="add__schedule" required />
+        <label for="schedule" class="schedule__label">일정</label>
+      </div>
+      <input type="date" class="add__date" />
+      <input type="time" class="add__time" />
+      <div class="music__container">
+        <input type="text" id="music" class="add__music" required />
+        <label for="music">유튜브 링크</label>
+      </div>
+      <div class="add__button">
+        <button type="submit" class="add_submit">등록</button>
+        <button type="button" class="add_cancel">취소</button>
+      </div>
     </form>
 
     <div class="button">
