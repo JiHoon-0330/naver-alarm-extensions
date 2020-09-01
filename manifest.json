@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+  "name": "아!맞다",
+  "version": "1.0.2",
+
+  "description": "해야할 일들을 알람으로 알려주는 일정관리 서비스!",
+  "icons": {
+    "120": "icon120.png"
+  },
+
+  "sidebar_action": {
+    "default_page": "index.html",
+    "default_icon": {
+      "16": "icon120.png"
+    },
+
+    "default_title": "아!맞다",
+    "use_navigation_bar": true
+  },
+
+  "permissions": ["alarms", "storage", "tabs"],
+
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://kit.fontawesome.com/20fc56bb28.js; object-src 'self'",
+
+  "background": {
+    "scripts": ["eventPage.js"],
+    "persistent": false
+  }
+}
