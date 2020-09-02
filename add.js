@@ -1,61 +1,73 @@
-/* <li>
-  <span>1111111111111111111111111111111111111111111111111111111111111</span>
-  <i class="fas fa-trash-alt"></i>
-</li>; */
-
-// 12313 2020-12-31 00:59
+// 인풋 데이터 형식 2020-12-31 00:59
 
 const content = document.querySelector(".content");
-const form = document.querySelector(".add__form");
-const schedule = document.querySelector(".add__schedule");
-const music = document.querySelector(".add__music");
-const submit = document.querySelector(".add_submit");
+const addForm = document.querySelector(".add__form");
+const addSchedule = document.querySelector(".add__schedule");
+const addMusic = document.querySelector(".add__music");
+const addSubmit = document.querySelector(".add_submit");
 const add = document.querySelector(".add");
-const cancel = document.querySelector(".add_cancel");
+const addCancel = document.querySelector(".add_cancel");
 
 add.addEventListener("click", () => {
   content.classList.toggle("hidden");
-  form.classList.toggle("hidden");
+  addForm.classList.toggle("hidden");
   add.classList.toggle("hidden");
 });
 
-cancel.addEventListener("click", () => {
+addCancel.addEventListener("click", () => {
   location.reload();
 });
 
-form.addEventListener("submit", e => {
-  e.preventDefault();
-  const dataStorage = {};
+const setData = () => {
+  const schedule = addSchedule.value;
+  const date = addDate.value;
+  const time = addTime.value;
+  const music = addMusic.value;
   const currentDate = new Date().getTime();
-  const addDate = new Date(`${date.value} ${time.value}:00`).getTime();
-  const scheduleDate = (addDate - currentDate) / 1000;
-  const key = addDate / 1000;
-  if (scheduleDate <= 0) {
+  const getTimeDate = new Date(`${date} ${time}:00`).getTime();
+  const scheduleDate = getTimeDate - currentDate;
+  const key = getTimeDate / 1000;
+  console.log(``, getTimeDate, currentDate);
+  if (scheduleDate / 1000 <= 0) {
     alert("등록할 수 없는 시간입니다.");
     return;
+  } else {
+    const storageObj = {
+      schedule,
+      date,
+      time,
+      music,
+      getTimeDate,
+      scheduleDate,
+      key,
+      patten: "everyday"
+    };
+    console.log(``, storageObj);
+    setStorage(storageObj);
   }
+};
 
-  const data = {
-    schedule: schedule.value,
-    date: date.value,
-    time: time.value,
-    music: music.value,
-    key: key,
-    daily: false,
-    weekly: false
-  };
+const setStorage = data => {
+  const storage = {};
+  const { key, scheduleDate } = data;
+  console.log(``, key, scheduleDate);
+  storage[key] = data;
 
-  dataStorage[key] = data;
-
-  console.log(dataStorage);
-  chrome.storage.local.set(dataStorage, () => {
+  chrome.storage.local.set(storage, () => {
     chrome.alarms.create(`""${key}`, {
-      //   when: Date.now() + scheduleDate
-      when: Date.now() + (addDate - currentDate)
+      when: Date.now() + scheduleDate
     });
-    console.log(`저장 완료`);
+    console.log(
+      `저장 완료, 데이터 =>
+    `,
+      storage
+    );
   });
-  console.log(``, data, addDate);
+};
+
+addForm.addEventListener("submit", e => {
+  e.preventDefault();
+  setData();
 });
 
 const initAdd = () => {};

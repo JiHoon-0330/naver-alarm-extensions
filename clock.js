@@ -2,58 +2,80 @@
 
 const clock = document.querySelector(".clock");
 const ampm = document.querySelector(".ampm");
-const date = document.querySelector(".add__date");
-const time = document.querySelector(".add__time");
+const addDate = document.querySelector(".add__date");
+const addTime = document.querySelector(".add__time");
 
-const getDateTime = option => {
-  const date = new Date();
+const getDate = (date = new Date()) => {
+  const currentDate = date;
+  const year = currentDate.getFullYear();
+  const day = currentDate.getDate();
+  const month = currentDate.getMonth() + 1;
+  const currentDateObj = {
+    year,
+    day,
+    month
+  };
 
-  if (option === "time") {
-    const dateObj = {
-      hours: date.getHours(),
-      minutes: date.getMinutes(),
-      seconds: date.getSeconds()
-    };
-    return dateObj;
+  return currentDateObj;
+};
+
+const getTime = (time = new Date()) => {
+  const currentTime = time;
+  const hours = currentTime.getHours();
+  const minutes = currentTime.getMinutes();
+  const seconds = currentTime.getSeconds();
+  const currentTimeObj = {
+    hours,
+    minutes,
+    seconds
+  };
+
+  return currentTimeObj;
+};
+
+const getDateFormat = date => {
+  const { year, month, day } = date;
+  return `${year}-${month < 10 ? `0${month}` : month}-${
+    day < 10 ? `0${day}` : day
+  }`;
+};
+
+const getTimeFormat = (time, options) => {
+  const { hours, minutes, seconds } = time;
+
+  if (options === "clock") {
+    return `${hours < 10 ? `0${hours}` : hours}:${
+      minutes < 10 ? `0${minutes}` : minutes
+    }:${seconds < 10 ? `0${seconds}` : seconds}`;
   } else {
-    const dateObj = {
-      year: date.getFullYear(),
-      day: date.getDate(),
-      month: date.getMonth() + 1
-    };
-    return dateObj;
+    return `${hours < 10 ? `0${hours}` : hours}:${
+      minutes < 10 ? `0${minutes}` : minutes
+    }`;
   }
 };
 
-const getAMPM = hours => (hours >= 12 ? "PM" : "AM");
-
-const getTime = () => {
-  const { hours, minutes, seconds } = getDateTime("time");
-
-  ampm.textContent = `${getAMPM(hours)}`;
-  clock.textContent = `
-    ${hours < 10 ? `0${hours}` : hours}:${
-    minutes < 10 ? `0${minutes}` : minutes
-  }:${seconds < 10 ? `0${seconds}` : seconds}
-    `;
+const getAMPM = time => {
+  const { hours } = time;
+  return hours >= 12 ? "PM" : "AM";
 };
 
 const setDate = () => {
-  const { year, month, day } = getDateTime("date");
-  const { hours, minutes } = getDateTime("time");
+  const currentTimeObj = getTime();
+  const currentDateObj = getDate();
+  addDate.value = getDateFormat(currentDateObj);
+  addTime.value = getTimeFormat(currentTimeObj, "addTime");
+};
 
-  date.value = `${year}-${month < 10 ? `0${month}` : month}-${
-    day < 10 ? `0${day}` : day
-  }`;
-  time.value = `${hours < 10 ? `0${hours}` : hours}:${
-    minutes < 10 ? `0${minutes}` : minutes
-  }`;
+const setDateTime = () => {
+  const currentTimeObj = getTime();
+  clock.textContent = getTimeFormat(currentTimeObj, "clock");
+  ampm.textContent = getAMPM(currentTimeObj);
 };
 
 const initClock = () => {
-  getTime();
   setDate();
-  setInterval(getTime, 1000);
+  setDateTime();
+  setInterval(setDateTime, 1000);
 };
 
 initClock();

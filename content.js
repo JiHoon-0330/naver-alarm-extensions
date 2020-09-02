@@ -3,38 +3,75 @@
   <i class="fas fa-trash-alt"></i>
 </li>; */
 
-const main = document.querySelector(".content > ul");
+const ul = document.querySelector(".content > ul");
 
-const printData = (data, key) => {
-  let mainContent = "";
-
-  for (let i = 0; i < key.length; i++) {
-    mainContent += `<li id="${key[i]}">
-    <div>
-    <span class="schedule">${data[key[i]].schedule}</span>
-    <span class="datetime">${data[key[i]].date} ${data[key[i]].time}</span>
-    </div>
-    <i class="fas fa-trash-alt"></i></li>`;
+const printContent = (result, keys) => {
+  let li = "";
+  for (let i = 0; i < keys.length; i++) {
+    const { schedule, date, time, key } = result[keys[i]];
+    li += `
+    <li id="${key}">
+      <div>
+        <span class="schedule">${schedule}</span>
+        <span class="datetime">${date} ${time}</span>
+      </div>
+      <i class="fas fa-trash-alt"></i>
+    </li>`;
   }
-  main.innerHTML = mainContent;
+  ul.innerHTML = li;
+};
+
+const removeStorage = (result, k) => {
+  const { schedule, music, getTimeDate: preTimeDate, patten } = result;
+  let { scheduleDate, key } = result;
+
+  if (key < parseInt(Date.now() / 1000)) {
+    if (patten === "everyday") {
+      const currentDate = new Date().getTime();
+      const getTimeDate = preTimeDate + 60 * 1000;
+      const newDate = new Date();
+      newDate.setTime(getTimeDate);
+      scheduleDate = getTimeDate - currentDate;
+      key = getTimeDate / 1000;
+
+      const dateObj = getDate(newDate);
+      const timeObj = getTime(newDate);
+      const date = getDateFormat(dateObj);
+      const time = getTimeFormat(timeObj);
+
+      const storageObj = {
+        schedule,
+        date,
+        time,
+        music,
+        getTimeDate,
+        scheduleDate,
+        key,
+        patten
+      };
+
+      setStorage(storageObj);
+    }
+    chrome.alarms.clear(k);
+    chrome.storage.local.remove(k);
+  }
 };
 
 const getStorageAllData = () => {
   chrome.storage.local.get(null, result => {
     const keys = Object.keys(result);
-    keys.sort();
     for (let i = 0; i < keys.length; i++) {
-      const key = keys[i];
-      console.log(``, result[key].key + 1, parseInt(Date.now() / 1000));
-      if (result[key].key + 1 < parseInt(Date.now() / 1000)) {
-        console.log(key);
-        chrome.alarms.clear(key);
-        chrome.storage.local.remove(key);
-      }
+      const k = keys[i];
+      removeStorage(result[k], k);
     }
-    printData(result, keys);
+    chrome.storage.local.get(null, result => {
+      const keys = Object.keys(result);
+      keys.sort();
+      printContent(result, keys);
+    });
   });
 };
+
 const initContent = () => {
   getStorageAllData();
 };

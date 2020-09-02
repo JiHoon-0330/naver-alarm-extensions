@@ -9,7 +9,7 @@
   },
 
   "sidebar_action": {
-    "default_page": "img/index.html",
+    "default_page": "index.html",
     "default_icon": {
       "16": "img/icon120.png"
     },

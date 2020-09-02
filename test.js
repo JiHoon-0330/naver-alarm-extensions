@@ -1,27 +1,27 @@
-let body = document.querySelector("body");
+let h1 = document.querySelector("h1");
+const exit = document.querySelector("#exit");
 
-const removeKey = key => {
-  chrome.storage.local.remove(key);
-};
+exit.addEventListener("click", () => {
+  location.href = "index.html";
+});
 
-const printSchedule = (data, key) => {
-  console.log(``, data[key].schedule);
-  body.innerHTML = `<h1>${data[key].schedule}</h1>`;
-  removeKey(key);
+const printSchedule = data => {
+  const { schedule } = data;
+
+  h1.textContent = schedule;
 };
 
 const getFirstKey = () => {
   chrome.storage.local.get(null, result => {
     const keys = Object.keys(result);
     keys.sort();
-    console.log(keys[0]);
     getFirstData(keys[0]);
   });
 };
 
 const getFirstData = key => {
   chrome.storage.local.get(key, result => {
-    printSchedule(result, key);
+    printSchedule(result[key]);
   });
 };
 
