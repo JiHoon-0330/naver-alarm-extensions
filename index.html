@@ -17,32 +17,56 @@
       <div class="ampm"></div>
       <div class="clock"></div>
     </header>
-    <div class="content">
+    <div id="content" class="content">
       <ul></ul>
     </div>
-    <div class="alarm hidden">
-      <h1></h1>
-      <button id="exit">종료</button>
-    </div>
-    <form action="" class="add__form hidden">
-      <div class="schedule__container">
-        <input type="text" id="schedule" class="add__schedule" required />
-        <label for="schedule" class="schedule__label">일정</label>
+
+    <form action="" id="add__form" class="add__form hidden">
+      <div class="schedule__container input__label">
+        <input
+          type="text"
+          id="add__schedule"
+          class="add__schedule input__label"
+          required
+        />
+        <label for="add__schedule">일정</label>
       </div>
       <input type="date" class="add__date" />
       <input type="time" class="add__time" />
-      <div class="music__container">
-        <input type="text" id="music" class="add__music" required />
-        <label for="music">유튜브 링크</label>
+      <div class="music__container input__label">
+        <input
+          type="text"
+          id="add__music"
+          class="add__schedule input__label"
+          required
+        />
+        <label for="add__music">유튜브 링크</label>
+      </div>
+      <div class="input__label add__repeat">
+        <input
+          type="text"
+          id="add__repeat"
+          class="add__repeat input__label"
+          value="0"
+          required
+        />
+        <label for="add__repeat">반복설정</label>
+        <select name="repeat" id="repeat">
+          <option value="0">설정안함</option>
+          <option value="60000">분 단위</option>
+          <option value="3600000">시간 단위</option>
+          <option value="86400000">일 단위</option>
+        </select>
       </div>
       <div class="add__button">
-        <button type="submit" class="add_submit">등록</button>
-        <button type="button" class="add_cancel">종료</button>
+        <button type="submit" id="add_submit">등록</button>
+        <button type="button" id="add_cancel">종료</button>
       </div>
     </form>
 
     <div class="button">
-      <button class="add">일정 추가</button>
+      <button id="add">일정 추가</button>
+      <button id="clear">데이터 초기화</button>
     </div>
     <script src="clock.js"></script>
     <script src="content.js"></script>

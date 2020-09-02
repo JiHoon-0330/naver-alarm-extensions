@@ -20,13 +20,22 @@ input {
   background: var(--main-bg-color);
 }
 
-.add__schedule,
-.add__music {
-  margin-top: 20px;
+.add__repeat {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add__repeat > input {
+  width: 70vw;
 }
 
-.schedule__container,
-.music__container {
+select {
+  background-color: var(--main-bg-color);
+}
+
+.input__label {
+  margin-top: 20px;
   position: relative;
 }
 
@@ -40,11 +49,14 @@ label {
 
 .add__schedule:focus ~ label,
 .add__schedule:valid ~ label,
+.add__repeat:focus ~ label,
+.add__repeat:valid ~ label,
 .add__music:focus ~ label,
 .add__music:valid ~ label {
   font-size: 1em;
   top: 0px;
 }
+
 .add__date,
 .add__time {
   text-align: center;

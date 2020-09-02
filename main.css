@@ -39,7 +39,7 @@ header {
   font-size: 5em;
 }
 
-.add {
+.button > button {
   all: unset;
   border: 2px solid var(--main-text-color);
   padding: 10px 10px;

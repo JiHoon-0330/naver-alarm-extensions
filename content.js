@@ -26,9 +26,9 @@ const removeStorage = (result, k) => {
   let { scheduleDate, key } = result;
 
   if (key < parseInt(Date.now() / 1000)) {
-    if (patten === "everyday") {
+    if (patten) {
       const currentDate = new Date().getTime();
-      const getTimeDate = preTimeDate + 60 * 1000;
+      const getTimeDate = preTimeDate + patten;
       const newDate = new Date();
       newDate.setTime(getTimeDate);
       scheduleDate = getTimeDate - currentDate;
