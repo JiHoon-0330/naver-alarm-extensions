@@ -1,21 +1,40 @@
 // 인풋 데이터 형식 2020-12-31 00:59
 
-const content = document.querySelector("#content");
-const addForm = document.querySelector("#add__form");
 const addSchedule = document.querySelector("#add__schedule");
 const addMusic = document.querySelector("#add__music");
-const addSubmit = document.querySelector("#add_submit");
-const add = document.querySelector("#add");
-const addCancel = document.querySelector("#add_cancel");
-const clear = document.querySelector("#clear");
 const addRepeat = document.querySelector("#add__repeat");
 const repeat = document.querySelector("#repeat");
-const button = document.querySelector(".button");
+const addSubmit = document.querySelector("#add_submit");
+const addCancel = document.querySelector("#add_cancel");
+
+const content = document.querySelector("#content");
+const addForm = document.querySelector("#add__form");
+const optionContent = document.querySelector("#option__Content");
+
+const list = document.querySelector("#list");
+const add = document.querySelector("#add");
+const clear = document.querySelector("#clear");
+const option = document.querySelector("#option");
+
+list.addEventListener("click", () => {
+  content.classList.contains("hidden") && content.classList.remove("hidden");
+  !addForm.classList.contains("hidden") && addForm.classList.add("hidden");
+  !optionContent.classList.contains("hidden") &&
+    optionContent.classList.add("hidden");
+});
 
 add.addEventListener("click", () => {
-  content.classList.toggle("hidden");
-  addForm.classList.toggle("hidden");
-  button.classList.toggle("hidden");
+  addForm.classList.contains("hidden") && addForm.classList.remove("hidden");
+  !content.classList.contains("hidden") && content.classList.add("hidden");
+  !optionContent.classList.contains("hidden") &&
+    optionContent.classList.add("hidden");
+});
+
+option.addEventListener("click", () => {
+  optionContent.classList.contains("hidden") &&
+    optionContent.classList.remove("hidden");
+  !addForm.classList.contains("hidden") && addForm.classList.add("hidden");
+  !content.classList.contains("hidden") && content.classList.add("hidden");
 });
 
 clear.addEventListener("click", () => {
@@ -23,6 +42,7 @@ clear.addEventListener("click", () => {
   chrome.alarms.clearAll(() => {
     console.log("clear");
   });
+  location.reload();
 });
 
 addCancel.addEventListener("click", () => {
@@ -58,19 +78,6 @@ const setData = () => {
     console.log(``, storageObj);
     setStorage(storageObj);
   }
-};
-
-const setStorage = data => {
-  const storage = {};
-  const { key, scheduleDate } = data;
-  console.log(``, key, scheduleDate);
-  storage[key] = data;
-
-  chrome.storage.local.set(storage, () => {
-    chrome.alarms.create(`""${key}`, {
-      when: Date.now() + scheduleDate
-    });
-  });
 };
 
 addForm.addEventListener("submit", e => {

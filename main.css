@@ -12,7 +12,7 @@
 }
 
 body {
-  padding-bottom: 30px;
+  padding-bottom: 20px;
   background-color: var(--main-bg-color);
   display: flex;
   flex-direction: column;
@@ -27,7 +27,9 @@ header {
   align-items: center;
   font-weight: 500;
 }
-
+i {
+  cursor: pointer;
+}
 .ampm {
   margin-left: 20px;
   padding: 10px 10px;
@@ -39,12 +41,16 @@ header {
   font-size: 5em;
 }
 
+.button {
+  min-width: 60vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .button > button {
   all: unset;
-  border: 2px solid var(--main-text-color);
-  padding: 10px 10px;
-  border-radius: 40px;
-  font-size: 2em;
+  font-size: 2.5em;
 }
 
 .hidden {

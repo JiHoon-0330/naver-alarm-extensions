@@ -6,7 +6,7 @@ chrome.alarms.onAlarm.addListener(alarm => {
       chrome.windows.update(winId, { state: "maximized" });
     }
     whale.sidebarAction.show({
-      url: whale.runtime.getURL("test.html")
+      url: whale.runtime.getURL("alarm.html")
     });
   });
 });
