@@ -5,7 +5,7 @@ const setStorage = data => {
   storage[key] = data;
 
   chrome.storage.local.set(storage, () => {
-    chrome.alarms.create(`""${key}`, {
+    chrome.alarms.create(`${key}`, {
       when: Date.now() + scheduleDate
     });
   });

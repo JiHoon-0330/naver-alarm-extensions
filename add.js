@@ -17,10 +17,7 @@ const clear = document.querySelector("#clear");
 const option = document.querySelector("#option");
 
 list.addEventListener("click", () => {
-  content.classList.contains("hidden") && content.classList.remove("hidden");
-  !addForm.classList.contains("hidden") && addForm.classList.add("hidden");
-  !optionContent.classList.contains("hidden") &&
-    optionContent.classList.add("hidden");
+  location.reload();
 });
 
 add.addEventListener("click", () => {
@@ -38,11 +35,16 @@ option.addEventListener("click", () => {
 });
 
 clear.addEventListener("click", () => {
-  chrome.storage.local.clear();
-  chrome.alarms.clearAll(() => {
-    console.log("clear");
-  });
-  location.reload();
+  const result = confirm("일정목록을 초기화 하시겠습니까?");
+  if (!result) {
+    return;
+  } else {
+    chrome.storage.local.clear();
+    chrome.alarms.clearAll(() => {
+      console.log("clear");
+    });
+    location.reload();
+  }
 });
 
 addCancel.addEventListener("click", () => {

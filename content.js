@@ -4,6 +4,7 @@
 </li>; */
 
 const ul = document.querySelector(".content > ul");
+let trash = null;
 
 const printContent = (result, keys) => {
   let li = "";
@@ -19,6 +20,16 @@ const printContent = (result, keys) => {
     </li>`;
   }
   ul.innerHTML = li;
+  trash = document.querySelectorAll(".content > ul > li > i");
+  console.log(trash);
+  for (let i = 0; i < trash.length; i++) {
+    trash[i].addEventListener("click", e => {
+      console.log(e.target.parentNode.id);
+      chrome.alarms.clear(e.target.parentNode.id);
+      chrome.storage.local.remove(e.target.parentNode.id);
+      e.target.parentNode.remove();
+    });
+  }
 };
 
 const removeStorage = (result, k) => {
