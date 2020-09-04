@@ -9,7 +9,7 @@ const addCancel = document.querySelector("#add_cancel");
 
 const content = document.querySelector("#content");
 const addForm = document.querySelector("#add__form");
-const optionContent = document.querySelector("#option__Content");
+const optionContent = document.querySelector("#option__content");
 
 const list = document.querySelector("#list");
 const add = document.querySelector("#add");
@@ -39,7 +39,17 @@ clear.addEventListener("click", () => {
   if (!result) {
     return;
   } else {
-    chrome.storage.local.clear();
+    chrome.storage.local.get(null, result => {
+      const keys = Object.keys(result);
+      for (let i = 0; i < keys.length; i++) {
+        const k = keys[i];
+        if (k == "options") {
+          continue;
+        } else {
+          chrome.storage.local.remove(k);
+        }
+      }
+    });
     chrome.alarms.clearAll(() => {
       console.log("clear");
     });

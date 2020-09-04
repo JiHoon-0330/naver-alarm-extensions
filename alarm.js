@@ -1,6 +1,7 @@
 let h1 = document.querySelector("h1");
 const exit = document.querySelector("#exit");
 const repeatFive = document.querySelector("#repeat__five");
+const audio = document.querySelector("audio");
 const firstData = {};
 let firstKey = null;
 
@@ -49,6 +50,7 @@ const printSchedule = data => {
   firstData[key] = data;
   firstKey = key;
   h1.textContent = schedule;
+  audio.volume = 0.1;
 };
 
 const getFirstKey = () => {

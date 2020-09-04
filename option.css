@@ -1,0 +1,26 @@
+.audio__container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 40vw;
+  font-size: 3em;
+}
+
+.audio__select {
+  font-size: 0.5em;
+}
+
+.volume {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#volume {
+  max-width: 5vw;
+}
+
+#option__add,
+#option__exit {
+  background-color: var(--main--bg-color);
+}

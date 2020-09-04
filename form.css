@@ -6,12 +6,12 @@ form {
   align-items: center;
 }
 
-form > input,
-form > div {
+#add__form > input,
+#add__form > div {
   margin: 10px 0px;
 }
 
-input {
+#add__form input {
   all: unset;
   border-bottom: 2px solid var(--main-text-color);
   font-size: 2em;

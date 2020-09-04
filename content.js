@@ -9,8 +9,11 @@ let trash = null;
 const printContent = (result, keys) => {
   let li = "";
   for (let i = 0; i < keys.length; i++) {
-    const { schedule, date, time, key } = result[keys[i]];
-    li += `
+    if (keys[i] == "options") {
+      continue;
+    } else {
+      const { schedule, date, time, key } = result[keys[i]];
+      li += `
     <li id="${key}">
       <div>
         <span class="schedule">${schedule}</span>
@@ -18,6 +21,7 @@ const printContent = (result, keys) => {
       </div>
       <i class="fas fa-trash-alt"></i>
     </li>`;
+    }
   }
   ul.innerHTML = li;
   trash = document.querySelectorAll(".content > ul > li > i");
@@ -73,7 +77,11 @@ const getStorageAllData = () => {
     const keys = Object.keys(result);
     for (let i = 0; i < keys.length; i++) {
       const k = keys[i];
-      removeStorage(result[k], k);
+      if (k == "options") {
+        continue;
+      } else {
+        removeStorage(result[k], k);
+      }
     }
     chrome.storage.local.get(null, result => {
       const keys = Object.keys(result);
