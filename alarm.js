@@ -50,7 +50,15 @@ const printSchedule = data => {
   firstData[key] = data;
   firstKey = key;
   h1.textContent = schedule;
-  audio.volume = 0.1;
+  chrome.storage.local.get("options", result => {
+    if (!Object.keys(result).length) {
+      return;
+    } else {
+      const { volume, music } = result["options"];
+      audio.setAttribute("src", `audio/${music}`);
+      audio.volume = volume;
+    }
+  });
 };
 
 const getFirstKey = () => {
