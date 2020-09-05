@@ -76,8 +76,9 @@ const initOption = () => {
       optionMusic = result["options"].music;
       getSaveOptions(optionVolume, optionMusic);
     } else {
-      const appOptions = { options: { volume: 1, music: "알람 01.MP3" } };
+      const appOptions = { options: { volume: 0, music: "" } };
       chrome.storage.local.set(appOptions, () => {});
+      getSaveOptions(0, "");
     }
   });
 };

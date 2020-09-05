@@ -1,8 +1,9 @@
-let h1 = document.querySelector("h1");
+let ul = document.querySelector("body > div > ul");
 const exit = document.querySelector("#exit");
 const repeatFive = document.querySelector("#repeat__five");
 const audio = document.querySelector("audio");
 const firstData = {};
+const schedule = [];
 let firstKey = null;
 
 exit.addEventListener("click", () => {
@@ -46,10 +47,14 @@ repeatFive.addEventListener("click", () => {
 });
 
 const printSchedule = data => {
-  const { schedule, key } = data;
-  firstData[key] = data;
-  firstKey = key;
-  h1.textContent = schedule;
+  console.log(data.length);
+  for (let i = 0; i < data.length; i++) {
+    let text = data[i];
+    let li = document.createElement("li");
+    li.appendChild(document.createTextNode(text));
+    ul.appendChild(li);
+  }
+
   chrome.storage.local.get("options", result => {
     if (!Object.keys(result).length) {
       return;
@@ -61,22 +66,41 @@ const printSchedule = data => {
   });
 };
 
-const getFirstKey = () => {
+const getKey = () => {
   chrome.storage.local.get(null, result => {
     const keys = Object.keys(result);
     keys.sort();
-    getFirstData(keys[0]);
+    getData(keys);
   });
 };
 
-const getFirstData = key => {
-  chrome.storage.local.get(key, result => {
-    printSchedule(result[key]);
-  });
+const setData = data => {
+  console.log(``, data, data.length);
+  for (let i = 0; i < data.length; i++) {
+    schedule.push(data[i]);
+  }
+};
+
+const getData = keys => {
+  let time = null;
+  for (let i = 0; i < keys.length; i++) {
+    chrome.storage.local.get(keys[i], result => {
+      if (time) {
+        if (!(time == result[keys[i]].getTimeDate)) {
+          return;
+        } else {
+          printSchedule(result[keys[i]].scheduleList);
+        }
+      } else {
+        time = result[keys[i]].getTimeDate;
+        printSchedule(result[keys[i]].scheduleList);
+      }
+    });
+  }
 };
 
 const initTest = () => {
-  getFirstKey();
+  getKey();
 };
 
 initTest();

@@ -33,7 +33,6 @@ const printContent = (result, keys) => {
     } else {
       let span = "";
       const { scheduleList, date, time, key } = result[keys[i]];
-      console.log(scheduleList);
       for (let j = 0; j < scheduleList.length; j++) {
         span += `<span class="schedule ${j > 0 ? hidden : ""}">${
           scheduleList[j]
@@ -70,17 +69,17 @@ const printContent = (result, keys) => {
 };
 
 const removeStorage = (result, k) => {
-  const { schedule, music, getTimeDate: preTimeDate, patten } = result;
+  const { scheduleList, getTimeDate: preTimeDate, patten } = result;
   let { scheduleDate, key } = result;
 
-  if (key < parseInt(Date.now() / 1000)) {
+  if (preTimeDate < parseInt(Date.now())) {
     if (patten) {
       const currentDate = new Date().getTime();
       const getTimeDate = preTimeDate + patten;
       const newDate = new Date();
       newDate.setTime(getTimeDate);
       scheduleDate = getTimeDate - currentDate;
-      key = getTimeDate / 1000;
+      key = getTimeDate / 1000 + "" + currentDate;
 
       const dateObj = getDate(newDate);
       const timeObj = getTime(newDate);
@@ -88,10 +87,9 @@ const removeStorage = (result, k) => {
       const time = getTimeFormat(timeObj);
 
       const storageObj = {
-        schedule,
+        scheduleList,
         date,
         time,
-        music,
         getTimeDate,
         scheduleDate,
         key,

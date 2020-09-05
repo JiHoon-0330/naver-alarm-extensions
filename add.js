@@ -85,12 +85,11 @@ const setData = () => {
 
   const date = addDate.value;
   const time = addTime.value;
-
   const patten = addRepeat.value * repeat.value;
   const currentDate = new Date().getTime();
   const getTimeDate = new Date(`${date} ${time}:00`).getTime();
   const scheduleDate = getTimeDate - currentDate;
-  const key = getTimeDate / 1000;
+  const key = getTimeDate / 1000 + currentDate;
 
   console.log(``, patten);
   if (scheduleDate / 1000 <= 0) {
