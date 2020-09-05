@@ -4,19 +4,41 @@
 </li>; */
 
 const ul = document.querySelector(".content > ul");
-let trash = null;
+
+const removeHidden = child => {
+  console.log(``, child, child.length);
+  for (let i = 1; i < child.length; i++) {
+    console.log(child[i].tagName === "SPAN");
+    if (!(child[i].tagName === "SPAN")) {
+      break;
+    } else {
+      child[i].classList.remove("hidden");
+    }
+  }
+};
 
 const printContent = (result, keys) => {
   let li = "";
+  const hidden = "hidden";
+  const moreButton = `<button type="button" class="allList">더보기</button>
+  <button type="button" class="firstList hidden">접기</button>`;
   for (let i = 0; i < keys.length; i++) {
     if (keys[i] == "options") {
       continue;
     } else {
-      const { schedule, date, time, key } = result[keys[i]];
+      let span = "";
+      const { scheduleList, date, time, key } = result[keys[i]];
+      console.log(scheduleList);
+      for (let j = 0; j < scheduleList.length; j++) {
+        span += `<span class="schedule ${j > 0 ? hidden : ""}">${
+          scheduleList[j]
+        }</span>`;
+      }
       li += `
-    <li id="${key}">
-      <div>
-        <span class="schedule">${schedule}</span>
+      <li id="${key}">
+        <div>
+        ${span}
+        ${scheduleList.length > 1 ? moreButton : ""}
         <span class="datetime">${date} ${time}</span>
       </div>
       <i class="fas fa-trash-alt"></i>
@@ -24,14 +46,20 @@ const printContent = (result, keys) => {
     }
   }
   ul.innerHTML = li;
-  trash = document.querySelectorAll(".content > ul > li > i");
-  console.log(trash);
+  let trash = document.querySelectorAll(".content > ul > li > i");
+  let allList = document.querySelectorAll(".content > ul > li > div > button");
+
   for (let i = 0; i < trash.length; i++) {
     trash[i].addEventListener("click", e => {
-      console.log(e.target.parentNode.id);
       chrome.alarms.clear(e.target.parentNode.id);
       chrome.storage.local.remove(e.target.parentNode.id);
       e.target.parentNode.remove();
+    });
+  }
+
+  for (let i = 0; i < allList.length; i++) {
+    allList[i].addEventListener("click", e => {
+      removeHidden(e.target.parentNode.children);
     });
   }
 };

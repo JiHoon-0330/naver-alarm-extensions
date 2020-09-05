@@ -1,7 +1,7 @@
 // 인풋 데이터 형식 2020-12-31 00:59
 
 const addSchedule = document.querySelector("#add__schedule");
-const addMusic = document.querySelector("#add__music");
+const scheduleContainer = document.querySelector("#schedule__container");
 const addRepeat = document.querySelector("#add__repeat");
 const repeat = document.querySelector("#repeat");
 const addSubmit = document.querySelector("#add_submit");
@@ -34,6 +34,13 @@ option.addEventListener("click", () => {
   !content.classList.contains("hidden") && content.classList.add("hidden");
 });
 
+addSchedule.addEventListener("click", () => {
+  let input = document.createElement("input");
+  input.type = "text";
+  input.className = "schedule";
+  scheduleContainer.appendChild(input);
+});
+
 clear.addEventListener("click", () => {
   const result = confirm("일정목록을 초기화 하시겠습니까?");
   if (!result) {
@@ -62,10 +69,23 @@ addCancel.addEventListener("click", () => {
 });
 
 const setData = () => {
-  const schedule = addSchedule.value;
+  const schedule = document.querySelectorAll(".schedule");
+  const scheduleList = [];
+
+  console.log(schedule);
+  for (let i = 0; i < schedule.length; i++) {
+    const value = schedule[i].value;
+    if (!value) {
+      continue;
+    } else {
+      scheduleList.push(value);
+      console.log(scheduleList);
+    }
+  }
+
   const date = addDate.value;
   const time = addTime.value;
-  const music = addMusic.value;
+
   const patten = addRepeat.value * repeat.value;
   const currentDate = new Date().getTime();
   const getTimeDate = new Date(`${date} ${time}:00`).getTime();
@@ -78,10 +98,9 @@ const setData = () => {
     return;
   } else {
     const storageObj = {
-      schedule,
+      scheduleList,
       date,
       time,
-      music,
       getTimeDate,
       scheduleDate,
       key,
