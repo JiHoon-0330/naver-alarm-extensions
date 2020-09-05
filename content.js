@@ -5,14 +5,20 @@
 
 const ul = document.querySelector(".content > ul");
 
-const removeHidden = child => {
+const toggleHidden = child => {
   console.log(``, child, child.length);
   for (let i = 1; i < child.length; i++) {
-    console.log(child[i].tagName === "SPAN");
+    console.log(child[i].tagName);
     if (!(child[i].tagName === "SPAN")) {
-      break;
+      if (child[i].tagName === "BUTTON") {
+        child[i].classList.toggle("allList");
+        child[i].classList.contains("allList")
+          ? (child[i].textContent = "더보기")
+          : (child[i].textContent = "접기");
+        break;
+      }
     } else {
-      child[i].classList.remove("hidden");
+      child[i].classList.toggle("hidden");
     }
   }
 };
@@ -20,8 +26,7 @@ const removeHidden = child => {
 const printContent = (result, keys) => {
   let li = "";
   const hidden = "hidden";
-  const moreButton = `<button type="button" class="allList">더보기</button>
-  <button type="button" class="firstList hidden">접기</button>`;
+  const moreButton = `<button type="button" class="allList">더보기</button>`;
   for (let i = 0; i < keys.length; i++) {
     if (keys[i] == "options") {
       continue;
@@ -59,7 +64,7 @@ const printContent = (result, keys) => {
 
   for (let i = 0; i < allList.length; i++) {
     allList[i].addEventListener("click", e => {
-      removeHidden(e.target.parentNode.children);
+      toggleHidden(e.target.parentNode.children);
     });
   }
 };
