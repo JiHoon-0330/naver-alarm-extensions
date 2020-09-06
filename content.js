@@ -6,9 +6,7 @@
 const ul = document.querySelector(".content__container > ul");
 
 const toggleHidden = child => {
-  console.log(``, child, child.length);
   for (let i = 1; i < child.length; i++) {
-    console.log(child[i].tagName);
     if (!(child[i].tagName === "SPAN")) {
       if (child[i].tagName === "BUTTON") {
         child[i].classList.toggle("content__more");
@@ -41,24 +39,31 @@ const printContent = (result, keys) => {
       li += `
       <li id="${key}" class="content__li">
         <div class="content__content">
-        ${span}
-        ${scheduleList.length > 1 ? moreButton : ""}
-        <span class="datetime">${date} ${time}</span>
-      </div>
-      <i class="fas fa-trash-alt"></i>
-    </li>`;
+          ${span}
+          ${scheduleList.length > 1 ? moreButton : ""}
+          <span class="datetime">${date} ${time}</span>
+        </div>
+        <div class="content__icons">
+          <i class="fas fa-pencil-alt"></i>
+          <i class="fas fa-trash-alt"></i>
+        </div>
+      </li>`;
     }
   }
 
   ul.innerHTML = li;
 
-  let trash = document.querySelectorAll(".content__li > i");
+  let pencil = document.querySelectorAll(".content__icons > .fa-pencil-alt");
+  let trash = document.querySelectorAll(".content__icons > .fa-trash-alt");
   let allList = document.querySelectorAll(".content__content > button");
 
-  for (let i = 0; i < trash.length; i++) {
+  for (let i = 0; i < pencil.length; i++) {
+    pencil[i].addEventListener("click", e => {
+      modifyContent(e.target.parentNode.parentNode.id);
+    });
     trash[i].addEventListener("click", e => {
-      chrome.alarms.clear(e.target.parentNode.id);
-      chrome.storage.local.remove(e.target.parentNode.id);
+      chrome.alarms.clear(e.target.parentNode.parentNode.id);
+      chrome.storage.local.remove(e.target.parentNode.parentNode.id);
       e.target.parentNode.remove();
     });
   }

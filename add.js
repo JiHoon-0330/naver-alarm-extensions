@@ -66,7 +66,7 @@ scheduleAdd.addEventListener("click", () => {
   scheduleContainer.appendChild(input);
 });
 
-const setData = () => {
+const getScheduleList = () => {
   const schedule = document.querySelectorAll(".schedule__input");
   const scheduleList = [];
 
@@ -77,9 +77,13 @@ const setData = () => {
       continue;
     } else {
       scheduleList.push(value);
-      console.log(scheduleList);
     }
   }
+  return scheduleList;
+};
+
+const setData = () => {
+  const scheduleList = getScheduleList();
 
   const date = scheduleDate.value;
   const time = scheduleTime.value;
@@ -89,7 +93,6 @@ const setData = () => {
   const alarmDate = getTimeDate - currentDate;
   const key = getTimeDate / 1000 + "" + currentDate;
 
-  console.log(``, patten);
   if (scheduleDate / 1000 <= 0) {
     alert("등록할 수 없는 시간입니다.");
     return;

@@ -1,5 +1,6 @@
 .content__li {
   padding: 10px 0px;
+  padding-right: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,10 +22,13 @@
 }
 
 .schedule {
-  width: calc(85vw - 25px);
+  width: calc(85vw - 80px);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+.fa-pencil-alt {
+  margin-right: 5px;
 }
 
 .datetime {
