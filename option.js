@@ -12,7 +12,6 @@ let optionVolume;
 let optionMusic;
 
 const setAudioVolum = volume => {
-  console.log(volume / 10);
   audio.volume = volume / 10;
 };
 
@@ -22,7 +21,6 @@ optionForm.addEventListener("submit", e => {
 });
 
 audioSelect.addEventListener("change", e => {
-  console.log(e.target.value);
   audio.setAttribute("src", `audio/${e.target.value}`);
 });
 
@@ -76,7 +74,6 @@ const getOptions = (data, keys) => {
     chrome.storage.local.set(appOptions, () => {});
     getSaveOptions(0, "");
   }
-  console.log(data);
 };
 
 const initOption = () => {

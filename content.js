@@ -104,30 +104,33 @@ const reStorage = data => {
 };
 
 const removeStorage = (data, keys) => {
+  console.log(``, keys, keys.length);
   for (let i = 0; i < keys.length; i++) {
     const { getTimeDate, patten, key } = data[keys[i]];
     if (keys[i] == "options") {
       continue;
     } else {
       if (getTimeDate < parseInt(Date.now())) {
-        if (!patten) {
-          chrome.alarms.clear(key);
-          chrome.storage.local.remove(key);
-        } else {
-          reStorage(data);
+        console.log(
+          ``,
+          keys[i],
+          key,
+          getTimeDate < parseInt(Date.now()),
+          patten
+        );
+        if (patten) {
+          reStorage(data[keys[i]]);
         }
+        chrome.alarms.clear(key);
+        chrome.storage.local.remove(key);
       }
     }
   }
   getAllStorage(printContent);
 };
 
-const getStorageAllData = () => {
-  getAllStorage(removeStorage);
-};
-
 const initContent = () => {
-  getStorageAllData();
+  getAllStorage(removeStorage);
 };
 
 initContent();
