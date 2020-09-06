@@ -11,19 +11,19 @@ exit.addEventListener("click", () => {
 });
 
 repeatFive.addEventListener("click", () => {
-  const { schedule, music, getTimeDate: preTimeDate, patten } = firstData[
+  const { scheduleList, getTimeDate: preTimeDate, patten } = firstData[
     firstKey
   ];
 
-  let { scheduleDate, key } = firstData[firstKey];
+  let { alarmDate, key } = firstData[firstKey];
   console.log(key);
 
   const currentDate = new Date().getTime();
   const getTimeDate = preTimeDate + 300000;
   const newDate = new Date();
   newDate.setTime(getTimeDate);
-  scheduleDate = getTimeDate - currentDate;
-  key = getTimeDate / 1000;
+  alarmDate = getTimeDate - currentDate;
+  key = getTimeDate / 1000 + "" + currentDate;
 
   const dateObj = getDate(newDate);
   const timeObj = getTime(newDate);
@@ -31,12 +31,11 @@ repeatFive.addEventListener("click", () => {
   const time = getTimeFormat(timeObj);
 
   const obj = {
-    schedule,
+    scheduleList,
     date,
     time,
-    music,
     getTimeDate,
-    scheduleDate,
+    alarmDate,
     key,
     patten
   };
@@ -61,16 +60,8 @@ const printSchedule = data => {
     } else {
       const { volume, music } = result["options"];
       audio.setAttribute("src", `audio/${music}`);
-      audio.volume = volume;
+      audio.volume = volume / 10;
     }
-  });
-};
-
-const getKey = () => {
-  chrome.storage.local.get(null, result => {
-    const keys = Object.keys(result);
-    keys.sort();
-    getData(keys);
   });
 };
 
@@ -81,26 +72,25 @@ const setData = data => {
   }
 };
 
-const getData = keys => {
+const getData = (data, keys) => {
   let time = null;
   for (let i = 0; i < keys.length; i++) {
-    chrome.storage.local.get(keys[i], result => {
-      if (time) {
-        if (!(time == result[keys[i]].getTimeDate)) {
-          return;
-        } else {
-          printSchedule(result[keys[i]].scheduleList);
-        }
+    const { scheduleList, getTimeDate } = data[keys[i]];
+    if (time) {
+      if (!(time == getTimeDate)) {
+        return;
       } else {
-        time = result[keys[i]].getTimeDate;
-        printSchedule(result[keys[i]].scheduleList);
+        printSchedule(scheduleList);
       }
-    });
+    } else {
+      time = getTimeDate;
+      printSchedule(scheduleList);
+    }
   }
 };
 
 const initTest = () => {
-  getKey();
+  getAllStorage(getData);
 };
 
 initTest();

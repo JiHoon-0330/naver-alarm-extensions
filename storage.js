@@ -10,3 +10,11 @@ const setStorage = data => {
     });
   });
 };
+
+const getAllStorage = callback => {
+  chrome.storage.local.get(null, result => {
+    const keys = Object.keys(result);
+    keys.sort();
+    callback(result, keys);
+  });
+};

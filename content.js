@@ -70,58 +70,55 @@ const printContent = (result, keys) => {
   }
 };
 
-const removeStorage = (result, k) => {
-  const { scheduleList, getTimeDate: preTimeDate, patten } = result;
-  let { alarmDate, key } = result;
+const reStorage = data => {
+  const { scheduleList, getTimeDate: preTimeDate, patten } = data;
+  let { alarmDate, key } = data;
 
-  if (preTimeDate < parseInt(Date.now())) {
-    if (patten) {
-      const currentDate = new Date().getTime();
-      const getTimeDate = preTimeDate + patten;
-      const newDate = new Date();
-      newDate.setTime(getTimeDate);
-      alarmDate = getTimeDate - currentDate;
-      key = getTimeDate / 1000 + "" + currentDate;
+  const currentDate = new Date().getTime();
+  const getTimeDate = preTimeDate + patten;
+  const newDate = new Date();
+  newDate.setTime(getTimeDate);
+  alarmDate = getTimeDate - currentDate;
+  key = getTimeDate / 1000 + "" + currentDate;
+  const dateObj = getDate(newDate);
+  const timeObj = getTime(newDate);
+  const date = getDateFormat(dateObj);
+  const time = getTimeFormat(timeObj);
 
-      const dateObj = getDate(newDate);
-      const timeObj = getTime(newDate);
-      const date = getDateFormat(dateObj);
-      const time = getTimeFormat(timeObj);
+  const storageObj = {
+    scheduleList,
+    date,
+    time,
+    getTimeDate,
+    alarmDate,
+    key,
+    patten
+  };
 
-      const storageObj = {
-        scheduleList,
-        date,
-        time,
-        getTimeDate,
-        alarmDate,
-        key,
-        patten
-      };
+  setStorage(storageObj);
+};
 
-      setStorage(storageObj);
+const removeStorage = (data, keys) => {
+  for (let i = 0; i < keys.length; i++) {
+    const { getTimeDate, patten, key } = data[keys[i]];
+    if (keys[i] == "options") {
+      continue;
+    } else {
+      if (getTimeDate < parseInt(Date.now())) {
+        if (!patten) {
+          chrome.alarms.clear(key);
+          chrome.storage.local.remove(key);
+        } else {
+          reStorage(data);
+        }
+      }
     }
-    chrome.alarms.clear(k);
-    chrome.storage.local.remove(k);
   }
+  getAllStorage(printContent);
 };
 
 const getStorageAllData = () => {
-  chrome.storage.local.get(null, result => {
-    const keys = Object.keys(result);
-    for (let i = 0; i < keys.length; i++) {
-      const k = keys[i];
-      if (k == "options") {
-        continue;
-      } else {
-        removeStorage(result[k], k);
-      }
-    }
-    chrome.storage.local.get(null, result => {
-      const keys = Object.keys(result);
-      keys.sort();
-      printContent(result, keys);
-    });
-  });
+  getAllStorage(removeStorage);
 };
 
 const initContent = () => {

@@ -41,8 +41,7 @@ iconClear.addEventListener("click", () => {
   if (!result) {
     return;
   } else {
-    chrome.storage.local.get(null, result => {
-      const keys = Object.keys(result);
+    getAllStorage((data, keys) => {
       for (let i = 0; i < keys.length; i++) {
         const k = keys[i];
         if (k == "options") {

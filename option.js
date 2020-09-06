@@ -66,18 +66,21 @@ const setSaveOptions = () => {
   chrome.storage.local.set(appOptions, () => {});
 };
 
+const getOptions = (data, keys) => {
+  if (keys.length) {
+    optionVolume = data["options"].volume;
+    optionMusic = data["options"].music;
+    getSaveOptions(optionVolume, optionMusic);
+  } else {
+    const appOptions = { options: { volume: 0, music: "" } };
+    chrome.storage.local.set(appOptions, () => {});
+    getSaveOptions(0, "");
+  }
+  console.log(data);
+};
+
 const initOption = () => {
-  chrome.storage.local.get("options", result => {
-    if (Object.keys(result).length) {
-      optionVolume = result["options"].volume;
-      optionMusic = result["options"].music;
-      getSaveOptions(optionVolume, optionMusic);
-    } else {
-      const appOptions = { options: { volume: 0, music: "" } };
-      chrome.storage.local.set(appOptions, () => {});
-      getSaveOptions(0, "");
-    }
-  });
+  getAllStorage(getOptions);
 };
 
 initOption();
