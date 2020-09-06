@@ -64,7 +64,7 @@ const printContent = (result, keys) => {
     trash[i].addEventListener("click", e => {
       chrome.alarms.clear(e.target.parentNode.parentNode.id);
       chrome.storage.local.remove(e.target.parentNode.parentNode.id);
-      e.target.parentNode.remove();
+      e.target.parentNode.parentNode.remove();
     });
   }
 
