@@ -3,7 +3,7 @@
   <i class="fas fa-trash-alt"></i>
 </li>; */
 
-const ul = document.querySelector(".content > ul");
+const ul = document.querySelector(".content__container > ul");
 
 const toggleHidden = child => {
   console.log(``, child, child.length);
@@ -11,8 +11,8 @@ const toggleHidden = child => {
     console.log(child[i].tagName);
     if (!(child[i].tagName === "SPAN")) {
       if (child[i].tagName === "BUTTON") {
-        child[i].classList.toggle("allList");
-        child[i].classList.contains("allList")
+        child[i].classList.toggle("content__more");
+        child[i].classList.contains("content__more")
           ? (child[i].textContent = "더보기")
           : (child[i].textContent = "접기");
         break;
@@ -26,7 +26,7 @@ const toggleHidden = child => {
 const printContent = (result, keys) => {
   let li = "";
   const hidden = "hidden";
-  const moreButton = `<button type="button" class="allList">더보기</button>`;
+  const moreButton = `<button type="button" class="content__more">더보기</button>`;
   for (let i = 0; i < keys.length; i++) {
     if (keys[i] == "options") {
       continue;
@@ -39,8 +39,8 @@ const printContent = (result, keys) => {
         }</span>`;
       }
       li += `
-      <li id="${key}">
-        <div>
+      <li id="${key}" class="content__li">
+        <div class="content__content">
         ${span}
         ${scheduleList.length > 1 ? moreButton : ""}
         <span class="datetime">${date} ${time}</span>
@@ -49,9 +49,11 @@ const printContent = (result, keys) => {
     </li>`;
     }
   }
+
   ul.innerHTML = li;
-  let trash = document.querySelectorAll(".content > ul > li > i");
-  let allList = document.querySelectorAll(".content > ul > li > div > button");
+
+  let trash = document.querySelectorAll(".content__li > i");
+  let allList = document.querySelectorAll(".content__content > button");
 
   for (let i = 0; i < trash.length; i++) {
     trash[i].addEventListener("click", e => {
@@ -70,7 +72,7 @@ const printContent = (result, keys) => {
 
 const removeStorage = (result, k) => {
   const { scheduleList, getTimeDate: preTimeDate, patten } = result;
-  let { scheduleDate, key } = result;
+  let { alarmDate, key } = result;
 
   if (preTimeDate < parseInt(Date.now())) {
     if (patten) {
@@ -78,7 +80,7 @@ const removeStorage = (result, k) => {
       const getTimeDate = preTimeDate + patten;
       const newDate = new Date();
       newDate.setTime(getTimeDate);
-      scheduleDate = getTimeDate - currentDate;
+      alarmDate = getTimeDate - currentDate;
       key = getTimeDate / 1000 + "" + currentDate;
 
       const dateObj = getDate(newDate);
@@ -91,7 +93,7 @@ const removeStorage = (result, k) => {
         date,
         time,
         getTimeDate,
-        scheduleDate,
+        alarmDate,
         key,
         patten
       };

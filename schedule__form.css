@@ -1,0 +1,93 @@
+form {
+  min-width: 80vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.schedule__container,
+.schedule__datetime,
+.schedule__repeat {
+  position: relative;
+  padding: 15px 15px;
+  margin-bottom: 20px;
+  min-width: 80vw;
+  max-width: 80vw;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--main-text-color);
+  border-radius: 20px;
+}
+
+.schedule__container {
+  padding-bottom: 50px;
+}
+
+.schedule__repeat {
+  flex-direction: row;
+}
+
+.schedule__container > .schedule_span,
+.schedule__datetime > .datetime__span,
+.schedule__repeat > .repeat__span {
+  position: absolute;
+  display: block;
+  font-size: 18px;
+  top: -15px;
+  z-index: 1;
+}
+
+.schedule__input,
+.schedule__datetime > input,
+.repeat__input {
+  all: unset;
+  padding: 8px 0px;
+  border-bottom: 1.5px solid var(--main-text-color);
+  font-size: 23px;
+  width: 100%;
+}
+
+.schedule__datetime > input {
+  align-items: center;
+  text-align: center;
+}
+
+.schedule__container > .schedule__add {
+  position: absolute;
+  padding: 3px 0px;
+  bottom: 10px;
+  min-height: 20px;
+  width: calc(80vw - 34px);
+  text-align: center;
+  border: 1.5px solid var(--main-text-color);
+  border-radius: 50px;
+  font-size: 16px;
+}
+
+.repeat__input {
+  flex: 1;
+}
+
+#repeat__select {
+  padding: 0px 3px;
+  font-size: 15px;
+  border: 1.5px solid var(--main-text-color);
+  border-radius: 40px;
+}
+
+.schedule__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 80vw;
+  max-width: 80vw;
+}
+.schedule__button > button {
+  border: 1.5px solid var(--main-text-color);
+  border-radius: 20px;
+  padding: 5px 0px;
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+}

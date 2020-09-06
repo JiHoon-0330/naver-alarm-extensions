@@ -9,11 +9,16 @@
   padding: 0;
   box-sizing: border-box;
   color: var(--main-text-color);
+  background-color: var(--main-bg-color);
+  outline: 0;
+}
+
+button {
+  all: unset;
 }
 
 body {
   padding-bottom: 20px;
-  background-color: var(--main-bg-color);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -21,36 +26,45 @@ body {
   min-height: 100vh;
 }
 
-header {
+i,
+button,
+select {
+  cursor: pointer;
+}
+
+.clock__container {
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 500;
 }
-i {
-  cursor: pointer;
-}
-.ampm {
+
+.clock__container > .clock__ampm {
   margin-left: 20px;
   padding: 10px 10px;
   font-size: 4em;
 }
-.clock {
+.clock__container > .clock__time {
   margin-right: 20px;
   padding: 10px 10px;
   font-size: 5em;
 }
 
-.button {
+.icon__container {
   min-width: 60vw;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-.button > button {
+.icon__container > button {
   all: unset;
   font-size: 2.5em;
+  transition: all 0.2s linear;
+}
+
+.icon__container > button:hover {
+  transform: scale(1.2);
 }
 
 .hidden {

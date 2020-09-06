@@ -1,26 +1,44 @@
-.audio__container {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  min-width: 40vw;
-  font-size: 3em;
-}
-
-.audio__select {
-  font-size: 0.5em;
-}
-
-.volume {
+.option__container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  min-width: 80vw;
+  max-width: 80vw;
 }
-#volume {
-  max-width: 5vw;
+.option__audio {
+  display: flex;
 }
 
-#option__add,
-#option__exit {
-  background-color: var(--main--bg-color);
+.audio__container,
+.volume__container,
+.option__button {
+  position: relative;
+  padding: 15px 15px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--main-text-color);
+  border-radius: 20px;
+}
+
+.audio__container,
+.volume__container {
+  flex: 1;
+}
+
+.audio__span,
+.volume__span {
+  position: absolute;
+  display: block;
+  font-size: 18px;
+  top: -15px;
+  z-index: 1;
+}
+
+#audio__select,
+.volume__value {
+  flex: 1;
+}
+.volume__icons {
+  display: flex;
+  flex-direction: column;
 }

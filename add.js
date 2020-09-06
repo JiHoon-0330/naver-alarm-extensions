@@ -1,47 +1,42 @@
 // 인풋 데이터 형식 2020-12-31 00:59
 
-const addSchedule = document.querySelector("#add__schedule");
-const scheduleContainer = document.querySelector("#schedule__container");
-const addRepeat = document.querySelector("#add__repeat");
-const repeat = document.querySelector("#repeat");
-const addSubmit = document.querySelector("#add_submit");
-const addCancel = document.querySelector("#add_cancel");
+const scheduleAdd = document.querySelector(".schedule__add");
+const scheduleContainer = document.querySelector(".schedule__container");
+const repeatInput = document.querySelector(".repeat__input");
+const repeatSelect = document.querySelector("#repeat__select");
 
-const content = document.querySelector("#content");
-const addForm = document.querySelector("#add__form");
-const optionContent = document.querySelector("#option__content");
+const contentContainer = document.querySelector(".content__container");
+const scheduleForm = document.querySelector(".schedule__form");
+const optionForm = document.querySelector(".option__form");
 
-const list = document.querySelector("#list");
-const add = document.querySelector("#add");
-const clear = document.querySelector("#clear");
-const option = document.querySelector("#option");
+const iconContent = document.querySelector(".icon__content");
+const iconForm = document.querySelector(".icon__form");
+const iconClear = document.querySelector(".icon__clear");
+const iconOption = document.querySelector(".icon__option");
 
-list.addEventListener("click", () => {
+iconContent.addEventListener("click", () => {
   location.reload();
 });
 
-add.addEventListener("click", () => {
-  addForm.classList.contains("hidden") && addForm.classList.remove("hidden");
-  !content.classList.contains("hidden") && content.classList.add("hidden");
-  !optionContent.classList.contains("hidden") &&
-    optionContent.classList.add("hidden");
+iconForm.addEventListener("click", () => {
+  scheduleForm.classList.contains("hidden") &&
+    scheduleForm.classList.remove("hidden");
+  !contentContainer.classList.contains("hidden") &&
+    contentContainer.classList.add("hidden");
+  !optionForm.classList.contains("hidden") &&
+    optionForm.classList.add("hidden");
 });
 
-option.addEventListener("click", () => {
-  optionContent.classList.contains("hidden") &&
-    optionContent.classList.remove("hidden");
-  !addForm.classList.contains("hidden") && addForm.classList.add("hidden");
-  !content.classList.contains("hidden") && content.classList.add("hidden");
+iconOption.addEventListener("click", () => {
+  optionForm.classList.contains("hidden") &&
+    optionForm.classList.remove("hidden");
+  !scheduleForm.classList.contains("hidden") &&
+    scheduleForm.classList.add("hidden");
+  !contentContainer.classList.contains("hidden") &&
+    contentContainer.classList.add("hidden");
 });
 
-addSchedule.addEventListener("click", () => {
-  let input = document.createElement("input");
-  input.type = "text";
-  input.className = "schedule";
-  scheduleContainer.appendChild(input);
-});
-
-clear.addEventListener("click", () => {
+iconClear.addEventListener("click", () => {
   const result = confirm("일정목록을 초기화 하시겠습니까?");
   if (!result) {
     return;
@@ -64,12 +59,16 @@ clear.addEventListener("click", () => {
   }
 });
 
-addCancel.addEventListener("click", () => {
-  location.reload();
+scheduleAdd.addEventListener("click", () => {
+  let input = document.createElement("input");
+  input.type = "text";
+  input.className = "schedule__input";
+  input.setAttribute("placeholder", "일정을 입력하세요.");
+  scheduleContainer.appendChild(input);
 });
 
 const setData = () => {
-  const schedule = document.querySelectorAll(".schedule");
+  const schedule = document.querySelectorAll(".schedule__input");
   const scheduleList = [];
 
   console.log(schedule);
@@ -83,13 +82,13 @@ const setData = () => {
     }
   }
 
-  const date = addDate.value;
-  const time = addTime.value;
-  const patten = addRepeat.value * repeat.value;
+  const date = scheduleDate.value;
+  const time = scheduleTime.value;
+  const patten = repeatInput.value * repeatSelect.value;
   const currentDate = new Date().getTime();
   const getTimeDate = new Date(`${date} ${time}:00`).getTime();
-  const scheduleDate = getTimeDate - currentDate;
-  const key = getTimeDate / 1000 + currentDate;
+  const alarmDate = getTimeDate - currentDate;
+  const key = getTimeDate / 1000 + "" + currentDate;
 
   console.log(``, patten);
   if (scheduleDate / 1000 <= 0) {
@@ -101,7 +100,7 @@ const setData = () => {
       date,
       time,
       getTimeDate,
-      scheduleDate,
+      alarmDate,
       key,
       patten
     };
@@ -110,9 +109,10 @@ const setData = () => {
   }
 };
 
-addForm.addEventListener("submit", e => {
+scheduleForm.addEventListener("submit", e => {
   e.preventDefault();
   setData();
+  location.reload();
 });
 
 const initAdd = () => {};

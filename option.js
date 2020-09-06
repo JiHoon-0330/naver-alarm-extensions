@@ -1,12 +1,13 @@
 const audioSelect = document.querySelector("#audio__select");
-const play = document.querySelector("#play");
-const pause = document.querySelector("#pause");
-const volumeInput = document.querySelector("#volume__input");
-const voulmUp = document.querySelector("#voulme__up");
-const voulmDown = document.querySelector("#voulme__down");
-const optionForm = document.querySelector("#option__form");
-const optionExit = document.querySelector("#option__exit");
+const audioPlay = document.querySelector(".audio__play");
+const audioPause = document.querySelector(".audio__pause");
+
+const volumeValue = document.querySelector(".volume__value");
+const voulmUp = document.querySelector(".voulme__up");
+const voulmDown = document.querySelector(".voulme__down");
+
 const audio = document.querySelector("audio");
+
 let optionVolume;
 let optionMusic;
 
@@ -20,50 +21,46 @@ optionForm.addEventListener("submit", e => {
   setSaveOptions();
 });
 
-optionExit.addEventListener("click", () => {
-  location.reload();
-});
-
 audioSelect.addEventListener("change", e => {
   console.log(e.target.value);
   audio.setAttribute("src", `audio/${e.target.value}`);
 });
 
-play.addEventListener("click", () => {
+audioPlay.addEventListener("click", () => {
   audio.play();
 });
 
-pause.addEventListener("click", () => {
+audioPause.addEventListener("click", () => {
   audio.pause();
 });
 
 voulmUp.addEventListener("click", () => {
-  if (volumeInput.textContent >= 10) {
+  if (volumeValue.textContent >= 10) {
     alert("볼륨은 0 ~ 10 까지 설정 가능합니다.");
   } else {
-    volumeInput.textContent = parseInt(volumeInput.textContent) + 1;
-    setAudioVolum(parseInt(volumeInput.textContent));
+    volumeValue.textContent = parseInt(volumeValue.textContent) + 1;
+    setAudioVolum(parseInt(volumeValue.textContent));
   }
 });
 
 voulmDown.addEventListener("click", () => {
-  if (volumeInput.textContent <= 0) {
+  if (volumeValue.textContent <= 0) {
     alert("볼륨은 0 ~ 10 까지 설정 가능합니다.");
   } else {
-    volumeInput.textContent = parseInt(volumeInput.textContent) - 1;
-    setAudioVolum(parseInt(volumeInput.textContent));
+    volumeValue.textContent = parseInt(volumeValue.textContent) - 1;
+    setAudioVolum(parseInt(volumeValue.textContent));
   }
 });
 
 const getSaveOptions = (saveVolume, saveMusic) => {
-  volumeInput.textContent = saveVolume;
+  volumeValue.textContent = saveVolume;
   setAudioVolum(saveVolume);
   audioSelect.value = saveMusic;
   audio.setAttribute("src", `audio/${saveMusic}`);
 };
 
 const setSaveOptions = () => {
-  const volume = volumeInput.textContent;
+  const volume = volumeValue.textContent;
   const music = audioSelect.value;
   const appOptions = { options: { volume, music } };
   chrome.storage.local.set(appOptions, () => {});

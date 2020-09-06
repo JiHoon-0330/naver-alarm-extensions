@@ -1,9 +1,9 @@
 // 12313 2020-12-31 00:59  // "2019/05/16/0:0:10"
 
-const clock = document.querySelector(".clock");
-const ampm = document.querySelector(".ampm");
-const addDate = document.querySelector(".add__date");
-const addTime = document.querySelector(".add__time");
+const clockTime = document.querySelector(".clock__time");
+const clockAmpm = document.querySelector(".clock__ampm");
+const scheduleDate = document.querySelector(".schedule__date");
+const scheduleTime = document.querySelector(".schedule__time");
 
 const getAMPM = time => {
   const { hours } = time;
@@ -13,14 +13,14 @@ const getAMPM = time => {
 const setDate = () => {
   const currentTimeObj = getTime();
   const currentDateObj = getDate();
-  addDate.value = getDateFormat(currentDateObj);
-  addTime.value = getTimeFormat(currentTimeObj, "addTime");
+  scheduleDate.value = getDateFormat(currentDateObj);
+  scheduleTime.value = getTimeFormat(currentTimeObj, "addTime");
 };
 
 const setDateTime = () => {
   const currentTimeObj = getTime();
-  clock.textContent = getTimeFormat(currentTimeObj, "clock");
-  ampm.textContent = getAMPM(currentTimeObj);
+  clockTime.textContent = getTimeFormat(currentTimeObj, "clock");
+  clockAmpm.textContent = getAMPM(currentTimeObj);
 };
 
 const initClock = () => {

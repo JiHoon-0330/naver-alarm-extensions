@@ -8,90 +8,97 @@
       src="https://kit.fontawesome.com/20fc56bb28.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="form.css" />
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="schedule__form.css" />
     <link rel="stylesheet" href="content.css" />
     <link rel="stylesheet" href="option.css" />
-    <link rel="stylesheet" href="main.css" />
   </head>
   <body>
-    <header>
-      <div class="ampm"></div>
-      <div class="clock"></div>
-    </header>
-    <div id="content" class="content">
-      <ul></ul>
+    <div class="clock__container">
+      <div class="clock__ampm"></div>
+      <div class="clock__time"></div>
     </div>
 
-    <form action="" id="add__form" class="add__form hidden">
-      <div id="schedule__container" class="schedule__container input__label">
-        <button type="button" id="add__schedule">일정추가</button>
+    <div class="content__container">
+      <ul class="content__ul"></ul>
+    </div>
+
+    <form action="" class="schedule__form hidden">
+      <div class="schedule__container">
+        <span class="schedule_span">일정</span>
         <input
           type="text"
-          id="schedule"
-          class="schedule input__label"
+          class="schedule__input"
+          placeholder="일정을 입력하세요."
           required
         />
-        <label for="schedule">일정</label>
+        <button type="button" class="schedule__add">일정추가</button>
       </div>
-      <input type="date" class="add__date" />
-      <input type="time" class="add__time" />
-      <div class="input__label add__repeat">
-        <input
-          type="text"
-          id="add__repeat"
-          class="add__repeat input__label"
-          value="0"
-          required
-        />
-        <label for="add__repeat">반복설정</label>
-        <select name="repeat" id="repeat">
-          <option value="0">설정안함</option>
+      <div class="schedule__datetime">
+        <span class="datetime__span">날짜</span>
+        <input type="date" class="schedule__date" />
+        <input type="time" class="schedule__time" />
+      </div>
+
+      <div class="schedule__repeat">
+        <span class="repeat__span">반복 설정</span>
+        <input type="number" class="repeat__input" value="0" min="0" required />
+        <select name="repeat__select" id="repeat__select">
+          <option value="0">단위설정</option>
           <option value="60000">분 단위</option>
           <option value="3600000">시간 단위</option>
           <option value="86400000">일 단위</option>
         </select>
       </div>
-      <div class="add__button">
-        <button type="submit" id="add_submit">등록</button>
-        <button type="button" id="add_cancel">종료</button>
+      <div class="schedule__button">
+        <button type="submit" class="schedule__submit">등록하기</button>
       </div>
     </form>
-    <div id="option__content" class="option__content hidden">
-      <form id="option__form" action="">
-        <div class="audio__container">
-          <select name="audio__select" id="audio__select" class="audio__select">
-            <option value="">벨소리 선택</option>
-            <option value="알람 01.MP3">알람 01</option>
-            <option value="알람 02.MP3">알람 02</option>
-            <option value="알람 03.MP3">알람 03</option>
-            <option value="알람 04.MP3">알람 04</option>
-            <option value="알람 05.MP3">알람 05</option>
-            <option value="알람 06.MP3">알람 06</option>
-            <option value="알람 07.MP3">알람 07</option>
-            <option value="알람 08.MP3">알람 08</option>
-            <option value="알람 09.MP3">알람 09</option>
-          </select>
-          <i id="play" class="fas fa-caret-right"></i>
-          <i id="pause" class="fas fa-pause"></i>
-          <span id="volume__input"></span>
-          <div class="volume">
-            <i id="voulme__up" class="fas fa-caret-up"></i>
-            <i id="voulme__down" class="fas fa-caret-down"></i>
+    <form class="option__form hidden" action="">
+      <div class="option__container">
+        <div class="option__audio">
+          <div class="audio__container">
+            <span class="audio__span">알람음</span>
+            <select name="audio__select" id="audio__select">
+              <option value="">벨소리 선택</option>
+              <option value="알람 01.MP3">알람 01</option>
+              <option value="알람 02.MP3">알람 02</option>
+              <option value="알람 03.MP3">알람 03</option>
+              <option value="알람 04.MP3">알람 04</option>
+              <option value="알람 05.MP3">알람 05</option>
+              <option value="알람 06.MP3">알람 06</option>
+              <option value="알람 07.MP3">알람 07</option>
+              <option value="알람 08.MP3">알람 08</option>
+              <option value="알람 09.MP3">알람 09</option>
+            </select>
+            <i class="fas fa-caret-right audio__play"></i>
+            <i class="fas fa-pause audio__pause"></i>
           </div>
-          <audio loop>
-            <source type="audio/mpeg" />
-          </audio>
-          <button type="submit" id="option__add">등록</button>
-          <button type="button" id="option__exit">종료</button>
+          <div class="volume__container">
+            <span class="volume__span">볼륨</span>
+            <span class="volume__value"></span>
+            <div class="volume__icons">
+              <i class="fas fa-caret-up voulme__up"></i>
+              <i class="fas fa-caret-down voulme__down"></i>
+            </div>
+          </div>
         </div>
-      </form>
+        <div class="option__button">
+          <button type="option__submit" class="option__add">등록</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="icon__container">
+      <button class="icon__content"><i class="fas fa-bars"></i></button>
+      <button class="icon__form"><i class="fas fa-bell"></i></button>
+      <button class="icon__clear"><i class="fas fa-bell-slash"></i></button>
+      <button class="icon__option"><i class="fas fa-cog"></i></button>
     </div>
-    <div class="button">
-      <button id="list"><i class="fas fa-bars"></i></button>
-      <button id="add"><i class="fas fa-bell"></i></button>
-      <button id="clear"><i class="fas fa-bell-slash"></i></button>
-      <button id="option"><i class="fas fa-cog"></i></button>
-    </div>
+
+    <audio loop>
+      <source type="audio/mpeg" />
+    </audio>
 
     <script src="date.js"></script>
     <script src="storage.js"></script>
