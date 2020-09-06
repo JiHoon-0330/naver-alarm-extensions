@@ -1,5 +1,5 @@
 // 인풋 데이터 형식 2020-12-31 00:59
-
+const scheduleKye = document.querySelector(".schedule__key");
 const scheduleAdd = document.querySelector(".schedule__add");
 const scheduleContainer = document.querySelector(".schedule__container");
 const repeatInput = document.querySelector(".repeat__input");
@@ -114,6 +114,10 @@ const setData = () => {
 scheduleForm.addEventListener("submit", e => {
   e.preventDefault();
   setData();
+  if (scheduleKye.value) {
+    chrome.alarms.clear(scheduleKye.value);
+    chrome.storage.local.remove(scheduleKye.value);
+  }
   location.reload();
 });
 

@@ -22,15 +22,15 @@ const toggleHidden = child => {
 };
 
 const getPatten = patten => {
-  if (patten) {
+  if (!patten) {
+    return "";
+  } else {
     if (patten >= 86400000) {
       return `[반복] ${patten / 86400000}일`;
     } else if (patten >= 3600000) {
       return `[반복] ${patten / 3600000}시간`;
-    } else if (patten >= 60000) {
+    } else {
       return `[반복] ${patten / 60000}분`;
-    } else if (patten > 0) {
-      return `[반복] ${patten}초`;
     }
   }
 };
