@@ -21,6 +21,20 @@ const toggleHidden = child => {
   }
 };
 
+const getPatten = patten => {
+  if (patten) {
+    if (patten >= 86400000) {
+      return `[반복] ${patten / 86400000}일`;
+    } else if (patten >= 3600000) {
+      return `[반복] ${patten / 3600000}시간`;
+    } else if (patten >= 60000) {
+      return `[반복] ${patten / 60000}분`;
+    } else if (patten > 0) {
+      return `[반복] ${patten}초`;
+    }
+  }
+};
+
 const printContent = (result, keys) => {
   let li = "";
   const hidden = "hidden";
@@ -30,18 +44,21 @@ const printContent = (result, keys) => {
       continue;
     } else {
       let span = "";
-      const { scheduleList, date, time, key } = result[keys[i]];
+      const { scheduleList, date, time, key, patten } = result[keys[i]];
+      const test = getPatten(patten);
       for (let j = 0; j < scheduleList.length; j++) {
         span += `<span class="schedule ${j > 0 ? hidden : ""}">${
           scheduleList[j]
         }</span>`;
       }
+
       li += `
       <li id="${key}" class="content__li">
         <div class="content__content">
           ${span}
           ${scheduleList.length > 1 ? moreButton : ""}
-          <span class="datetime">${date} ${time}</span>
+          <span class="datetime">${date} ${time} </span>
+          <span class="patten">${test}</span>
         </div>
         <div class="content__icons">
           <i class="fas fa-pencil-alt"></i>
