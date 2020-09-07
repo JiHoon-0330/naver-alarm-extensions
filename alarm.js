@@ -105,6 +105,9 @@ const getData = (data, keys) => {
 
 const initTest = () => {
   getAllStorage(getData);
+  setTimeout(() => {
+    location.href = "index.html";
+  }, 1000 * 50);
 };
 
 initTest();
