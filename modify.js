@@ -8,12 +8,14 @@ const modifyContent = id => {
       getTimeDate,
       alarmDate,
       key,
-      patten
+      repeat,
+      repeatTime
     } = result[id];
     scheduleDate.value = date;
     scheduleTime.value = time;
     scheduleKye.value = key;
-
+    repeatSelect.value = repeat;
+    repeatInput.value = repeatTime;
     document.querySelector(".schedule__input").value = list[0];
 
     for (let i = 1; i < list.length; i++) {

@@ -87,7 +87,8 @@ const setData = () => {
 
   const date = scheduleDate.value;
   const time = scheduleTime.value;
-  const patten = repeatInput.value * repeatSelect.value;
+  const repeat = repeatSelect.value;
+  const repeatTime = repeatInput.value;
   const currentDate = new Date().getTime();
   const getTimeDate = new Date(`${date} ${time}:00`).getTime();
   const alarmDate = getTimeDate - currentDate;
@@ -104,7 +105,8 @@ const setData = () => {
       getTimeDate,
       alarmDate,
       key,
-      patten
+      repeat,
+      repeatTime
     };
     console.log(``, storageObj);
     setStorage(storageObj);

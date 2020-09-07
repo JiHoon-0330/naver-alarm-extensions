@@ -1,4 +1,5 @@
 let ul = document.querySelector("body > div > ul");
+let span = document.querySelector("body > div > span");
 const exit = document.querySelector("#exit");
 const repeatFive = document.querySelector("#repeat__five");
 const audio = document.querySelector("audio");
@@ -11,7 +12,8 @@ repeatFive.addEventListener("click", () => {
   const scheduleList = [];
   const scheduleLi = document.querySelectorAll(".schedule__li");
   const preTimeDate = parseInt(document.querySelector(".getTimeDate").value);
-  const patten = parseInt(document.querySelector(".patten").value);
+  const repeat = parseInt(document.querySelector(".repeat").value);
+  const repeatTime = parseInt(document.querySelector(".repeatTime").value);
 
   const currentDate = new Date().getTime();
   const getTimeDate = preTimeDate + 300000;
@@ -41,7 +43,8 @@ repeatFive.addEventListener("click", () => {
     getTimeDate,
     alarmDate,
     key,
-    patten
+    repeat,
+    repeatTime
   };
 
   setStorage(obj);
@@ -57,7 +60,8 @@ const printSchedule = data => {
     getTimeDate,
     alarmDate,
     key,
-    patten
+    repeat,
+    repeatTime
   } = data;
 
   document.querySelector(".date").value = date;
@@ -65,7 +69,9 @@ const printSchedule = data => {
   document.querySelector(".getTimeDate").value = getTimeDate;
   document.querySelector(".alarmDate").value = alarmDate;
   document.querySelector(".key").value = key;
-  document.querySelector(".patten").value = patten;
+  document.querySelector(".repeat").value = repeat;
+  document.querySelector(".repeatTime").value = repeatTime;
+  span.textContent = `${date} ${time}`;
 
   for (let i = 0; i < scheduleList.length; i++) {
     let text = scheduleList[i];

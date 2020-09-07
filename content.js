@@ -21,16 +21,16 @@ const toggleHidden = child => {
   }
 };
 
-const getPatten = patten => {
-  if (!patten) {
+const getPatten = time => {
+  if (!time) {
     return "";
   } else {
-    if (patten >= 86400000) {
-      return `<i class="fas fa-history"></i> ${patten / 86400000}일`;
-    } else if (patten >= 3600000) {
-      return `<i class="fas fa-history"></i> ${patten / 3600000}시간`;
+    if (time >= 86400000) {
+      return `<i class="fas fa-history"></i> ${time / 86400000}일`;
+    } else if (time >= 3600000) {
+      return `<i class="fas fa-history"></i> ${time / 3600000}시간`;
     } else {
-      return `<i class="fas fa-history"></i> ${patten / 60000}분`;
+      return `<i class="fas fa-history"></i> ${time / 60000}분`;
     }
   }
 };
@@ -44,8 +44,10 @@ const printContent = (result, keys) => {
       continue;
     } else {
       let span = "";
-      const { scheduleList, date, time, key, patten } = result[keys[i]];
-      const test = getPatten(patten);
+      const { scheduleList, date, time, key, repeat, repeatTime } = result[
+        keys[i]
+      ];
+      const test = getPatten(repeat * repeatTime);
       for (let j = 0; j < scheduleList.length; j++) {
         span += `<span class="schedule ${j > 0 ? hidden : ""}">${
           scheduleList[j]
@@ -92,12 +94,19 @@ const printContent = (result, keys) => {
   }
 };
 
-const reStorage = data => {
-  const { scheduleList, getTimeDate: preTimeDate, patten } = data;
-  let { alarmDate, key } = data;
+const test = (time, repeat) => {
+  while (time <= parseInt(Date.now())) {
+    time += repeat; // 3600060000
+    console.log(``, time, parseInt(Date.now()));
+  }
+  return time;
+};
 
+const reStorage = data => {
+  const { scheduleList, getTimeDate: preTimeDate, repeat, repeatTime } = data;
+  let { alarmDate, key } = data;
+  let getTimeDate = test(preTimeDate, repeat * repeatTime);
   const currentDate = new Date().getTime();
-  const getTimeDate = preTimeDate + patten;
   const newDate = new Date();
   newDate.setTime(getTimeDate);
   alarmDate = getTimeDate - currentDate;
@@ -114,28 +123,22 @@ const reStorage = data => {
     getTimeDate,
     alarmDate,
     key,
-    patten
+    repeat,
+    repeatTime
   };
 
   setStorage(storageObj);
 };
 
 const removeStorage = (data, keys) => {
-  console.log(``, keys, keys.length);
   for (let i = 0; i < keys.length; i++) {
-    const { getTimeDate, patten, key } = data[keys[i]];
+    const { getTimeDate, repeat, key } = data[keys[i]];
+
     if (keys[i] == "options") {
       continue;
     } else {
       if (getTimeDate < parseInt(Date.now())) {
-        console.log(
-          ``,
-          keys[i],
-          key,
-          getTimeDate < parseInt(Date.now()),
-          patten
-        );
-        if (patten) {
+        if (repeat) {
           reStorage(data[keys[i]]);
         }
         chrome.alarms.clear(key);

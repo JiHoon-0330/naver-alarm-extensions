@@ -1,13 +1,14 @@
 const setStorage = data => {
   const storage = {};
-  const { key, alarmDate } = data;
-  console.log(``, key, alarmDate);
+  const { key, alarmDate, getTimeDate } = data;
   storage[key] = data;
 
   chrome.storage.local.set(storage, () => {
-    chrome.alarms.create(`${key}`, {
-      when: Date.now() + alarmDate
-    });
+    if (getTimeDate > parseInt(Date.now())) {
+      chrome.alarms.create(`${key}`, {
+        when: Date.now() + alarmDate
+      });
+    }
   });
 };
 
