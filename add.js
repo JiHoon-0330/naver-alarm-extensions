@@ -93,7 +93,7 @@ const setData = () => {
   const alarmDate = getTimeDate - currentDate;
   const key = getTimeDate / 1000 + "" + currentDate;
 
-  if (scheduleDate / 1000 <= 0) {
+  if (alarmDate / 1000 <= 0) {
     alert("등록할 수 없는 시간입니다.");
     return;
   } else {
