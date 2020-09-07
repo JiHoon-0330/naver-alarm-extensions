@@ -54,7 +54,9 @@ const getSaveOptions = (saveVolume, saveMusic) => {
   volumeValue.textContent = saveVolume;
   setAudioVolum(saveVolume);
   audioSelect.value = saveMusic;
-  audio.setAttribute("src", `audio/${saveMusic}`);
+  if (saveMusic) {
+    audio.setAttribute("src", `audio/${saveMusic}`);
+  }
 };
 
 const setSaveOptions = () => {

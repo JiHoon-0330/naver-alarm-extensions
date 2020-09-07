@@ -86,7 +86,9 @@ const printSchedule = data => {
       return;
     } else {
       const { volume, music } = result["options"];
-      audio.setAttribute("src", `audio/${music}`);
+      if (music) {
+        audio.setAttribute("src", `audio/${music}`);
+      }
       audio.volume = volume / 10;
     }
   });
@@ -111,9 +113,6 @@ const getData = (data, keys) => {
 
 const initTest = () => {
   getAllStorage(getData);
-  setTimeout(() => {
-    location.href = "index.html";
-  }, 1000 * 50);
 };
 
 initTest();

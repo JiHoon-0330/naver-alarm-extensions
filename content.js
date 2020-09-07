@@ -129,16 +129,14 @@ const reStorage = data => {
 
   setStorage(storageObj);
 };
-
 const removeStorage = (data, keys) => {
   for (let i = 0; i < keys.length; i++) {
-    const { getTimeDate, repeat, key } = data[keys[i]];
-
+    const { getTimeDate, repeat, repeatTime, key } = data[keys[i]];
     if (keys[i] == "options") {
       continue;
     } else {
       if (getTimeDate < parseInt(Date.now())) {
-        if (repeat) {
+        if (repeat * repeatTime > 0) {
           reStorage(data[keys[i]]);
         }
         chrome.alarms.clear(key);
