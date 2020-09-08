@@ -15,7 +15,7 @@
   margin-bottom: 20px;
   display: flex;
   align-items: center;
-  border: 2px solid var(--main-text-color);
+  border: 1px solid var(--main-text-color);
   border-radius: 20px;
 }
 
@@ -42,7 +42,7 @@
   padding: 5px 3px;
   margin-right: 10px;
   font-size: 1.5em;
-  border-bottom: 1.5px solid var(--main-text-color);
+  border-bottom: 1px solid var(--main-text-color);
 }
 
 #audio__select,
@@ -54,16 +54,26 @@
 .audio__pause {
   padding: 0px 10px;
 }
+
+.audio__play {
+  font-size: 2.5em;
+}
+.audio__pause {
+  font-size: 1.5em;
+}
+
 .volume__value {
   font-size: 1.5em;
   padding: 5px 5px;
-  border-bottom: 1.5px solid var(--main-text-color);
+  border-bottom: 1px solid var(--main-text-color);
 }
 
 .volume__icons {
   display: flex;
   flex-direction: column;
+  font-size: 2em;
 }
 
 .option__add {
+  text-align: center;
 }

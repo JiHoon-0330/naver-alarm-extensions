@@ -16,7 +16,7 @@ form {
   max-width: 80vw;
   display: flex;
   flex-direction: column;
-  border: 2px solid var(--main-text-color);
+  border: 1px solid var(--main-text-color);
   border-radius: 20px;
 }
 
@@ -39,7 +39,7 @@ form {
 .repeat__input {
   all: unset;
   padding: 4px 0px;
-  border-bottom: 1.5px solid var(--main-text-color);
+  border-bottom: 1px solid var(--main-text-color);
   font-size: 23px;
   width: 100%;
 }
@@ -73,7 +73,7 @@ form {
   border: none;
   padding: 5px 3px;
   font-size: 18px;
-  border-bottom: 1.5px solid var(--main-text-color);
+  border-bottom: 1px solid var(--main-text-color);
 }
 
 .schedule__button {
@@ -83,5 +83,9 @@ form {
   min-width: 80vw;
   max-width: 80vw;
 }
-.schedule__button > button {
+.schedule__submit {
+  margin-right: 10px;
+}
+.schedule__exit {
+  margin-left: 10px;
 }

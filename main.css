@@ -1,5 +1,5 @@
 :root {
-  --main-bg-color: #606060;
+  --main-bg-color: #424242;
   --main-text-color: #f5f5f5;
 }
 * {
@@ -15,7 +15,7 @@
 
 button {
   all: unset;
-  border: 1.5px solid var(--main-text-color);
+  border: 1px solid var(--main-text-color);
   border-radius: 20px;
   padding: 5px 0px;
   font-size: 20px;
