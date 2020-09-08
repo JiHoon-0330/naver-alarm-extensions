@@ -9,8 +9,7 @@
 }
 
 .audio__container,
-.volume__container,
-.option__button {
+.volume__container {
   position: relative;
   padding: 15px 15px;
   margin-bottom: 20px;
@@ -20,9 +19,13 @@
   border-radius: 20px;
 }
 
-.audio__container,
+.audio__container {
+  flex: 2;
+}
+
 .volume__container {
   flex: 1;
+  margin-left: 10px;
 }
 
 .audio__span,
@@ -34,11 +37,33 @@
   z-index: 1;
 }
 
+#audio__select {
+  border: none;
+  padding: 5px 3px;
+  margin-right: 10px;
+  font-size: 1.5em;
+  border-bottom: 1.5px solid var(--main-text-color);
+}
+
 #audio__select,
 .volume__value {
   flex: 1;
 }
+
+.audio__play,
+.audio__pause {
+  padding: 0px 10px;
+}
+.volume__value {
+  font-size: 1.5em;
+  padding: 5px 5px;
+  border-bottom: 1.5px solid var(--main-text-color);
+}
+
 .volume__icons {
   display: flex;
   flex-direction: column;
+}
+
+.option__add {
 }

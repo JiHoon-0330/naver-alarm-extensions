@@ -7,14 +7,7 @@ const repeatSelect = document.querySelector("#repeat__select");
 const scheduleDate = document.querySelector(".schedule__date");
 const scheduleTime = document.querySelector(".schedule__time");
 const scheduleForm = document.querySelector(".schedule__form");
-
-scheduleAdd.addEventListener("click", () => {
-  let input = document.createElement("input");
-  input.type = "text";
-  input.className = "schedule__input";
-  input.setAttribute("placeholder", "일정을 입력하세요.");
-  scheduleContainer.appendChild(input);
-});
+const scheduleExit = document.querySelector(".schedule__exit");
 
 const setDate = () => {
   const currentTimeObj = getTime();
@@ -89,6 +82,18 @@ scheduleForm.addEventListener("submit", e => {
     chrome.alarms.clear(scheduleKye.value);
     chrome.storage.local.remove(scheduleKye.value);
   }
+});
+
+scheduleAdd.addEventListener("click", () => {
+  let input = document.createElement("input");
+  input.type = "text";
+  input.className = "schedule__input";
+  input.setAttribute("placeholder", "일정을 입력하세요.");
+  scheduleContainer.appendChild(input);
+});
+
+scheduleExit.addEventListener("click", () => {
+  resetForm();
   iconContent.click();
 });
 

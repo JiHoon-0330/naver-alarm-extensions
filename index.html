@@ -45,7 +45,7 @@
         <span class="repeat__span">반복 설정</span>
         <input type="number" class="repeat__input" value="0" min="0" required />
         <select name="repeat__select" id="repeat__select">
-          <option value="0">단위설정</option>
+          <option value="0">반복해제</option>
           <option value="60000">분 단위</option>
           <option value="3600000">시간 단위</option>
           <option value="86400000">일 단위</option>
@@ -53,6 +53,7 @@
       </div>
       <div class="schedule__button">
         <button type="submit" class="schedule__submit">등록하기</button>
+        <button type="button"" class="schedule__exit">종료하기</button>
       </div>
     </form>
     <form class="option__form hidden" action="">
@@ -61,7 +62,7 @@
           <div class="audio__container">
             <span class="audio__span">알람음</span>
             <select name="audio__select" id="audio__select">
-              <option value="">벨소리 선택</option>
+              <option value="">알람해제</option>
               <option value="알람 01.MP3">알람 01</option>
               <option value="알람 02.MP3">알람 02</option>
               <option value="알람 03.MP3">알람 03</option>

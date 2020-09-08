@@ -1,5 +1,5 @@
 form {
-  min-width: 80vw;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,10 +24,6 @@ form {
   padding-bottom: 50px;
 }
 
-.schedule__repeat {
-  flex-direction: row;
-}
-
 .schedule__container > .schedule_span,
 .schedule__datetime > .datetime__span,
 .schedule__repeat > .repeat__span {
@@ -42,14 +38,17 @@ form {
 .schedule__datetime > input,
 .repeat__input {
   all: unset;
-  padding: 8px 0px;
+  padding: 4px 0px;
   border-bottom: 1.5px solid var(--main-text-color);
   font-size: 23px;
   width: 100%;
 }
 
+.repeat__input {
+  width: calc(80vw - 130px);
+}
 .schedule__datetime > input {
-  align-items: center;
+  align-items: flex-end;
   text-align: center;
 }
 
@@ -60,8 +59,6 @@ form {
   min-height: 20px;
   width: calc(80vw - 34px);
   text-align: center;
-  border: 1.5px solid var(--main-text-color);
-  border-radius: 50px;
   font-size: 16px;
 }
 
@@ -70,10 +67,13 @@ form {
 }
 
 #repeat__select {
-  padding: 0px 3px;
-  font-size: 15px;
-  border: 1.5px solid var(--main-text-color);
-  border-radius: 40px;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  border: none;
+  padding: 5px 3px;
+  font-size: 18px;
+  border-bottom: 1.5px solid var(--main-text-color);
 }
 
 .schedule__button {
@@ -84,10 +84,4 @@ form {
   max-width: 80vw;
 }
 .schedule__button > button {
-  border: 1.5px solid var(--main-text-color);
-  border-radius: 20px;
-  padding: 5px 0px;
-  font-size: 20px;
-  width: 100%;
-  text-align: center;
 }

@@ -8,11 +8,10 @@ const ul = document.querySelector(".content__container > ul");
 const toggleHidden = child => {
   for (let i = 1; i < child.length; i++) {
     if (!(child[i].tagName === "SPAN")) {
-      if (child[i].tagName === "BUTTON") {
-        child[i].classList.toggle("content__more");
-        child[i].classList.contains("content__more")
-          ? (child[i].textContent = "더보기")
-          : (child[i].textContent = "접기");
+      console.log(child[i].classList.contains("content__more"));
+      if (child[i].classList.contains("content__more")) {
+        child[i].classList.toggle("fa-angle-double-down");
+        child[i].classList.toggle("fa-angle-double-up");
         break;
       }
     } else {
@@ -38,7 +37,7 @@ const getPatten = (repeat, repeatTime) => {
 const printContent = (result, keys) => {
   let li = "";
   const hidden = "hidden";
-  const moreButton = `<button type="button" class="content__more">더보기</button>`;
+  const moreButton = `<i class="fas fa-angle-double-down content__more"></i>`;
   for (let i = 0; i < keys.length; i++) {
     if (keys[i] == "options") {
       continue;
@@ -74,7 +73,7 @@ const printContent = (result, keys) => {
 
   let pencil = document.querySelectorAll(".content__icons > .fa-pencil-alt");
   let trash = document.querySelectorAll(".content__icons > .fa-trash-alt");
-  let allList = document.querySelectorAll(".content__content > button");
+  let allList = document.querySelectorAll(".content__content > .content__more");
 
   for (let i = 0; i < pencil.length; i++) {
     pencil[i].addEventListener("click", e => {
