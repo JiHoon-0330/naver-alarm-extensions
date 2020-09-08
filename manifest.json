@@ -3,7 +3,7 @@
   "name": "아!맞다",
   "version": "2.0.0",
 
-  "description": "해야할 일들을 알람으로 알려주는 일정관리 서비스!",
+  "description": "해야 할 일들을 알람으로 알려주는 일정관리 서비스!",
   "icons": {
     "120": "img/icon120.png"
   },

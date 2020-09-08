@@ -8,6 +8,7 @@ const scheduleDate = document.querySelector(".schedule__date");
 const scheduleTime = document.querySelector(".schedule__time");
 const scheduleForm = document.querySelector(".schedule__form");
 const scheduleExit = document.querySelector(".schedule__exit");
+const success = document.querySelector(".success");
 
 const setDate = () => {
   const currentTimeObj = getTime();
@@ -72,12 +73,23 @@ const setData = () => {
     };
     setStorage(storageObj);
     resetForm();
+    successSubmit();
   }
+};
+
+const successSubmit = () => {
+  success.classList.toggle("success__hidden");
+  scheduleForm.classList.toggle("form__blur");
+  setTimeout(() => {
+    success.classList.toggle("success__hidden");
+    scheduleForm.classList.toggle("form__blur");
+  }, 1000);
 };
 
 scheduleForm.addEventListener("submit", e => {
   e.preventDefault();
   setData();
+
   if (scheduleKye.value) {
     chrome.alarms.clear(scheduleKye.value);
     chrome.storage.local.remove(scheduleKye.value);

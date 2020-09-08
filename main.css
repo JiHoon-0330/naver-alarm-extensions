@@ -39,6 +39,19 @@ select {
   cursor: pointer;
 }
 
+.success {
+  position: absolute;
+  top: 45vh;
+  padding: 10px 10px;
+  font-size: 2em;
+  z-index: 2;
+  transition: 0.5s linear;
+}
+
+.success__hidden {
+  display: none;
+}
+
 .clock__container {
   display: flex;
   justify-content: center;

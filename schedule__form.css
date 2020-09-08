@@ -4,6 +4,12 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.form__blur {
+  filter: blur(1px);
+  opacity: 0.3;
 }
 
 .schedule__container,
