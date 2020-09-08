@@ -4,59 +4,9 @@ const scheduleAdd = document.querySelector(".schedule__add");
 const scheduleContainer = document.querySelector(".schedule__container");
 const repeatInput = document.querySelector(".repeat__input");
 const repeatSelect = document.querySelector("#repeat__select");
-
-const contentContainer = document.querySelector(".content__container");
+const scheduleDate = document.querySelector(".schedule__date");
+const scheduleTime = document.querySelector(".schedule__time");
 const scheduleForm = document.querySelector(".schedule__form");
-const optionForm = document.querySelector(".option__form");
-
-const iconContent = document.querySelector(".icon__content");
-const iconForm = document.querySelector(".icon__form");
-const iconClear = document.querySelector(".icon__clear");
-const iconOption = document.querySelector(".icon__option");
-
-iconContent.addEventListener("click", () => {
-  location.reload();
-});
-
-iconForm.addEventListener("click", () => {
-  scheduleForm.classList.contains("hidden") &&
-    scheduleForm.classList.remove("hidden");
-  !contentContainer.classList.contains("hidden") &&
-    contentContainer.classList.add("hidden");
-  !optionForm.classList.contains("hidden") &&
-    optionForm.classList.add("hidden");
-});
-
-iconOption.addEventListener("click", () => {
-  optionForm.classList.contains("hidden") &&
-    optionForm.classList.remove("hidden");
-  !scheduleForm.classList.contains("hidden") &&
-    scheduleForm.classList.add("hidden");
-  !contentContainer.classList.contains("hidden") &&
-    contentContainer.classList.add("hidden");
-});
-
-iconClear.addEventListener("click", () => {
-  const result = confirm("일정목록을 초기화 하시겠습니까?");
-  if (!result) {
-    return;
-  } else {
-    getAllStorage((data, keys) => {
-      for (let i = 0; i < keys.length; i++) {
-        const k = keys[i];
-        if (k == "options") {
-          continue;
-        } else {
-          chrome.storage.local.remove(k);
-        }
-      }
-    });
-    chrome.alarms.clearAll(() => {
-      console.log("clear");
-    });
-    location.reload();
-  }
-});
 
 scheduleAdd.addEventListener("click", () => {
   let input = document.createElement("input");
@@ -66,11 +16,30 @@ scheduleAdd.addEventListener("click", () => {
   scheduleContainer.appendChild(input);
 });
 
+const setDate = () => {
+  const currentTimeObj = getTime();
+  const currentDateObj = getDate();
+  scheduleDate.value = getDateFormat(currentDateObj);
+  scheduleTime.value = getTimeFormat(currentTimeObj, "addTime");
+};
+
+const resetForm = () => {
+  const schedule = document.querySelectorAll(".schedule__input");
+  for (let i = 0; i < schedule.length; i++) {
+    if (i === 0) {
+      schedule[i].value = "";
+    } else {
+      schedule[i].remove();
+    }
+  }
+  repeatSelect.value = 0;
+  repeatInput.value = 0;
+};
+
 const getScheduleList = () => {
   const schedule = document.querySelectorAll(".schedule__input");
   const scheduleList = [];
 
-  console.log(schedule);
   for (let i = 0; i < schedule.length; i++) {
     const value = schedule[i].value;
     if (!value) {
@@ -108,8 +77,8 @@ const setData = () => {
       repeat,
       repeatTime
     };
-    console.log(``, storageObj);
     setStorage(storageObj);
+    resetForm();
   }
 };
 
@@ -120,7 +89,7 @@ scheduleForm.addEventListener("submit", e => {
     chrome.alarms.clear(scheduleKye.value);
     chrome.storage.local.remove(scheduleKye.value);
   }
-  location.reload();
+  iconContent.click();
 });
 
 const initAdd = () => {};

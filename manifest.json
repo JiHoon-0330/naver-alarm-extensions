@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "아!맞다",
-  "version": "1.0.2",
+  "version": "2.0.0",
 
   "description": "해야할 일들을 알람으로 알려주는 일정관리 서비스!",
   "icons": {

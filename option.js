@@ -1,13 +1,12 @@
 const audioSelect = document.querySelector("#audio__select");
 const audioPlay = document.querySelector(".audio__play");
 const audioPause = document.querySelector(".audio__pause");
-
 const volumeValue = document.querySelector(".volume__value");
 const voulmUp = document.querySelector(".voulme__up");
 const voulmDown = document.querySelector(".voulme__down");
-
 const audio = document.querySelector("audio");
-
+const optionForm = document.querySelector(".option__form");
+let onPlayAudio = false;
 let optionVolume;
 let optionMusic;
 
@@ -30,6 +29,14 @@ audioPlay.addEventListener("click", () => {
 
 audioPause.addEventListener("click", () => {
   audio.pause();
+});
+
+audio.addEventListener("play", () => {
+  onPlayAudio = true;
+});
+
+audio.addEventListener("pause", () => {
+  onPlayAudio = false;
 });
 
 voulmUp.addEventListener("click", () => {

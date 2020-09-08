@@ -19,3 +19,7 @@ const getAllStorage = callback => {
     callback(result, keys);
   });
 };
+
+const changedStorage = callback => {
+  chrome.storage.onChanged.addListener(callback);
+};

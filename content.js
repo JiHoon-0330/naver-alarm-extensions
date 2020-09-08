@@ -21,16 +21,16 @@ const toggleHidden = child => {
   }
 };
 
-const getPatten = time => {
-  if (!time) {
+const getPatten = (repeat, repeatTime) => {
+  if (!repeat) {
     return "";
   } else {
-    if (time >= 86400000) {
-      return `<i class="fas fa-history"></i> ${time / 86400000}일`;
-    } else if (time >= 3600000) {
-      return `<i class="fas fa-history"></i> ${time / 3600000}시간`;
+    if (repeat >= 86400000) {
+      return `<i class="fas fa-history"></i> ${repeatTime}일`;
+    } else if (repeat >= 3600000) {
+      return `<i class="fas fa-history"></i> ${repeatTime}시간`;
     } else {
-      return `<i class="fas fa-history"></i> ${time / 60000}분`;
+      return `<i class="fas fa-history"></i> ${repeatTime}분`;
     }
   }
 };
@@ -47,7 +47,7 @@ const printContent = (result, keys) => {
       const { scheduleList, date, time, key, repeat, repeatTime } = result[
         keys[i]
       ];
-      const test = getPatten(repeat * repeatTime);
+      const test = getPatten(parseInt(repeat), repeatTime);
       for (let j = 0; j < scheduleList.length; j++) {
         span += `<span class="schedule ${j > 0 ? hidden : ""}">${
           scheduleList[j]
@@ -78,6 +78,7 @@ const printContent = (result, keys) => {
 
   for (let i = 0; i < pencil.length; i++) {
     pencil[i].addEventListener("click", e => {
+      console.log(e.target.parentNode.parentNode.id);
       modifyContent(e.target.parentNode.parentNode.id);
     });
     trash[i].addEventListener("click", e => {
@@ -144,11 +145,17 @@ const removeStorage = (data, keys) => {
       }
     }
   }
+};
+
+const logChangedStorage = (changes, area) => {
+  console.log(``, changes, area);
   getAllStorage(printContent);
 };
 
 const initContent = () => {
+  getAllStorage(printContent);
   getAllStorage(removeStorage);
+  changedStorage(logChangedStorage);
 };
 
 initContent();
