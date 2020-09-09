@@ -153,6 +153,7 @@ const removeStorage = (data, keys) => {
 const logChangedStorage = (changes, area) => {
   console.log(``, changes, area);
   getAllStorage(printContent);
+  getAllStorage(getOptions);
 };
 
 const initContent = () => {

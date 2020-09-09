@@ -6,10 +6,11 @@ const voulmUp = document.querySelector(".voulme__up");
 const voulmDown = document.querySelector(".voulme__down");
 const audio = document.querySelector("audio");
 const optionExit = document.querySelector(".option__exit");
+const themeBgcolor = document.querySelector(".theme__bgcolor");
+const themeTextcolor = document.querySelector(".theme__textcolor");
+const themeReset = document.querySelector(".theme__reset");
 
 let onPlayAudio = false;
-let optionVolume;
-let optionMusic;
 
 const setAudioVolum = volume => {
   audio.volume = volume / 10;
@@ -62,32 +63,72 @@ voulmDown.addEventListener("click", () => {
   }
 });
 
-const getSaveOptions = (saveVolume, saveMusic) => {
-  volumeValue.textContent = saveVolume;
-  setAudioVolum(saveVolume);
-  audioSelect.value = saveMusic;
-  if (saveMusic) {
-    audio.setAttribute("src", `audio/${saveMusic}`);
+themeBgcolor.addEventListener("input", () => {
+  document.documentElement.style.setProperty(
+    "--main-bg-color",
+    themeBgcolor.value
+  );
+});
+themeTextcolor.addEventListener("input", () => {
+  document.documentElement.style.setProperty(
+    "--main-text-color",
+    themeTextcolor.value
+  );
+});
+
+themeReset.addEventListener("click", () => {
+  const resetBgColor = "#424242";
+  const resetTextColor = "#f5f5f5";
+  themeBgcolor.value = resetBgColor;
+  themeTextcolor.value = resetTextColor;
+  document.documentElement.style.setProperty("--main-bg-color", resetBgColor);
+  document.documentElement.style.setProperty(
+    "--main-text-color",
+    resetTextColor
+  );
+});
+
+const getSaveOptions = data => {
+  const { volume, music, bgColor, textColor } = data;
+  volumeValue.textContent = volume;
+  setAudioVolum(volume);
+  audioSelect.value = music;
+  themeBgcolor.value = bgColor;
+  themeTextcolor.value = textColor;
+  document.documentElement.style.setProperty("--main-bg-color", bgColor);
+  document.documentElement.style.setProperty("--main-text-color", textColor);
+  if (music) {
+    audio.setAttribute("src", `audio/${music}`);
   }
 };
 
 const setSaveOptions = () => {
   const volume = volumeValue.textContent;
   const music = audioSelect.value;
-  const appOptions = { options: { volume, music } };
+  const bgColor = themeBgcolor.value;
+  const textColor = themeTextcolor.value;
+  const appOptions = { options: { volume, music, bgColor, textColor } };
   chrome.storage.local.set(appOptions, () => {});
   successSubmit("설정이 등록되었습니다.", "option");
 };
 
 const getOptions = (data, keys) => {
-  if (keys.length) {
+  if (data["options"]) {
     optionVolume = data["options"].volume;
     optionMusic = data["options"].music;
-    getSaveOptions(optionVolume, optionMusic);
+    getSaveOptions(data["options"]);
+    return;
   } else {
-    const appOptions = { options: { volume: 0, music: "" } };
+    const appOptions = {
+      options: {
+        volume: 0,
+        music: "",
+        bgColor: "#424242",
+        textColor: "#f5f5f5"
+      }
+    };
     chrome.storage.local.set(appOptions, () => {});
-    getSaveOptions(0, "");
+    getSaveOptions(appOptions["options"]);
   }
 };
 

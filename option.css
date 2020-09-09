@@ -9,7 +9,8 @@
 }
 
 .audio__container,
-.volume__container {
+.volume__container,
+.option__theme {
   position: relative;
   padding: 15px 15px;
   margin-bottom: 20px;
@@ -29,7 +30,8 @@
 }
 
 .audio__span,
-.volume__span {
+.volume__span,
+.theme__span {
   position: absolute;
   display: block;
   font-size: 18px;
@@ -72,6 +74,29 @@
   display: flex;
   flex-direction: column;
   font-size: 2em;
+}
+
+.theme__bg,
+.theme__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.theme__bg > span,
+.theme__text > span {
+  font-size: 1.3em;
+  padding: 5px 5px;
+}
+
+.theme__bgcolor,
+.theme__textcolor {
+  padding: 0px 0px;
+}
+.theme__bg,
+.theme__text,
+.theme__reset {
+  flex: 1;
 }
 
 .option__button {
