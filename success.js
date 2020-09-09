@@ -3,15 +3,13 @@ const optionForm = document.querySelector(".option__form");
 const success = document.querySelector(".success");
 
 const successSubmit = (text, flag) => {
+  iconContent.click();
+  const contentContainer = document.querySelector(".content__container");
   success.textContent = text;
   success.classList.toggle("success__hidden");
-  flag === "schedule"
-    ? scheduleForm.classList.toggle("form__blur")
-    : optionForm.classList.toggle("form__blur");
+  contentContainer.classList.toggle("content__hidden");
   setTimeout(() => {
     success.classList.toggle("success__hidden");
-    flag === "schedule"
-      ? scheduleForm.classList.toggle("form__blur")
-      : optionForm.classList.toggle("form__blur");
+    contentContainer.classList.toggle("content__hidden");
   }, 1000);
 };
