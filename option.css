@@ -74,6 +74,16 @@
   font-size: 2em;
 }
 
-.option__add {
-  text-align: center;
+.option__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 80vw;
+  max-width: 80vw;
+}
+.option__submit {
+  margin-right: 10px;
+}
+.option__exit {
+  margin-left: 10px;
 }

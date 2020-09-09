@@ -5,7 +5,8 @@ const volumeValue = document.querySelector(".volume__value");
 const voulmUp = document.querySelector(".voulme__up");
 const voulmDown = document.querySelector(".voulme__down");
 const audio = document.querySelector("audio");
-const optionForm = document.querySelector(".option__form");
+const optionExit = document.querySelector(".option__exit");
+
 let onPlayAudio = false;
 let optionVolume;
 let optionMusic;
@@ -17,6 +18,10 @@ const setAudioVolum = volume => {
 optionForm.addEventListener("submit", e => {
   e.preventDefault();
   setSaveOptions();
+});
+
+optionExit.addEventListener("click", () => {
+  iconContent.click();
 });
 
 audioSelect.addEventListener("change", e => {
@@ -71,6 +76,7 @@ const setSaveOptions = () => {
   const music = audioSelect.value;
   const appOptions = { options: { volume, music } };
   chrome.storage.local.set(appOptions, () => {});
+  successSubmit("설정이 등록되었습니다.", "option");
 };
 
 const getOptions = (data, keys) => {

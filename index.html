@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="option.css" />
   </head>
   <body>
-    <span class="success success__hidden">일정이 등록되었습니다.</span>
+    <span class="success success__hidden"></span>
     <div class="clock__container">
       <div class="clock__ampm"></div>
       <div class="clock__time"></div>
@@ -38,14 +38,14 @@
       </div>
       <div class="schedule__datetime">
         <span class="datetime__span">날짜</span>
-        <input type="date" class="schedule__date" />
-        <input type="time" class="schedule__time" />
+        <input type="date" class="schedule__date" required />
+        <input type="time" class="schedule__time" required />
       </div>
 
       <div class="schedule__repeat">
         <span class="repeat__span">반복 설정</span>
-        <input type="number" class="repeat__input" value="0" min="0" required />
-        <select name="repeat__select" id="repeat__select">
+        <input type="number" class="repeat__input" min="0" />
+        <select name="repeat__select" id="repeat__select" required>
           <option value="0">반복해제</option>
           <option value="60000">분 단위</option>
           <option value="3600000">시간 단위</option>
@@ -87,7 +87,8 @@
           </div>
         </div>
         <div class="option__button">
-          <button type="option__submit" class="option__add">등록</button>
+          <button type="submit" class="option__submit">등록하기</button>
+          <button type="button" class="option__exit">종료하기</button>
         </div>
       </div>
     </form>
@@ -105,6 +106,7 @@
 
     <script src="date.js"></script>
     <script src="storage.js"></script>
+    <script src="success.js"></script>
     <script src="clock.js"></script>
     <script src="add.js"></script>
     <script src="modify.js"></script>

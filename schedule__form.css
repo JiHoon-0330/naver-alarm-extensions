@@ -17,7 +17,7 @@ form {
 .schedule__repeat {
   position: relative;
   padding: 15px 15px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   min-width: 80vw;
   max-width: 80vw;
   display: flex;
@@ -28,6 +28,10 @@ form {
 
 .schedule__container {
   padding-bottom: 50px;
+}
+
+.schedule__repeat {
+  flex-direction: row;
 }
 
 .schedule__container > .schedule_span,
@@ -48,6 +52,29 @@ form {
   border-bottom: 1px solid var(--main-text-color);
   font-size: 23px;
   width: 100%;
+}
+
+.schedule__date::before,
+.schedule__time::before {
+  pointer-events: none;
+  font-family: FontAwesome;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 23px;
+  background-color: var(--main-bg-color);
+  padding: 5px 5px;
+}
+.schedule__date::before {
+  content: "\f784";
+  right: 15px;
+  top: 15px;
+}
+
+.schedule__time::before {
+  content: "\f017";
+  right: 15px;
+  top: 60px;
 }
 
 .repeat__input {
@@ -73,9 +100,6 @@ form {
 }
 
 #repeat__select {
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
   border: none;
   padding: 5px 3px;
   font-size: 18px;

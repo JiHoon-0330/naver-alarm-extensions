@@ -81,9 +81,13 @@ const printContent = (result, keys) => {
       modifyContent(e.target.parentNode.parentNode.id);
     });
     trash[i].addEventListener("click", e => {
-      chrome.alarms.clear(e.target.parentNode.parentNode.id);
-      chrome.storage.local.remove(e.target.parentNode.parentNode.id);
-      e.target.parentNode.parentNode.remove();
+      if (!confirm("일정을 삭제하시겠습니까?")) {
+        return;
+      } else {
+        chrome.alarms.clear(e.target.parentNode.parentNode.id);
+        chrome.storage.local.remove(e.target.parentNode.parentNode.id);
+        e.target.parentNode.parentNode.remove();
+      }
     });
   }
 

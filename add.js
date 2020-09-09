@@ -6,9 +6,7 @@ const repeatInput = document.querySelector(".repeat__input");
 const repeatSelect = document.querySelector("#repeat__select");
 const scheduleDate = document.querySelector(".schedule__date");
 const scheduleTime = document.querySelector(".schedule__time");
-const scheduleForm = document.querySelector(".schedule__form");
 const scheduleExit = document.querySelector(".schedule__exit");
-const success = document.querySelector(".success");
 
 const setDate = () => {
   const currentTimeObj = getTime();
@@ -27,7 +25,7 @@ const resetForm = () => {
     }
   }
   repeatSelect.value = 0;
-  repeatInput.value = 0;
+  repeatInput.value = "";
 };
 
 const getScheduleList = () => {
@@ -51,7 +49,8 @@ const setData = () => {
   const date = scheduleDate.value;
   const time = scheduleTime.value;
   const repeat = repeatSelect.value;
-  const repeatTime = repeatInput.value;
+  console.log(repeat === "0");
+  const repeatTime = repeat === "0" ? "" : repeatInput.value;
   const currentDate = new Date().getTime();
   const getTimeDate = new Date(`${date} ${time}:00`).getTime();
   const alarmDate = getTimeDate - currentDate;
@@ -73,23 +72,13 @@ const setData = () => {
     };
     setStorage(storageObj);
     resetForm();
-    successSubmit();
+    successSubmit("일정이 등록되었습니다.", "schedule");
   }
-};
-
-const successSubmit = () => {
-  success.classList.toggle("success__hidden");
-  scheduleForm.classList.toggle("form__blur");
-  setTimeout(() => {
-    success.classList.toggle("success__hidden");
-    scheduleForm.classList.toggle("form__blur");
-  }, 1000);
 };
 
 scheduleForm.addEventListener("submit", e => {
   e.preventDefault();
   setData();
-
   if (scheduleKye.value) {
     chrome.alarms.clear(scheduleKye.value);
     chrome.storage.local.remove(scheduleKye.value);

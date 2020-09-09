@@ -39,8 +39,7 @@ iconOption.addEventListener("click", () => {
 });
 
 iconClear.addEventListener("click", () => {
-  const result = confirm("일정목록을 초기화 하시겠습니까?");
-  if (!result) {
+  if (!confirm("일정목록을 초기화 하시겠습니까?")) {
     return;
   } else {
     getAllStorage((data, keys) => {
