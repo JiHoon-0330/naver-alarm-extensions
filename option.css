@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: var(--third-bg-color);
-  box-shadow: 0px 1px 5px 0px var(--third-bg-color);
+
   border-radius: 10px;
   min-height: 50vh;
   min-width: 83vw;
@@ -87,11 +87,13 @@
 .option__theme > input {
   display: none;
 }
+
 .option__theme > label {
   margin: 0px 10px;
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  border: 1px solid black;
 }
 .theme__black {
   background-color: black;
@@ -100,16 +102,13 @@
   background-color: white;
 }
 .theme__green {
-  background-color: green;
+  background-color: #439394;
 }
-.theme__blue {
-  background-color: blue;
-}
-.theme__pink {
-  background-color: pink;
-}
-.theme__beige {
-  background-color: beige;
+.option__theme > input:checked + label::before {
+  pointer-events: none;
+  font-family: FontAwesome;
+  content: "\f00c";
+  font-size: 2.5em;
 }
 
 .option__button {

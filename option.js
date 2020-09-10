@@ -9,52 +9,31 @@ const optionExit = document.querySelector(".option__exit");
 const inputTheme = document.querySelectorAll("input[name='theme']");
 const themes = {
   black: {
-    mainBgColor: "#1b1b1b",
-    secondBgColor: "#333333",
-    thirdBgColor: "#484848",
-    mainTextColor: "#f5f5f5",
-    secondTextColor: "#bdbdbd",
+    mainBgColor: "#595959",
+    mainBg2Color: "#404040",
+    secondBgColor: "#262626",
+    thirdBgColor: "#303030",
+    mainTextColor: "#FFFFFF",
+    secondTextColor: "#D4D4D4",
     thirdTextColor: "#888888"
   },
   white: {
-    mainBgColor: "#F2F2F2",
-    secondBgColor: "#9E9E9E",
-    thirdBgColor: "#DEDEDE",
-    mainTextColor: "#1A1A1A",
-    secondTextColor: "#2B2B2B",
+    mainBgColor: "#E0E0E0",
+    mainBg2Color: "#C7C7C7",
+    secondBgColor: "#F2F2F2",
+    thirdBgColor: "#F2F2F2",
+    mainTextColor: "#121212",
+    secondTextColor: "#3B3B3B",
     thirdTextColor: "#5E5E5E"
   },
   green: {
-    mainBgColor: "#8CD790",
-    secondBgColor: "#85CC88",
-    thirdBgColor: "#7BBD7E",
-    mainTextColor: "#f5f5f5",
-    secondTextColor: "#bdbdbd",
+    mainBgColor: "#67B5B5",
+    mainBg2Color: "#9DC8C8",
+    secondBgColor: "#359294",
+    thirdBgColor: "#439394",
+    mainTextColor: "#FFFFFF",
+    secondTextColor: "#D1E0E0",
     thirdTextColor: "#888888"
-  },
-  blue: {
-    mainBgColor: "#30A9DE",
-    secondBgColor: "#2A82F5",
-    thirdBgColor: "#2C6AC7",
-    mainTextColor: "#f5f5f5",
-    secondTextColor: "#bdbdbd",
-    thirdTextColor: "#888888"
-  },
-  pink: {
-    mainBgColor: "#FF78AE",
-    secondBgColor: "#FF94BF",
-    thirdBgColor: "#FFA1C6",
-    mainTextColor: "#f5f5f5",
-    secondTextColor: "#FFEBF3",
-    thirdTextColor: "#888888"
-  },
-  beige: {
-    mainBgColor: "#FFEEE4",
-    secondBgColor: "#F0DFD5",
-    thirdBgColor: "#E1D4C4",
-    mainTextColor: "#1A1A1A",
-    secondTextColor: "#2B2B2B",
-    thirdTextColor: "#5E5E5E"
   }
 };
 
@@ -148,6 +127,7 @@ inputTheme.forEach(theme => {
 const setTheme = theme => {
   const {
     mainBgColor,
+    mainBg2Color,
     secondBgColor,
     thirdBgColor,
     mainTextColor,
@@ -157,6 +137,7 @@ const setTheme = theme => {
   selectTheme = theme;
   document.querySelector(`#${theme}`).checked = true;
   document.documentElement.style.setProperty("--main-bg-color", mainBgColor);
+  document.documentElement.style.setProperty("--main-bg2-color", mainBg2Color);
   document.documentElement.style.setProperty(
     "--second-bg-color",
     secondBgColor

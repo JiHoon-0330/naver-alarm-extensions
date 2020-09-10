@@ -1,14 +1,18 @@
+form {
+  height: 80vh;
+  overflow: auto;
+}
 .schedule__form__container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   background-color: var(--third-bg-color);
-  box-shadow: 0px 1px 5px 0px var(--third-bg-color);
+
   border-radius: 10px;
   min-height: 60vh;
-  min-width: 83vw;
-  max-width: 83vw;
+  min-width: 85vw;
+  max-width: 85vw;
   overflow: auto;
   padding: 40px 0px;
   margin-top: 10px;
@@ -24,7 +28,7 @@
 .schedule__repeat {
   position: relative;
   padding: 0px 15px;
-  margin-bottom: 35px;
+  margin-bottom: 65px;
   min-width: 80vw;
   max-width: 80vw;
   display: flex;
@@ -48,8 +52,6 @@
   border-bottom: 1px solid var(--main-text-color);
   font-size: 23px;
   width: 100%;
-
-  /* box-shadow: inset 0px 2px 5px 0px var(--main-bg-color); */
 }
 
 .schedule__date::before,

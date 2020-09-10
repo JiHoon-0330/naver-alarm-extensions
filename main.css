@@ -1,8 +1,8 @@
 :root {
   --main-bg-color: ;
+  --main-bg2-color: ;
   --second-bg-color: ;
   --third-bg-color: ;
-
   --main-text-color: ;
   --second-text-color: ;
   --third-text-color: ;
@@ -45,6 +45,10 @@ select {
   cursor: pointer;
 }
 
+input::placeholder {
+  color: var(--second-text-color);
+}
+
 .success {
   position: absolute;
   top: 45vh;
@@ -69,7 +73,7 @@ select {
   justify-content: center;
   align-items: center;
   font-weight: 500;
-  background-color: var(--main-bg-color);
+
   border-bottom: 1.5px solid var(--second-text-color);
   min-width: 85vw;
   max-width: 85vw;
@@ -115,4 +119,39 @@ select {
 
 .hidden {
   display: none;
+}
+
+/*배경 슬라이드*/
+.bg {
+  animation: slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(
+    -60deg,
+    var(--main-bg-color) 50%,
+    var(--main-bg2-color) 50%
+  );
+  bottom: 0;
+  left: -50%;
+  opacity: 0.5;
+  position: fixed;
+  right: -50%;
+  top: 0;
+  z-index: -1;
+}
+
+.bg2 {
+  animation-direction: alternate-reverse;
+  animation-duration: 15s;
+}
+
+.bg3 {
+  animation-duration: 25s;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-25%);
+  }
+  100% {
+    transform: translateX(25%);
+  }
 }
