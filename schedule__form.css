@@ -1,14 +1,16 @@
 form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   transition: all 0.3s ease-in-out;
   background-color: var(--third-bg-color);
   box-shadow: 0px 1px 5px 0px var(--third-bg-color);
   border-radius: 10px;
-  min-height: 70vh;
+  min-height: 60vh;
   min-width: 90vw;
+  overflow: auto;
+  padding: 50px 0px;
 }
 
 .form__blur {
@@ -20,7 +22,7 @@ form {
 .schedule__datetime,
 .schedule__repeat {
   position: relative;
-  padding: 15px 15px;
+  padding: 0px 15px;
   margin-bottom: 40px;
   min-width: 80vw;
   max-width: 80vw;
@@ -52,11 +54,11 @@ form {
 .repeat__input {
   all: unset;
   padding: 4px 0px;
-  /* border-bottom: 1px solid var(--main-text-color); */
+  border-bottom: 1px solid var(--main-text-color);
   font-size: 23px;
   width: 100%;
 
-  box-shadow: inset 0px 2px 5px 0px var(--main-bg-color);
+  /* box-shadow: inset 0px 2px 5px 0px var(--main-bg-color); */
 }
 
 .schedule__date::before,
@@ -64,18 +66,18 @@ form {
   pointer-events: none;
   font-family: FontAwesome;
   position: absolute;
-  font-size: 25px;
-  right: 20px;
+  font-size: 26px;
+  right: 19px;
   background-color: var(--third-bg-color);
 }
 .schedule__date::before {
   content: "\f784";
-  top: 22px;
+  top: 7px;
 }
 
 .schedule__time::before {
   content: "\f017";
-  top: 67px;
+  top: 52px;
 }
 
 .repeat__input {

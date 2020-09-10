@@ -27,7 +27,7 @@
     <form action="" class="schedule__form hidden">
       <input type="hidden" class="schedule__key" />
       <div class="schedule__container">
-        <span class="schedule_span">일정</span>
+        <!-- <span class="schedule_span">일정</span> -->
         <input
           type="text"
           class="schedule__input"
@@ -37,14 +37,19 @@
         <button type="button" class="schedule__add">일정추가</button>
       </div>
       <div class="schedule__datetime">
-        <span class="datetime__span">날짜</span>
+        <!-- <span class="datetime__span">날짜</span> -->
         <input type="date" class="schedule__date" required />
         <input type="time" class="schedule__time" required />
       </div>
 
       <div class="schedule__repeat">
-        <span class="repeat__span">반복 설정</span>
-        <input type="number" class="repeat__input" min="0" />
+        <!-- <span class="repeat__span">반복 설정</span> -->
+        <input
+          type="number"
+          class="repeat__input"
+          min="0"
+          placeholder="시간을 입력하세요."
+        />
         <select name="repeat__select" id="repeat__select" required>
           <option value="0">반복해제</option>
           <option value="60000">분 단위</option>
