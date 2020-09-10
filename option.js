@@ -9,31 +9,40 @@ const optionExit = document.querySelector(".option__exit");
 const inputTheme = document.querySelectorAll("input[name='theme']");
 const themes = {
   black: {
-    mainBgColor: "#595959",
-    mainBg2Color: "#404040",
-    secondBgColor: "#262626",
-    thirdBgColor: "#303030",
+    mainBgColor: "#454A52",
+    mainBg2Color: "#191818",
+    secondBgColor: "#333030",
+    thirdBgColor: "#292C30",
     mainTextColor: "#FFFFFF",
-    secondTextColor: "#D4D4D4",
+    secondTextColor: "#CAD4E0",
     thirdTextColor: "#888888"
   },
   white: {
-    mainBgColor: "#E0E0E0",
-    mainBg2Color: "#C7C7C7",
-    secondBgColor: "#F2F2F2",
-    thirdBgColor: "#F2F2F2",
-    mainTextColor: "#121212",
-    secondTextColor: "#3B3B3B",
+    mainBgColor: "#E0E3DA", // 아랫배경 
+    mainBg2Color: "#ffffff", // 윗배경
+    secondBgColor: "#B8B6B6",
+    thirdBgColor: "#F5F5F5",
+    mainTextColor: "#1e2022",
+    secondTextColor: "#6A6B67",
     thirdTextColor: "#5E5E5E"
   },
   green: {
-    mainBgColor: "#67B5B5",
-    mainBg2Color: "#9DC8C8",
-    secondBgColor: "#359294",
-    thirdBgColor: "#439394",
-    mainTextColor: "#FFFFFF",
-    secondTextColor: "#D1E0E0",
+    mainBgColor: "#77AF9C", // 배경 아래
+    mainBg2Color: "#8CD790", // 배경 위
+    secondBgColor: "#2F694F",  // 하단 메뉴
+    thirdBgColor: "#619191", // 일정박스 색
+    mainTextColor: "#ffffff", // 시계, 폰트, 아이콘 색
+    secondTextColor: "#BED1C0", // placeholder, 시계언더바, 일정수정,삭제아이콘
     thirdTextColor: "#888888"
+  },
+  purple: {
+    mainBgColor: "#CBA6C3",
+    mainBg2Color: "#AAABD3",
+    secondBgColor: "#4C4D5E",
+    thirdBgColor: "#8283a7",
+    mainTextColor: "#F8FAFF",
+    secondTextColor: "#CAD4E0",
+    thirdTextColor: "#888888"  
   }
 };
 

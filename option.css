@@ -84,6 +84,16 @@
   align-items: center;
   min-width: 70vw;
 }
+
+.option__theme > .option__span {
+  position: absolute;
+  display: block;
+  font-size: 18px;
+  top: -30px;
+  z-index: 1;
+  
+}
+
 .option__theme > input {
   display: none;
 }
@@ -93,7 +103,7 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: 1px solid black;
+  border: 3px solid rgba(0, 0, 0, 0.253);
 }
 .theme__black {
   background-color: black;
@@ -103,6 +113,9 @@
 }
 .theme__green {
   background-color: #439394;
+}
+.theme__purple {
+  background-color: #B7ABE0;
 }
 .option__theme > input:checked + label::before {
   pointer-events: none;
