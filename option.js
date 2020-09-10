@@ -63,40 +63,40 @@ voulmDown.addEventListener("click", () => {
   }
 });
 
-themeBgcolor.addEventListener("input", () => {
-  document.documentElement.style.setProperty(
-    "--main-bg-color",
-    themeBgcolor.value
-  );
-});
-themeTextcolor.addEventListener("input", () => {
-  document.documentElement.style.setProperty(
-    "--main-text-color",
-    themeTextcolor.value
-  );
-});
+// themeBgcolor.addEventListener("input", () => {
+//   document.documentElement.style.setProperty(
+//     "--main-bg-color",
+//     themeBgcolor.value
+//   );
+// });
+// themeTextcolor.addEventListener("input", () => {
+//   document.documentElement.style.setProperty(
+//     "--main-text-color",
+//     themeTextcolor.value
+//   );
+// });
 
-themeReset.addEventListener("click", () => {
-  const resetBgColor = "#424242";
-  const resetTextColor = "#f5f5f5";
-  themeBgcolor.value = resetBgColor;
-  themeTextcolor.value = resetTextColor;
-  document.documentElement.style.setProperty("--main-bg-color", resetBgColor);
-  document.documentElement.style.setProperty(
-    "--main-text-color",
-    resetTextColor
-  );
-});
+// themeReset.addEventListener("click", () => {
+//   const resetBgColor = "#424242";
+//   const resetTextColor = "#f5f5f5";
+//   themeBgcolor.value = resetBgColor;
+//   themeTextcolor.value = resetTextColor;
+//   document.documentElement.style.setProperty("--main-bg-color", resetBgColor);
+//   document.documentElement.style.setProperty(
+//     "--main-text-color",
+//     resetTextColor
+//   );
+// });
 
 const getSaveOptions = data => {
   const { volume, music, bgColor, textColor } = data;
   volumeValue.textContent = volume;
   setAudioVolum(volume);
   audioSelect.value = music;
-  themeBgcolor.value = bgColor;
-  themeTextcolor.value = textColor;
-  document.documentElement.style.setProperty("--main-bg-color", bgColor);
-  document.documentElement.style.setProperty("--main-text-color", textColor);
+  // themeBgcolor.value = bgColor;
+  // themeTextcolor.value = textColor;
+  // document.documentElement.style.setProperty("--main-bg-color", bgColor);
+  // document.documentElement.style.setProperty("--main-text-color", textColor);
   if (music) {
     audio.setAttribute("src", `audio/${music}`);
   }

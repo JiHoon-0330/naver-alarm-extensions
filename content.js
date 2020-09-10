@@ -150,10 +150,10 @@ const removeStorage = (data, keys) => {
   }
 };
 
-const logChangedStorage = (changes, area) => {
-  console.log(``, changes, area);
+const logChangedStorage = changes => {
+  const key = Object.keys(changes)[0];
+  key === "options" && getAllStorage(getOptions);
   getAllStorage(printContent);
-  getAllStorage(getOptions);
 };
 
 const initContent = () => {
