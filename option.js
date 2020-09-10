@@ -6,9 +6,59 @@ const voulmUp = document.querySelector(".voulme__up");
 const voulmDown = document.querySelector(".voulme__down");
 const audio = document.querySelector("audio");
 const optionExit = document.querySelector(".option__exit");
-const themeBgcolor = document.querySelector(".theme__bgcolor");
-const themeTextcolor = document.querySelector(".theme__textcolor");
-const themeReset = document.querySelector(".theme__reset");
+const inputTheme = document.querySelectorAll("input[name='theme']");
+const themes = {
+  black: {
+    mainBgColor: "#1b1b1b",
+    secondBgColor: "#333333",
+    thirdBgColor: "#484848",
+    mainTextColor: "#f5f5f5",
+    secondTextColor: "#bdbdbd",
+    thirdTextColor: "#888888"
+  },
+  white: {
+    mainBgColor: "#F2F2F2",
+    secondBgColor: "#9E9E9E",
+    thirdBgColor: "#DEDEDE",
+    mainTextColor: "#1A1A1A",
+    secondTextColor: "#2B2B2B",
+    thirdTextColor: "#5E5E5E"
+  },
+  green: {
+    mainBgColor: "#8CD790",
+    secondBgColor: "#85CC88",
+    thirdBgColor: "#7BBD7E",
+    mainTextColor: "#f5f5f5",
+    secondTextColor: "#bdbdbd",
+    thirdTextColor: "#888888"
+  },
+  blue: {
+    mainBgColor: "#30A9DE",
+    secondBgColor: "#2A82F5",
+    thirdBgColor: "#2C6AC7",
+    mainTextColor: "#f5f5f5",
+    secondTextColor: "#bdbdbd",
+    thirdTextColor: "#888888"
+  },
+  pink: {
+    mainBgColor: "#FF78AE",
+    secondBgColor: "#FF94BF",
+    thirdBgColor: "#FFA1C6",
+    mainTextColor: "#f5f5f5",
+    secondTextColor: "#FFEBF3",
+    thirdTextColor: "#888888"
+  },
+  beige: {
+    mainBgColor: "#FFEEE4",
+    secondBgColor: "#F0DFD5",
+    thirdBgColor: "#E1D4C4",
+    mainTextColor: "#1A1A1A",
+    secondTextColor: "#2B2B2B",
+    thirdTextColor: "#5E5E5E"
+  }
+};
+
+let selectTheme = null;
 
 let onPlayAudio = false;
 
@@ -63,6 +113,13 @@ voulmDown.addEventListener("click", () => {
   }
 });
 
+inputTheme.forEach(theme => {
+  theme.addEventListener("click", e => {
+    console.log(e.target.value);
+    setTheme(e.target.value);
+  });
+});
+
 // themeBgcolor.addEventListener("input", () => {
 //   document.documentElement.style.setProperty(
 //     "--main-bg-color",
@@ -88,15 +145,46 @@ voulmDown.addEventListener("click", () => {
 //   );
 // });
 
+const setTheme = theme => {
+  const {
+    mainBgColor,
+    secondBgColor,
+    thirdBgColor,
+    mainTextColor,
+    secondTextColor,
+    thirdTextColor
+  } = themes[theme];
+  selectTheme = theme;
+  document.querySelector(`#${theme}`).checked = true;
+  document.documentElement.style.setProperty("--main-bg-color", mainBgColor);
+  document.documentElement.style.setProperty(
+    "--second-bg-color",
+    secondBgColor
+  );
+  document.documentElement.style.setProperty("--third-bg-color", thirdBgColor);
+  document.documentElement.style.setProperty(
+    "--main-text-color",
+    mainTextColor
+  );
+  document.documentElement.style.setProperty(
+    "--second-text-color",
+    secondTextColor
+  );
+  document.documentElement.style.setProperty(
+    "--third-text-color",
+    thirdTextColor
+  );
+};
+
 const getSaveOptions = data => {
-  const { volume, music, bgColor, textColor } = data;
+  const { volume, music, theme } = data;
+
   volumeValue.textContent = volume;
   setAudioVolum(volume);
   audioSelect.value = music;
-  // themeBgcolor.value = bgColor;
-  // themeTextcolor.value = textColor;
-  // document.documentElement.style.setProperty("--main-bg-color", bgColor);
-  // document.documentElement.style.setProperty("--main-text-color", textColor);
+
+  setTheme(theme);
+
   if (music) {
     audio.setAttribute("src", `audio/${music}`);
   }
@@ -105,17 +193,13 @@ const getSaveOptions = data => {
 const setSaveOptions = () => {
   const volume = volumeValue.textContent;
   const music = audioSelect.value;
-  const bgColor = themeBgcolor.value;
-  const textColor = themeTextcolor.value;
-  const appOptions = { options: { volume, music, bgColor, textColor } };
+  const appOptions = { options: { volume, music, theme: selectTheme } };
   chrome.storage.local.set(appOptions, () => {});
   successSubmit("설정이 등록되었습니다.", "option");
 };
 
 const getOptions = (data, keys) => {
   if (data["options"]) {
-    optionVolume = data["options"].volume;
-    optionMusic = data["options"].music;
     getSaveOptions(data["options"]);
     return;
   } else {
@@ -123,8 +207,7 @@ const getOptions = (data, keys) => {
       options: {
         volume: 0,
         music: "",
-        bgColor: "#424242",
-        textColor: "#f5f5f5"
+        theme: "black"
       }
     };
     chrome.storage.local.set(appOptions, () => {});

@@ -25,83 +25,87 @@
     </div>
 
     <form action="" class="schedule__form hidden">
-      <input type="hidden" class="schedule__key" />
-      <div class="schedule__container">
-        <!-- <span class="schedule_span">일정</span> -->
-        <input
-          type="text"
-          class="schedule__input"
-          placeholder="일정을 입력하세요."
-          required
-        />
-        <button type="button" class="schedule__add">일정추가</button>
-      </div>
-      <div class="schedule__datetime">
-        <!-- <span class="datetime__span">날짜</span> -->
-        <input type="date" class="schedule__date" required />
-        <input type="time" class="schedule__time" required />
-      </div>
+      <div class="schedule__form__container">
+        <input type="hidden" class="schedule__key" />
+        <div class="schedule__container">
+          <!-- <span class="schedule_span">일정</span> -->
+          <input
+            type="text"
+            class="schedule__input"
+            placeholder="일정을 입력하세요."
+            required
+          />
+          <i class="fas fa-plus-circle schedule__add"></i>
+        </div>
+        <div class="schedule__datetime">
+          <!-- <span class="datetime__span">날짜</span> -->
+          <input type="date" class="schedule__date" required />
+          <input type="time" class="schedule__time" required />
+        </div>
 
-      <div class="schedule__repeat">
-        <!-- <span class="repeat__span">반복 설정</span> -->
-        <input
-          type="number"
-          class="repeat__input"
-          min="0"
-          placeholder="시간을 입력하세요."
-        />
-        <select name="repeat__select" id="repeat__select" required>
-          <option value="0">반복해제</option>
-          <option value="60000">분 단위</option>
-          <option value="3600000">시간 단위</option>
-          <option value="86400000">일 단위</option>
-        </select>
-      </div>
-      <div class="schedule__button">
-        <button type="submit" class="schedule__submit">등록하기</button>
-        <button type="button" class="schedule__exit">종료하기</button>
+        <div class="schedule__repeat">
+          <!-- <span class="repeat__span">반복 설정</span> -->
+          <input
+            type="number"
+            class="repeat__input"
+            min="0"
+            placeholder="숫자를 입력하세요."
+          />
+          <select name="repeat__select" id="repeat__select" required>
+            <option value="0">반복해제</option>
+            <option value="60000">분 단위</option>
+            <option value="3600000">시간 단위</option>
+            <option value="86400000">일 단위</option>
+          </select>
+        </div>
+        <div class="schedule__button">
+          <button type="submit" class="schedule__submit">등록하기</button>
+          <button type="button" class="schedule__exit">종료하기</button>
+        </div>
       </div>
     </form>
     <form class="option__form hidden" action="">
       <div class="option__container">
         <div class="option__audio">
-          <div class="audio__container">
-            <span class="audio__span">알람음</span>
-            <select name="audio__select" id="audio__select">
-              <option value="">알람해제</option>
-              <option value="알람 01.MP3">알람 01</option>
-              <option value="알람 02.MP3">알람 02</option>
-              <option value="알람 03.MP3">알람 03</option>
-              <option value="알람 04.MP3">알람 04</option>
-              <option value="알람 05.MP3">알람 05</option>
-              <option value="알람 06.MP3">알람 06</option>
-              <option value="알람 07.MP3">알람 07</option>
-              <option value="알람 08.MP3">알람 08</option>
-              <option value="알람 09.MP3">알람 09</option>
-            </select>
+          <!-- <div class="audio__container"> -->
+          <select name="audio__select" id="audio__select">
+            <option value="">알람해제</option>
+            <option value="알람 01.MP3">알람 01</option>
+            <option value="알람 02.MP3">알람 02</option>
+            <option value="알람 03.MP3">알람 03</option>
+            <option value="알람 04.MP3">알람 04</option>
+            <option value="알람 05.MP3">알람 05</option>
+            <option value="알람 06.MP3">알람 06</option>
+            <option value="알람 07.MP3">알람 07</option>
+            <option value="알람 08.MP3">알람 08</option>
+            <option value="알람 09.MP3">알람 09</option>
+          </select>
+          <div class="audio__controll">
             <i class="fas fa-caret-right audio__play"></i>
             <i class="fas fa-pause audio__pause"></i>
           </div>
-          <div class="volume__container">
-            <span class="volume__span">볼륨</span>
-            <span class="volume__value"></span>
-            <div class="volume__icons">
-              <i class="fas fa-caret-up voulme__up"></i>
-              <i class="fas fa-caret-down voulme__down"></i>
-            </div>
+          <!-- </div> -->
+          <!-- <div class="volume__container"> -->
+          <span class="volume__value"></span>
+          <div class="volume__icons">
+            <i class="fas fa-caret-up voulme__up"></i>
+            <i class="fas fa-caret-down voulme__down"></i>
           </div>
+          <!-- </div> -->
         </div>
         <div class="option__theme">
-          <span class="theme__span">색상</span>
-          <div class="theme__bg">
-            <span>배경색</span>
-            <input type="color" class="theme__bgcolor" />
-          </div>
-          <div class="theme__text">
-            <span>글자색</span>
-            <input type="color" class="theme__textcolor" />
-          </div>
-          <button type="button" class="theme__reset">초기화</button>
+          <label for="black" class="theme__black"></label>
+          <input type="radio" name="theme" id="black" value="black" />
+          <label for="white" class="theme__white"></label>
+          <input type="radio" name="theme" id="white" value="white" />
+          <label for="green" class="theme__green"></label>
+          <input type="radio" name="theme" id="green" value="green" />
+          <label for="blue" class="theme__blue"></label>
+          <input type="radio" name="theme" id="blue" value="blue" />
+          <label for="pink" class="theme__pink"></label>
+          <input type="radio" name="theme" id="pink" value="pink" />
+          <label for="beige" class="theme__beige"></label>
+          <input type="radio" name="theme" id="beige" value="beige" />
         </div>
         <div class="option__button">
           <button type="submit" class="option__submit">등록하기</button>

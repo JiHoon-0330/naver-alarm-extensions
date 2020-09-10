@@ -1,11 +1,23 @@
 .option__container {
   display: flex;
   flex-direction: column;
-  min-width: 80vw;
-  max-width: 80vw;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--third-bg-color);
+  box-shadow: 0px 1px 5px 0px var(--third-bg-color);
+  border-radius: 10px;
+  min-height: 50vh;
+  min-width: 83vw;
+  max-width: 83vw;
+  overflow: auto;
+  padding: 40px 0px;
+  margin-top: 10px;
 }
 .option__audio {
   display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 70vw;
 }
 
 .audio__container,
@@ -16,27 +28,26 @@
   margin-bottom: 20px;
   display: flex;
   align-items: center;
-  border: 1px solid var(--main-text-color);
+  /* border: 1px solid var(--main-text-color); */
   border-radius: 20px;
 }
 
-.audio__container {
+.option__audio > select {
   flex: 2;
 }
-
-.volume__container {
-  flex: 1;
-  margin-left: 10px;
+.audio__controll {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.audio__span,
-.volume__span,
-.theme__span {
-  position: absolute;
-  display: block;
-  font-size: 18px;
-  top: -15px;
-  z-index: 1;
+.audio__controll > .audio__play {
+  margin-right: 10px;
+}
+
+.option__audio > .audio__controll,
+.option__audio > span {
+  flex: 1;
 }
 
 #audio__select {
@@ -45,16 +56,7 @@
   margin-right: 10px;
   font-size: 1.5em;
   border-bottom: 1px solid var(--main-text-color);
-}
-
-#audio__select,
-.volume__value {
-  flex: 1;
-}
-
-.audio__play,
-.audio__pause {
-  padding: 0px 10px;
+  background-color: var(--third-bg-color);
 }
 
 .audio__play {
@@ -76,39 +78,55 @@
   font-size: 2em;
 }
 
-.theme__bg,
-.theme__text {
+.option__theme {
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
+  min-width: 70vw;
 }
-
-.theme__bg > span,
-.theme__text > span {
-  font-size: 1.3em;
-  padding: 5px 5px;
+.option__theme > input {
+  display: none;
 }
-
-.theme__bgcolor,
-.theme__textcolor {
-  padding: 0px 0px;
+.option__theme > label {
+  margin: 0px 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
-.theme__bg,
-.theme__text,
-.theme__reset {
-  flex: 1;
+.theme__black {
+  background-color: black;
+}
+.theme__white {
+  background-color: white;
+}
+.theme__green {
+  background-color: green;
+}
+.theme__blue {
+  background-color: blue;
+}
+.theme__pink {
+  background-color: pink;
+}
+.theme__beige {
+  background-color: beige;
 }
 
 .option__button {
+  padding: 0px 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   min-width: 80vw;
   max-width: 80vw;
+  font-weight: 550;
 }
 .option__submit {
   margin-right: 10px;
+  background-color: var(--main-text-color);
+  color: var(--third-bg-color);
 }
 .option__exit {
   margin-left: 10px;
+  border: 1.5px solid var(--main-text-color);
 }

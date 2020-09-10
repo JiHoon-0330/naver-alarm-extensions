@@ -1,16 +1,17 @@
-form {
+.schedule__form__container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.3s ease-in-out;
   background-color: var(--third-bg-color);
   box-shadow: 0px 1px 5px 0px var(--third-bg-color);
   border-radius: 10px;
   min-height: 60vh;
-  min-width: 90vw;
+  min-width: 83vw;
+  max-width: 83vw;
   overflow: auto;
-  padding: 50px 0px;
+  padding: 40px 0px;
+  margin-top: 10px;
 }
 
 .form__blur {
@@ -23,7 +24,7 @@ form {
 .schedule__repeat {
   position: relative;
   padding: 0px 15px;
-  margin-bottom: 40px;
+  margin-bottom: 35px;
   min-width: 80vw;
   max-width: 80vw;
   display: flex;
@@ -37,16 +38,6 @@ form {
 
 .schedule__repeat {
   flex-direction: row;
-}
-
-.schedule__container > .schedule_span,
-.schedule__datetime > .datetime__span,
-.schedule__repeat > .repeat__span {
-  position: absolute;
-  display: block;
-  font-size: 18px;
-  top: -15px;
-  z-index: 1;
 }
 
 .schedule__input,
@@ -70,6 +61,7 @@ form {
   right: 19px;
   background-color: var(--third-bg-color);
 }
+
 .schedule__date::before {
   content: "\f784";
   top: 7px;
@@ -89,13 +81,14 @@ form {
 }
 
 .schedule__container > .schedule__add {
+  font-family: FontAwesome;
   position: absolute;
   padding: 3px 0px;
-  bottom: 10px;
+  bottom: 0px;
   min-height: 20px;
   width: calc(80vw - 34px);
   text-align: center;
-  font-size: 16px;
+  font-size: 2em;
 }
 
 .repeat__input {
@@ -111,15 +104,23 @@ form {
 }
 
 .schedule__button {
+  padding: 0px 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   min-width: 80vw;
   max-width: 80vw;
 }
+.schedule__button > button {
+  font-weight: 550;
+}
+
 .schedule__submit {
   margin-right: 10px;
+  background-color: var(--main-text-color);
+  color: var(--third-bg-color);
 }
 .schedule__exit {
   margin-left: 10px;
+  border: 1.5px solid var(--main-text-color);
 }

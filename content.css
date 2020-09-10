@@ -22,7 +22,7 @@
 
 .content__hidden {
   filter: blur(1px);
-  opacity: 0.2;
+  opacity: 0.1;
 }
 
 .content__container {
