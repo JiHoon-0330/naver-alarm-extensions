@@ -4,6 +4,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: var(--third-bg-color);
+
   border-radius: 10px;
   min-height: 50vh;
   min-width: 83vw;
@@ -83,14 +84,6 @@
   align-items: center;
   min-width: 70vw;
 }
-/* 테마선택 description
-.option__theme > .option__span {
-  position: relative;
-  text-align: center;
-  font-size: 18px;
-  top: 50px;
-}
-*/
 .option__theme > input {
   display: none;
 }
@@ -112,12 +105,16 @@
   background-color: #439394;
 }
 .theme__purple {
-  background-color: #B7ABE0;
+  background-color: #b7abe0;
 }
 .theme__multi {
-  background: linear-gradient(to right, #f26d5b 33%, #f6ea8c 33% 66%, #47b8e0 66% 99%);
+  background: linear-gradient(
+    to right,
+    #f26d5b 33%,
+    #f6ea8c 33% 66%,
+    #47b8e0 66% 99%
+  );
 }
-
 .option__theme > input:checked + label::before {
   pointer-events: none;
   font-family: FontAwesome;
@@ -132,7 +129,7 @@
   align-items: center;
   min-width: 80vw;
   max-width: 80vw;
-  font-weight: 550;
+  font-weight: 300;
 }
 .option__submit {
   margin-right: 10px;

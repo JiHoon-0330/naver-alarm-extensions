@@ -1,4 +1,4 @@
-chrome.alarms.onAlarm.addListener(alarm => {
+chrome.alarms.onAlarm.addListener(() => {
   chrome.windows.getCurrent(window => {
     const winId = window.id;
     const state = "minimized";

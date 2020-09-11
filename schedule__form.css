@@ -53,11 +53,6 @@ form {
   width: 100%;
 }
 
-.schedule__input::placeholder, .repeat__input::placeholder {
-  font-size: 20px;
-  text-align: center;
-}
-
 .schedule__date::before,
 .schedule__time::before {
   pointer-events: none;
@@ -118,7 +113,7 @@ form {
   max-width: 80vw;
 }
 .schedule__button > button {
-  font-weight: 550;
+  font-weight: 300;
 }
 
 .schedule__submit {

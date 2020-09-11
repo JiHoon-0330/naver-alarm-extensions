@@ -94,11 +94,9 @@ const setSaveOptions = () => {
 
 const getOptions = (data, keys) => {
   if (data["options"]) {
-    console.log("true");
     getSaveOptions(data["options"]);
     return;
   } else {
-    console.log("false");
     const appOptions = {
       options: {
         volume: 0,

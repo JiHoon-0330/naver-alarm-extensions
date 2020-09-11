@@ -54,10 +54,11 @@ const setData = () => {
   const currentDate = new Date().getTime();
   const getTimeDate = new Date(`${date} ${time}:00`).getTime();
   const alarmDate = getTimeDate - currentDate;
+  const onAlarm = getTimeDate > currentDate;
   const key = getTimeDate / 1000 + "" + currentDate;
 
   if (alarmDate / 1000 <= 0) {
-    alert("등록할 수 없는 시간입니다.");
+    alert("일정 등록은 현재 시간 이후로 가능합니다.");
     return;
   } else {
     const storageObj = {
@@ -68,7 +69,8 @@ const setData = () => {
       alarmDate,
       key,
       repeat,
-      repeatTime
+      repeatTime,
+      onAlarm
     };
     setStorage(storageObj);
     resetForm();

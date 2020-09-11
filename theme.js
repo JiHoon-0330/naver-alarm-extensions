@@ -5,12 +5,12 @@ const themes = {
     secondBgColor: "#333030", // 하단 메뉴바
     thirdBgColor: "#292C30", // 컨텐츠 박스 색상
     mainTextColor: "#FFFFFF", // 텍스트 색상
-    secondTextColor: "#CAD4E0", // input placeholder, 수정,삭제아이콘 색상
+    secondTextColor: "#D1D1D1", // input placeholder, 수정,삭제아이콘 색상
     thirdTextColor: "#888888"
   },
   white: {
-    mainBgColor: "#E0E3DA", 
-    mainBg2Color: "#ffffff", 
+    mainBgColor: "#E0E3DA",
+    mainBg2Color: "#ffffff",
     secondBgColor: "#B8B6B6",
     thirdBgColor: "#F5F5F5",
     mainTextColor: "#1e2022",
@@ -18,12 +18,12 @@ const themes = {
     thirdTextColor: "#5E5E5E"
   },
   green: {
-    mainBgColor: "#77AF9C", 
-    mainBg2Color: "#8CD790", 
-    secondBgColor: "#2F694F",  
-    thirdBgColor: "#619191", 
-    mainTextColor: "#ffffff", 
-    secondTextColor: "#D4E8B3",
+    mainBgColor: "#77AF9C",
+    mainBg2Color: "#8CD790",
+    secondBgColor: "#2F694F",
+    thirdBgColor: "#619191",
+    mainTextColor: "#ffffff",
+    secondTextColor: "#B5C9C0",
     thirdTextColor: "#888888"
   },
   purple: {
@@ -32,8 +32,8 @@ const themes = {
     secondBgColor: "#4C4D5E",
     thirdBgColor: "#8283a7",
     mainTextColor: "#F8FAFF",
-    secondTextColor: "#CAD4E0",
-    thirdTextColor: "#888888"  
+    secondTextColor: "#C0C1CF",
+    thirdTextColor: "#888888"
   },
   multi: {
     mainBgColor: "#ffc952",
@@ -41,8 +41,8 @@ const themes = {
     secondBgColor: "#47b8e0",
     thirdBgColor: "#34314c",
     mainTextColor: "#F8FAFF",
-    secondTextColor: "#e1eef6",
-    thirdTextColor: "#888888" 
+    secondTextColor: "#BCBBC4",
+    thirdTextColor: "#888888"
   }
 };
 

@@ -9,14 +9,14 @@
 }
 * {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", 'Noto Sans KR', sans-serif;
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", "Noto Sans KR", sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   color: var(--main-text-color);
   background-color: rgba(0, 0, 0, 0);
   outline: 0;
-  font-weight: 500;
+  font-weight: 300;
 }
 
 button {
@@ -47,7 +47,7 @@ select {
 
 input::placeholder {
   color: var(--second-text-color);
-  
+  font-size: 0.7em;
 }
 
 .success {
@@ -58,7 +58,7 @@ input::placeholder {
   color: var(--main-text-color);
   border-radius: 20px;
   font-size: 2em;
-  font-weight: bold;
+  font-weight: 300;
   z-index: 2;
   transition: 0.5s linear;
 }
@@ -99,6 +99,7 @@ input::placeholder {
   font-family: FontAwesome;
   font-size: 0.8em;
   min-width: 100vw;
+
   min-height: 60px;
   display: flex;
   justify-content: space-around;
@@ -110,19 +111,9 @@ input::placeholder {
   all: unset;
   font-size: 2.5em;
   transition: all 0.2s linear;
-  text-align: center;
 }
 
-/*하단 메뉴바 description
-.icon__container > button > span {
-  margin-top: 5px;
-  display: block;
-  font-size: 12px;
-}
-*/
-
-/*아이콘만 확대할지 텍스트도 같이 확대할지 결정*/
-.icon__container > button:hover { /*button, button i*/
+.icon__container > button:hover {
   transform: scale(1.2);
 }
 

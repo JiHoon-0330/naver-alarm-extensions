@@ -6,13 +6,15 @@
     <title>Document</title>
     <script
       src="https://kit.fontawesome.com/20fc56bb28.js"
-      crossorigin="anonymous"></script>
+      crossorigin="anonymous"
+    ></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="main.css" />
     <link rel="stylesheet" href="schedule__form.css" />
     <link rel="stylesheet" href="content.css" />
     <link rel="stylesheet" href="option.css" />
   </head>
+
   <body>
     <span class="success success__hidden"></span>
     <div class="clock__container">
@@ -68,7 +70,6 @@
       <div class="option__container">
         <div class="option__audio">
           <!-- <div class="audio__container"> -->
-          <!--<span class="option__span">알람종류 및 볼륨</span>-->
           <select name="audio__select" id="audio__select">
             <option value="">알람해제</option>
             <option value="알람 01.MP3">알람 01</option>
@@ -95,13 +96,12 @@
           <!-- </div> -->
         </div>
         <div class="option__theme">
-          <!--<span class="option__span">테마 선택</span>-->
-          <input type="radio" name="theme" id="green" value="green" />
-          <label for="green" class="theme__green"></label>
           <input type="radio" name="theme" id="black" value="black" />
           <label for="black" class="theme__black"></label>
           <input type="radio" name="theme" id="white" value="white" />
           <label for="white" class="theme__white"></label>
+          <input type="radio" name="theme" id="green" value="green" />
+          <label for="green" class="theme__green"></label>
           <input type="radio" name="theme" id="purple" value="purple" />
           <label for="purple" class="theme__purple"></label>
           <input type="radio" name="theme" id="multi" value="multi" />
@@ -113,22 +113,30 @@
         </div>
       </div>
     </form>
-    
-    <!--슬라이드 배경-->
+
     <div class="bg"></div>
     <div class="bg bg2"></div>
     <div class="bg bg3"></div>
-    <div class="content">
+    <div class="content"></div>
 
-    <!--하단 메뉴바-->
     <div class="icon__container">
-      <button class="icon__content"><i class="fas fa-bars"></i><!--<span>목록</span>--></button>
-      <button class="icon__form"><i class="fas fa-bell"></i><!--<span>등록</span>--></button>
-      <button class="icon__clear"><i class="fas fa-bell-slash"></i><!--<span>초기화</span>--></button>
-      <button class="icon__option"><i class="fas fa-cog"></i><!--<span>설정</span>--></button>
+      <button class="icon__content">
+        <i title="목록" class="fas fa-bars"></i>
+      </button>
+      <button class="icon__form">
+        <i title="등록" class="fas fa-bell"></i>
+      </button>
+      <button class="icon__clear">
+        <i title="초기화" class="fas fa-bell-slash"></i>
+      </button>
+      <button class="icon__history">
+        <i title="이전목록" class="far fa-calendar-check"></i>
+      </button>
+      <button class="icon__option">
+        <i title="설정" class="fas fa-cog"></i>
+      </button>
     </div>
 
-    
     <audio loop>
       <source type="audio/mpeg" />
     </audio>

@@ -34,43 +34,45 @@ const getPatten = (repeat, repeatTime) => {
   }
 };
 
-const printContent = (result, keys) => {
+const printLi = (data, option) => {
   let li = "";
   const hidden = "hidden";
   const moreButton = `<i class="fas fa-angle-double-down content__more"></i>`;
-  for (let i = 0; i < keys.length; i++) {
-    if (keys[i] == "options") {
-      continue;
-    } else {
-      let span = "";
-      const { scheduleList, date, time, key, repeat, repeatTime } = result[
-        keys[i]
-      ];
-      const test = getPatten(parseInt(repeat), repeatTime);
-      for (let j = 0; j < scheduleList.length; j++) {
-        span += `<span class="schedule ${j > 0 ? hidden : ""}">${
-          scheduleList[j]
-        }</span>`;
-      }
-
-      li += `
-      <li id="${key}" class="content__li">
-        <div class="content__content">
-          ${span}
-          ${scheduleList.length > 1 ? moreButton : ""}
-          <span class="datetime">${date} ${time} </span>
-          <span class="patten">${test}</span>
-        </div>
-        <div class="content__icons">
-          <i class="fas fa-pencil-alt"></i>
-          <i class="fas fa-trash-alt"></i>
-        </div>
-      </li>`;
-    }
+  let span = "";
+  const {
+    scheduleList,
+    date,
+    time,
+    getTimeDate,
+    key,
+    repeat,
+    repeatTime
+  } = data;
+  const test = getPatten(parseInt(repeat), repeatTime);
+  for (let j = 0; j < scheduleList.length; j++) {
+    span += `<span class="schedule ${option} ${j > 0 ? hidden : ""}">${
+      scheduleList[j]
+    }</span>`;
   }
 
-  ul.innerHTML = li;
+  li += `
+  <li id="${key}" class="${option}__li">
+    <div class="content__content">
+      ${span}
+      ${scheduleList.length > 1 ? moreButton : ""}
+      <span class="datetime">${date} ${time} </span>
+      <span class="patten">${test}</span>
+    </div>
+    <div class="content__icons">
+      <i class="fas fa-pencil-alt"></i>
+      <i class="fas fa-trash-alt"></i>
+    </div>
+  </li>`;
 
+  return li;
+};
+
+const setEvent = () => {
   let pencil = document.querySelectorAll(".content__icons > .fa-pencil-alt");
   let trash = document.querySelectorAll(".content__icons > .fa-trash-alt");
   let allList = document.querySelectorAll(".content__content > .content__more");
@@ -98,6 +100,51 @@ const printContent = (result, keys) => {
   }
 };
 
+const printContent = (result, keys) => {
+  let contentOption = null;
+  if (result["contentOption"]) {
+    contentOption = result["contentOption"];
+  } else {
+    chrome.storage.local.set({ contentOption: "content" }, () => {});
+    contentOption = "content";
+  }
+  let li = "";
+  while (ul.hasChildNodes()) {
+    ul.removeChild(ul.firstChild);
+  }
+
+  for (let i = 0; i < keys.length; i++) {
+    if (keys[i] === "options" || keys[i] == "contentOption") {
+      continue;
+    } else {
+      const {
+        scheduleList,
+        date,
+        time,
+        getTimeDate,
+        key,
+        repeat,
+        repeatTime
+      } = result[keys[i]];
+
+      if (contentOption === "content") {
+        if (getTimeDate < parseInt(Date.now())) {
+          continue;
+        }
+        li += printLi(result[keys[i]], contentOption);
+      } else {
+        if (getTimeDate > parseInt(Date.now())) {
+          break;
+        }
+        li += printLi(result[keys[i]], contentOption);
+      }
+    }
+  }
+
+  ul.innerHTML = li;
+  setEvent();
+};
+
 const test = (time, repeat) => {
   while (time <= parseInt(Date.now())) {
     time += repeat; // 3600060000
@@ -114,6 +161,7 @@ const reStorage = data => {
   const newDate = new Date();
   newDate.setTime(getTimeDate);
   alarmDate = getTimeDate - currentDate;
+  const onAlarm = getTimeDate > currentDate;
   key = getTimeDate / 1000 + "" + currentDate;
   const dateObj = getDate(newDate);
   const timeObj = getTime(newDate);
@@ -128,32 +176,44 @@ const reStorage = data => {
     alarmDate,
     key,
     repeat,
-    repeatTime
+    repeatTime,
+    onAlarm
   };
 
   setStorage(storageObj);
 };
 const removeStorage = (data, keys) => {
   for (let i = 0; i < keys.length; i++) {
-    const { getTimeDate, repeat, repeatTime, key } = data[keys[i]];
-    if (keys[i] == "options") {
+    const { getTimeDate, repeat, repeatTime, key, onAlarm } = data[keys[i]];
+    if (keys[i] === "options" || keys[i] === "contentOption") {
       continue;
     } else {
       if (getTimeDate < parseInt(Date.now())) {
         if (repeat * repeatTime > 0) {
           reStorage(data[keys[i]]);
+          chrome.storage.local.remove(key);
+        } else if (onAlarm) {
+          const temp = {};
+          const obj = data[keys[i]];
+          obj.onAlarm = false;
+          temp[keys[i]] = obj;
+          chrome.storage.local.set(temp);
         }
         chrome.alarms.clear(key);
-        chrome.storage.local.remove(key);
+        if (parseInt(getTimeDate) + 604800000 < parseInt(Date.now())) {
+          chrome.storage.local.remove(key);
+        }
       }
     }
   }
 };
 
 const logChangedStorage = changes => {
+  console.log(changes);
   const key = Object.keys(changes)[0];
   key === "options" && getAllStorage(getOptions);
   getAllStorage(printContent);
+  getAllStorage(removeStorage);
 };
 
 const initContent = () => {
