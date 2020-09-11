@@ -7,13 +7,11 @@ const voulmDown = document.querySelector(".voulme__down");
 const audio = document.querySelector("audio");
 const optionExit = document.querySelector(".option__exit");
 const inputTheme = document.querySelectorAll("input[name='theme']");
-
+let currentTheme = null;
 let selectTheme = null;
-
 let onPlayAudio = false;
 
 const setAudioVolum = volume => {
-  console.log(volume);
   audio.volume = volume / 10;
 };
 
@@ -73,9 +71,11 @@ inputTheme.forEach(theme => {
 
 const getSaveOptions = data => {
   const { volume, music, theme } = data;
+  console.log(``, data);
   volumeValue.textContent = volume;
   setAudioVolum(volume);
   audioSelect.value = music;
+  currentTheme = theme;
   setTheme(theme);
   document.querySelector(`#${theme}`).checked = true;
   if (music) {
@@ -87,16 +87,18 @@ const setSaveOptions = () => {
   const volume = volumeValue.textContent;
   const music = audioSelect.value;
   const appOptions = { options: { volume, music, theme: selectTheme } };
+  console.log(appOptions);
   chrome.storage.local.set(appOptions, () => {});
   successSubmit("설정이 등록되었습니다.", "option");
 };
 
-const getOptions = data => {
-  console.log(Object.keys(data));
-  if (!Object.keys(data)) {
-    getSaveOptions(data);
+const getOptions = (data, keys) => {
+  if (data["options"]) {
+    console.log("true");
+    getSaveOptions(data["options"]);
     return;
   } else {
+    console.log("false");
     const appOptions = {
       options: {
         volume: 0,
@@ -104,16 +106,13 @@ const getOptions = data => {
         theme: "black"
       }
     };
-    chrome.storage.local.set(appOptions, () => {
-      getSaveOptions(appOptions["options"]);
-    });
+    chrome.storage.local.set(appOptions, () => {});
+    getSaveOptions(appOptions["options"]);
   }
 };
 
 const initOption = () => {
-  chrome.storage.local.get("options", result => {
-    getOptions(result);
-  });
+  getAllStorage(getOptions);
 };
 
 initOption();

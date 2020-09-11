@@ -4,7 +4,13 @@ const iconClear = document.querySelector(".icon__clear");
 const iconOption = document.querySelector(".icon__option");
 const contentContainer = document.querySelector(".content__container");
 
+const resetTheme = theme => {
+  setTheme(theme);
+  document.querySelector(`#${theme}`).checked = true;
+};
+
 iconContent.addEventListener("click", () => {
+  resetTheme(currentTheme);
   contentContainer.classList.contains("hidden") &&
     contentContainer.classList.remove("hidden");
   !scheduleForm.classList.contains("hidden") &&
@@ -17,6 +23,7 @@ iconContent.addEventListener("click", () => {
 });
 
 iconForm.addEventListener("click", () => {
+  resetTheme(currentTheme);
   scheduleForm.classList.contains("hidden") &&
     scheduleForm.classList.remove("hidden");
   !contentContainer.classList.contains("hidden") &&

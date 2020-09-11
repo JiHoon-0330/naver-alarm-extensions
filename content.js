@@ -151,6 +151,7 @@ const removeStorage = (data, keys) => {
 };
 
 const logChangedStorage = changes => {
+  console.log(changes);
   const key = Object.keys(changes)[0];
   key === "options" && getAllStorage(getOptions);
   getAllStorage(printContent);
