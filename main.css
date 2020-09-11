@@ -47,6 +47,7 @@ select {
 
 input::placeholder {
   color: var(--second-text-color);
+  
 }
 
 .success {
@@ -73,8 +74,7 @@ input::placeholder {
   justify-content: center;
   align-items: center;
   font-weight: 500;
-
-  border-bottom: 1.5px solid var(--second-text-color);
+  border-bottom: 1.5px solid var(--main-text-color);
   min-width: 85vw;
   max-width: 85vw;
   z-index: 2;
@@ -99,7 +99,6 @@ input::placeholder {
   font-family: FontAwesome;
   font-size: 0.8em;
   min-width: 100vw;
-
   min-height: 60px;
   display: flex;
   justify-content: space-around;
@@ -111,9 +110,19 @@ input::placeholder {
   all: unset;
   font-size: 2.5em;
   transition: all 0.2s linear;
+  text-align: center;
 }
 
-.icon__container > button:hover {
+/*하단 메뉴바 description
+.icon__container > button > span {
+  margin-top: 5px;
+  display: block;
+  font-size: 12px;
+}
+*/
+
+/*아이콘만 확대할지 텍스트도 같이 확대할지 결정*/
+.icon__container > button:hover { /*button, button i*/
   transform: scale(1.2);
 }
 

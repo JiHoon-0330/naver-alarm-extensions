@@ -1,0 +1,175 @@
+:root {
+  --main-bg-color: ;
+  --main-bg2-color: ;
+  --second-bg-color: ;
+  --third-bg-color: ;
+  --main-text-color: ;
+  --second-text-color: ;
+  --third-text-color: ;
+}
+
+* {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",'Noto Sans KR', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--main-text-color);
+  background-color: rgba(0, 0, 0, 0);
+  outline: 0;
+  font-weight: 500;
+}
+
+button {
+  all: unset;
+  border-radius: 20px;
+  padding: 5px 0px;
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  max-height: 100vh;
+  background-color: var(--main-bg-color);
+}
+
+header {
+  padding-top: 20px;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+i {
+  margin-top: 10px;
+  font-family: FontAwesome;
+  font-size: 15em;
+  animation: watch 0.5s linear infinite both;
+}
+
+i:hover {
+  animation-play-state: paused;
+}
+
+h1 {
+  margin-top: 10px;
+  font-size: 2.5em;
+}
+
+span {
+  margin-top: 0.5px;
+  font-size: 1.5em;
+}
+
+.schedule__div {
+  margin-top: 10px;
+  overflow: auto;
+  height: 70vh;
+}
+
+.schedule__li {
+  list-style: none;
+  font-size: 2em;
+  font-weight: 600;
+  white-space: pre-line;
+  word-break: break-all;
+  word-wrap: break-word;
+  margin-bottom: 10px;
+  background-color: var(--third-bg-color);
+  border-radius: 10px;
+  max-width: 85vw;
+  min-width: 85vw;
+  padding: 10px 10px;
+  padding-right: 20px;
+}
+
+li::before {
+  font-family: FontAwesome;
+  content: "\f14a   ";
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 5px 0px;
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.button_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 80px;
+  font-weight: 550;
+  padding: 0px 10px;
+  background-color: var(--second-bg-color);
+}
+
+#exit {
+  margin-right: 10px;
+  background-color: var(--main-text-color);
+  color: var(--third-bg-color);
+}
+
+#repeat__five {
+  margin-left: 10px;
+  border: 1.5px solid var(--main-text-color);
+}
+
+/*배경 슬라이드*/
+.bg {
+  animation: slide 7s ease-in-out infinite alternate;
+  background-image: linear-gradient(
+    -60deg,
+    var(--main-bg-color) 50%,
+    var(--main-bg2-color) 50%
+  );
+  bottom: 0;
+  left: -50%;
+  opacity: 0.5;
+  position: fixed;
+  right: -50%;
+  top: 0;
+  z-index: -1;
+}
+
+.bg2 {
+  animation-direction: alternate-reverse;
+  animation-duration: 20s;
+}
+
+.bg3 {
+  animation-duration: 30s;
+}
+
+
+@keyframes watch {
+  0% {transform: translate(0);}
+  20% {transform: translate(-2.5px, 2.5px);}
+  40% {transform: translate(-2.5px, -2.5px);}
+  60% {transform: translate(2.5px, 2.5px);}
+  80% {transform: translate(2.5px, -2.5px);}
+  100% {transform: translate(0);}
+}
+
+
+@keyframes slide {
+  0% {
+    transform: translateX(-25%);
+  }
+  100% {
+    transform: translateX(25%);
+  }
+}

@@ -60,7 +60,7 @@
         </div>
         <div class="schedule__button">
           <button type="submit" class="schedule__submit">등록하기</button>
-          <button type="button" class="schedule__exit">종료하기</button>
+          <button type="button" class="schedule__exit">취소하기</button>
         </div>
       </div>
     </form>
@@ -68,6 +68,7 @@
       <div class="option__container">
         <div class="option__audio">
           <!-- <div class="audio__container"> -->
+          <!--<span class="option__span">알람종류 및 볼륨</span>-->
           <select name="audio__select" id="audio__select">
             <option value="">알람해제</option>
             <option value="알람 01.MP3">알람 01</option>
@@ -94,7 +95,7 @@
           <!-- </div> -->
         </div>
         <div class="option__theme">
-          <span class="option__span">테마 선택</span>
+          <!--<span class="option__span">테마 선택</span>-->
           <input type="radio" name="theme" id="green" value="green" />
           <label for="green" class="theme__green"></label>
           <input type="radio" name="theme" id="black" value="black" />
@@ -103,26 +104,28 @@
           <label for="white" class="theme__white"></label>
           <input type="radio" name="theme" id="purple" value="purple" />
           <label for="purple" class="theme__purple"></label>
-          
-         
+          <input type="radio" name="theme" id="multi" value="multi" />
+          <label for="multi" class="theme__multi"></label>
         </div>
         <div class="option__button">
-          <button type="submit" class="option__submit">등록하기</button>
-          <button type="button" class="option__exit">종료하기</button>
+          <button type="submit" class="option__submit">설정완료</button>
+          <button type="button" class="option__exit">취소하기</button>
         </div>
       </div>
     </form>
-
+    
+    <!--슬라이드 배경-->
     <div class="bg"></div>
     <div class="bg bg2"></div>
     <div class="bg bg3"></div>
     <div class="content">
 
+    <!--하단 메뉴바-->
     <div class="icon__container">
-      <button class="icon__content"><i class="fas fa-bars"></i></button>
-      <button class="icon__form"><i class="fas fa-bell"></i></button>
-      <button class="icon__clear"><i class="fas fa-bell-slash"></i></button>
-      <button class="icon__option"><i class="fas fa-cog"></i></button>
+      <button class="icon__content"><i class="fas fa-bars"></i><!--<span>목록</span>--></button>
+      <button class="icon__form"><i class="fas fa-bell"></i><!--<span>등록</span>--></button>
+      <button class="icon__clear"><i class="fas fa-bell-slash"></i><!--<span>초기화</span>--></button>
+      <button class="icon__option"><i class="fas fa-cog"></i><!--<span>설정</span>--></button>
     </div>
 
     
@@ -133,6 +136,7 @@
     <script src="icons.js"></script>
     <script src="date.js"></script>
     <script src="storage.js"></script>
+    <script src="theme.js"></script>
     <script src="success.js"></script>
     <script src="clock.js"></script>
     <script src="add.js"></script>
