@@ -1,5 +1,5 @@
 let ul = document.querySelector("body > div > ul");
-let span = document.querySelector("body > div > span");
+let span = document.querySelector("header > span");
 const exit = document.querySelector("#exit");
 const repeatFive = document.querySelector("#repeat__five");
 const audio = document.querySelector("audio");
@@ -113,6 +113,11 @@ const getData = (data, keys) => {
 
 const initTest = () => {
   getAllStorage(getData);
+  chrome.storage.local.get("options", result => {
+    console.log(result);
+    const { theme } = result["options"];
+    setTheme(theme);
+  });
 };
 
 initTest();
