@@ -1,16 +1,16 @@
 const themes = {
   black: {
-    mainBgColor: "#454A52",
-    mainBg2Color: "#191818",
-    secondBgColor: "#333030",
-    thirdBgColor: "#292C30",
-    mainTextColor: "#FFFFFF",
-    secondTextColor: "#CAD4E0",
+    mainBgColor: "#454A52", // 슬라이드 아래 배경
+    mainBg2Color: "#191818", // 슬라이드 윗 배경
+    secondBgColor: "#333030", // 하단 메뉴바
+    thirdBgColor: "#292C30", // 컨텐츠 박스 색상
+    mainTextColor: "#FFFFFF", // 텍스트 색상
+    secondTextColor: "#D1D1D1", // input placeholder, 수정,삭제아이콘 색상
     thirdTextColor: "#888888"
   },
   white: {
-    mainBgColor: "#E0E3DA", // 아랫배경
-    mainBg2Color: "#ffffff", // 윗배경
+    mainBgColor: "#E0E3DA",
+    mainBg2Color: "#ffffff",
     secondBgColor: "#B8B6B6",
     thirdBgColor: "#F5F5F5",
     mainTextColor: "#1e2022",
@@ -18,12 +18,30 @@ const themes = {
     thirdTextColor: "#5E5E5E"
   },
   green: {
-    mainBgColor: "#77AF9C", // 배경 아래
-    mainBg2Color: "#8CD790", // 배경 위
-    secondBgColor: "#2F694F", // 하단 메뉴
-    thirdBgColor: "#619191", // 일정박스 색
-    mainTextColor: "#ffffff", // 시계, 폰트, 아이콘 색
-    secondTextColor: "#BED1C0", // placeholder, 시계언더바, 일정수정,삭제아이콘
+    mainBgColor: "#77AF9C",
+    mainBg2Color: "#8CD790",
+    secondBgColor: "#2F694F",
+    thirdBgColor: "#619191",
+    mainTextColor: "#ffffff",
+    secondTextColor: "#B5C9C0",
+    thirdTextColor: "#888888"
+  },
+  purple: {
+    mainBgColor: "#CBA6C3",
+    mainBg2Color: "#AAABD3",
+    secondBgColor: "#4C4D5E",
+    thirdBgColor: "#8283a7",
+    mainTextColor: "#F8FAFF",
+    secondTextColor: "#C0C1CF",
+    thirdTextColor: "#888888"
+  },
+  multi: {
+    mainBgColor: "#ffc952",
+    mainBg2Color: "#ff7473",
+    secondBgColor: "#47b8e0",
+    thirdBgColor: "#34314c",
+    mainTextColor: "#F8FAFF",
+    secondTextColor: "#BCBBC4",
     thirdTextColor: "#888888"
   }
 };

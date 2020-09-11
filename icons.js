@@ -1,5 +1,6 @@
 const iconContent = document.querySelector(".icon__content");
 const iconForm = document.querySelector(".icon__form");
+const iconHistory = document.querySelector(".icon__history");
 const iconClear = document.querySelector(".icon__clear");
 const iconOption = document.querySelector(".icon__option");
 const contentContainer = document.querySelector(".content__container");
@@ -10,6 +11,7 @@ const resetTheme = theme => {
 };
 
 iconContent.addEventListener("click", () => {
+  chrome.storage.local.set({ contentOption: "content" }, () => {});
   resetTheme(currentTheme);
   contentContainer.classList.contains("hidden") &&
     contentContainer.classList.remove("hidden");
@@ -34,6 +36,20 @@ iconForm.addEventListener("click", () => {
     audio.pause();
   }
   setDate();
+});
+
+iconHistory.addEventListener("click", () => {
+  chrome.storage.local.set({ contentOption: "history" }, () => {});
+  resetTheme(currentTheme);
+  contentContainer.classList.contains("hidden") &&
+    contentContainer.classList.remove("hidden");
+  !scheduleForm.classList.contains("hidden") &&
+    scheduleForm.classList.add("hidden");
+  !optionForm.classList.contains("hidden") &&
+    optionForm.classList.add("hidden");
+  if (onPlayAudio) {
+    audio.pause();
+  }
 });
 
 iconOption.addEventListener("click", () => {

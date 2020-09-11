@@ -6,16 +6,22 @@
     <title>Document</title>
     <script
       src="https://kit.fontawesome.com/20fc56bb28.js"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="alarm.css" />
   </head>
   <body>
     <header>
-      <i class="fas fa-exclamation"></i>
+      <!--경고 이미지-->
+      <i class="fas fa-exclamation-circle"></i>
+      
       <h1>일정을 확인하세요.</h1>
+      
       <span></span>
+    
     </header>
+    
     <input type="hidden" class="date" />
     <input type="hidden" class="time" />
     <input type="hidden" class="getTimeDate" />
@@ -23,6 +29,7 @@
     <input type="hidden" class="key" />
     <input type="hidden" class="repeat" />
     <input type="hidden" class="repeatTime" />
+    
     <div class="schedule__div">
       <ul></ul>
     </div>
@@ -33,7 +40,7 @@
     <div class="content">
 
     <div class="button_container">
-      <button id="exit">종료하기</button>
+      <button id="exit">알림끄기</button>
       <button id="repeat__five">5분 후 알림</button>
     </div>
 

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="content.css" />
     <link rel="stylesheet" href="option.css" />
   </head>
+
   <body>
     <span class="success success__hidden"></span>
     <div class="clock__container">
@@ -100,7 +101,10 @@
           <label for="white" class="theme__white"></label>
           <input type="radio" name="theme" id="green" value="green" />
           <label for="green" class="theme__green"></label>
-         
+          <input type="radio" name="theme" id="purple" value="purple" />
+          <label for="purple" class="theme__purple"></label>
+          <input type="radio" name="theme" id="multi" value="multi" />
+          <label for="multi" class="theme__multi"></label>
         </div>
         <div class="option__button">
           <button type="submit" class="option__submit">등록하기</button>
@@ -112,16 +116,26 @@
     <div class="bg"></div>
     <div class="bg bg2"></div>
     <div class="bg bg3"></div>
-    <div class="content">
+    <div class="content"></div>
 
     <div class="icon__container">
-      <button class="icon__content"><i class="fas fa-bars"></i></button>
-      <button class="icon__form"><i class="fas fa-bell"></i></button>
-      <button class="icon__clear"><i class="fas fa-bell-slash"></i></button>
-      <button class="icon__option"><i class="fas fa-cog"></i></button>
+      <button class="icon__content">
+        <i title="목록" class="fas fa-bars"></i>
+      </button>
+      <button class="icon__form">
+        <i title="등록" class="fas fa-bell"></i>
+      </button>
+      <button class="icon__history">
+        <i title="이전목록" class="far fa-calendar-check"></i>
+      </button>
+      <button class="icon__clear">
+        <i title="초기화" class="fas fa-bell-slash"></i>
+      </button>
+      <button class="icon__option">
+        <i title="설정" class="fas fa-cog"></i>
+      </button>
     </div>
 
-    
     <audio loop>
       <source type="audio/mpeg" />
     </audio>

@@ -63,3 +63,10 @@
   font-size: 0.7em;
   font-weight: 400;
 }
+.patten {
+  display: flex;
+  align-items: center;
+}
+.patten > i {
+  margin-right: 5px;
+}

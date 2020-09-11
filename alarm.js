@@ -20,6 +20,7 @@ repeatFive.addEventListener("click", () => {
   const newDate = new Date();
   newDate.setTime(getTimeDate);
   const alarmDate = getTimeDate - currentDate;
+  const onAlarm = getTimeDate > currentDate;
   const key = getTimeDate / 1000 + "" + currentDate;
 
   const dateObj = getDate(newDate);
@@ -44,7 +45,8 @@ repeatFive.addEventListener("click", () => {
     alarmDate,
     key,
     repeat,
-    repeatTime
+    repeatTime,
+    onAlarm
   };
 
   setStorage(obj);
@@ -97,16 +99,20 @@ const printSchedule = data => {
 const getData = (data, keys) => {
   let time = null;
   for (let i = 0; i < keys.length; i++) {
-    const { getTimeDate } = data[keys[i]];
-    if (time) {
-      if (!(time == getTimeDate)) {
-        return;
+    const { getTimeDate, onAlarm } = data[keys[i]];
+    if (!onAlarm) {
+      continue;
+    } else {
+      if (time) {
+        if (!(time == getTimeDate)) {
+          return;
+        } else {
+          printSchedule(data[keys[i]]);
+        }
       } else {
+        time = getTimeDate;
         printSchedule(data[keys[i]]);
       }
-    } else {
-      time = getTimeDate;
-      printSchedule(data[keys[i]]);
     }
   }
 };

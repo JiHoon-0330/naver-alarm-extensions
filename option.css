@@ -93,7 +93,7 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: 1.5px solid black;
+  border: 2.5px solid #bebebe;
 }
 .theme__black {
   background-color: black;
@@ -103,6 +103,17 @@
 }
 .theme__green {
   background-color: #439394;
+}
+.theme__purple {
+  background-color: #b7abe0;
+}
+.theme__multi {
+  background: linear-gradient(
+    to right,
+    #f26d5b 33%,
+    #f6ea8c 33% 66%,
+    #47b8e0 66% 99%
+  );
 }
 .option__theme > input:checked + label::before {
   pointer-events: none;
