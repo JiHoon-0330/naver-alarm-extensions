@@ -34,7 +34,7 @@ const getPatten = (repeat, repeatTime) => {
   }
 };
 
-const printLi = data => {
+const printLi = (data, option) => {
   let li = "";
   const hidden = "hidden";
   const moreButton = `<i class="fas fa-angle-double-down content__more"></i>`;
@@ -50,13 +50,13 @@ const printLi = data => {
   } = data;
   const test = getPatten(parseInt(repeat), repeatTime);
   for (let j = 0; j < scheduleList.length; j++) {
-    span += `<span class="schedule ${j > 0 ? hidden : ""}">${
+    span += `<span class="schedule ${option} ${j > 0 ? hidden : ""}">${
       scheduleList[j]
     }</span>`;
   }
 
   li += `
-  <li id="${key}" class="content__li">
+  <li id="${key}" class="${option}__li">
     <div class="content__content">
       ${span}
       ${scheduleList.length > 1 ? moreButton : ""}
@@ -131,12 +131,12 @@ const printContent = (result, keys) => {
         if (getTimeDate < parseInt(Date.now())) {
           continue;
         }
-        li += printLi(result[keys[i]]);
+        li += printLi(result[keys[i]], contentOption);
       } else {
         if (getTimeDate > parseInt(Date.now())) {
           break;
         }
-        li += printLi(result[keys[i]]);
+        li += printLi(result[keys[i]], contentOption);
       }
     }
   }

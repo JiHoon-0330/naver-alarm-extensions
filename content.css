@@ -15,7 +15,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   background-color: var(--third-bg-color);
   border-radius: 10px;
 }
@@ -27,7 +26,7 @@
 
 .content__container {
   height: 80vh;
-  font-size: 2em;
+  font-size: 20px;
   overflow: auto;
 }
 
@@ -49,6 +48,7 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-size: 1.1em;
 }
 .fa-pencil-alt {
   margin-right: 5px;
@@ -69,4 +69,26 @@
 }
 .patten > i {
   margin-right: 5px;
+}
+
+.history__li {
+  margin: auto;
+  max-width: 85vw;
+  padding: 10px 10px;
+  padding-right: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--third-bg-color);
+  border-radius: 10px;
+}
+
+.history::before {
+  font-family: FontAwesome;
+  content: "\f274   ";
+}
+
+.history {
+  color: var(--second-text-color);
 }

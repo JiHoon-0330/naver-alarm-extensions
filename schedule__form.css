@@ -8,7 +8,6 @@ form {
   justify-content: space-between;
   align-items: center;
   background-color: var(--third-bg-color);
-
   border-radius: 10px;
   min-height: 60vh;
   min-width: 85vw;
@@ -114,7 +113,7 @@ form {
   max-width: 80vw;
 }
 .schedule__button > button {
-  font-weight: 550;
+  font-weight: 300;
 }
 
 .schedule__submit {
