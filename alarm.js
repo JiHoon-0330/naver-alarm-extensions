@@ -12,8 +12,10 @@ repeatFive.addEventListener("click", () => {
   const scheduleList = [];
   const scheduleLi = document.querySelectorAll(".schedule__li");
   const preTimeDate = parseInt(document.querySelector(".getTimeDate").value);
-  const repeat = parseInt(document.querySelector(".repeat").value);
-  const repeatTime = parseInt(document.querySelector(".repeatTime").value);
+  // const repeat = parseInt(document.querySelector(".repeat").value);
+  // const repeatTime = parseInt(document.querySelector(".repeatTime").value);
+  const repeat = "0";
+  const repeatTime = "";
 
   const currentDate = new Date().getTime();
   const getTimeDate = preTimeDate + 300000;
