@@ -1,5 +1,5 @@
 form {
-  height: 80vh;
+  height: 90vh;
   overflow: auto;
 }
 .schedule__form__container {
@@ -111,9 +111,6 @@ form {
   align-items: center;
   min-width: 80vw;
   max-width: 80vw;
-}
-.schedule__button > button {
-  font-weight: 300;
 }
 
 .schedule__submit {
