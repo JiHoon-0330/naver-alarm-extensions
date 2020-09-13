@@ -32,7 +32,6 @@ repeatFive.addEventListener("click", () => {
 
   for (let i = 0; i < scheduleLi.length; i++) {
     const value = scheduleLi[i].textContent;
-
     if (!value) {
       continue;
     } else {

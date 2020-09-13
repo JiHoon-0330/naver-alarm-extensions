@@ -9,7 +9,7 @@ form {
   align-items: center;
   background-color: var(--third-bg-color);
   border-radius: 10px;
-  min-height: 60vh;
+  min-height: 70vh;
   min-width: 85vw;
   max-width: 85vw;
   overflow: auto;
@@ -22,16 +22,19 @@ form {
   opacity: 0.3;
 }
 
+.schedule__container {
+  position: relative;
+}
+
 .schedule__container,
 .schedule__datetime,
 .schedule__repeat {
-  position: relative;
-  padding: 0px 15px;
   margin-bottom: 65px;
-  min-width: 80vw;
-  max-width: 80vw;
+  min-width: 70vw;
+  max-width: 70vw;
   display: flex;
   flex-direction: column;
+  align-items: center;
   /* border: 1px solid var(--main-text-color); */
 }
 
@@ -44,7 +47,8 @@ form {
 }
 
 .schedule__input,
-.schedule__datetime > input,
+.schedule__date,
+.schedule__time,
 .repeat__input {
   all: unset;
   padding: 4px 0px;
@@ -53,32 +57,31 @@ form {
   width: 100%;
 }
 
-.schedule__date::before,
-.schedule__time::before {
+.date,
+.time {
+  min-width: 70vw;
+  max-width: 70vw;
+  position: relative;
+}
+
+.schedule__date,
+.schedule__time {
+  text-align: center;
+  width: 70vw;
+}
+.date > i,
+.time > i {
   pointer-events: none;
   font-family: FontAwesome;
   position: absolute;
-  font-size: 26px;
-  right: 20px;
+  right: 5px;
+  top: 10px;
   background-color: var(--third-bg-color);
-}
-
-.schedule__date::before {
-  content: "\f784";
-  top: 7px;
-}
-
-.schedule__time::before {
-  content: "\f017";
-  top: 52px;
+  font-size: 2.2em;
 }
 
 .repeat__input {
   width: calc(80vw - 130px);
-}
-.schedule__datetime > input {
-  align-items: flex-end;
-  text-align: center;
 }
 
 .schedule__container > .schedule__add {
@@ -97,6 +100,7 @@ form {
 }
 
 #repeat__select {
+  height: 40px;
   background-color: var(--third-bg-color);
   border: none;
   padding: 5px 3px;
@@ -121,4 +125,108 @@ form {
 .schedule__exit {
   margin-left: 10px;
   border: 1.5px solid var(--main-text-color);
+}
+
+.repeat__days {
+  min-width: 70vw;
+  max-width: 70vw;
+  margin-bottom: 25px;
+}
+
+.repeat__days > ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 34px;
+  width: 100%;
+}
+.repeat__days > ul > li {
+  list-style: none;
+  width: 100%;
+  height: 100%;
+  max-width: 40px;
+}
+/* .repeat__days > ul > li:not(:last-child) {
+  margin-right: 15px;
+} */
+.repeat__days > ul > li > div {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.repeat__days > ul > li > div > label {
+  position: absolute;
+  text-align: center;
+  cursor: pointer;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  font-size: 1.7em;
+  color: var(--main-text-color);
+  background-color: var(--third-bg-color);
+}
+
+.repeat__days > ul > li:nth-child(1) > div > label {
+  background-color: var(--third-bg-color);
+  color: #ffd4d4;
+}
+
+.repeat__days > ul > li:nth-child(7) > div > label {
+  background-color: var(--third-bg-color);
+  color: #ccd3ff;
+}
+
+.repeat__days label::before {
+  color: var(--third-bg-color);
+  background-color: var(--main-text-color);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 0px;
+  overflow: hidden;
+  border-bottom: 3px solid var(--main-text-color);
+  transition: all 0.5s;
+}
+
+.repeat__days > ul > li:nth-child(1) > div > label::before {
+  background-color: #ffd4d4;
+  border-bottom: 3px solid #ffd4d4;
+  content: "일";
+}
+
+.repeat__days > ul > li:nth-child(2) > div > label::before {
+  content: "월";
+}
+
+.repeat__days > ul > li:nth-child(3) > div > label::before {
+  content: "화";
+}
+.repeat__days > ul > li:nth-child(4) > div > label::before {
+  content: "수";
+}
+.repeat__days > ul > li:nth-child(5) > div > label::before {
+  content: "목";
+}
+.repeat__days > ul > li:nth-child(6) > div > label::before {
+  content: "금";
+}
+
+.repeat__days > ul > li:nth-child(7) > div > label::before {
+  background-color: #ccd3ff;
+  border-bottom: 3px solid #ccd3ff;
+  content: "토";
+}
+
+.repeat__days > ul > li > div > input:checked + label::before {
+  height: 100%;
+}
+
+.hidden__input {
+  opacity: 0.1;
+}
+.readOnly {
+  pointer-events: none;
 }

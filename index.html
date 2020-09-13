@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="schedule__form.css" />
     <link rel="stylesheet" href="content.css" />
     <link rel="stylesheet" href="option.css" />
+    <link rel="stylesheet" href="hidden.css" />
   </head>
 
   <body>
@@ -44,8 +45,94 @@
         </div>
         <div class="schedule__datetime">
           <!-- <span class="datetime__span">날짜</span> -->
-          <input type="date" class="schedule__date" required />
-          <input type="time" class="schedule__time" required />
+          <div class="repeat__days">
+            <ul>
+              <li>
+                <div>
+                <input
+                  type="checkbox"
+                  name="days"
+                  id="sunday"
+                  class="days hidden"
+                />
+                <label for="sunday">일</label>
+              </div>
+              </li>
+              <li>
+              <div>
+                <input
+                  type="checkbox"
+                  name="days"
+                  id="monday"
+                  class="days hidden"
+                />
+                <label for="monday">월</label>
+              </li>
+              <li>
+                <div>
+                <input
+                  type="checkbox"
+                  name="days"
+                  id="tuesday"
+                  class="days hidden"
+                />
+                <label for="tuesday">화</label>
+              </div>
+              </li>
+              <li>
+                <div>
+                <input
+                  type="checkbox"
+                  name="days"
+                  id="wednesday"
+                  class="days hidden"
+                />
+                <label for="wednesday">수</label>
+              </div>
+              </li>
+              <li>
+                <div>
+                <input
+                  type="checkbox"
+                  name="days"
+                  id="thursday"
+                  class="days hidden"
+                />
+                <label for="thursday">목</label>
+                </div>
+              </li>
+              <li>
+                <div>
+                <input
+                  type="checkbox"
+                  name="days"
+                  id="friday"
+                  class="days hidden"
+                />
+                <label for="friday">금</label>
+              </div>
+              </li>
+              <li>
+                <div>
+                <input
+                  type="checkbox"
+                  name="days"
+                  id="saturday"
+                  class="days hidden"
+                />
+                <label for="saturday">토</label>
+              </div>
+              </li>
+            </ul>
+          </div>
+          <div class="date">
+            <input type="date" class="schedule__date" required />
+            <i class="far fa-calendar"></i>
+          </div>
+          <div class="time">
+            <input type="time" class="schedule__time" required />
+            <i class="far fa-clock"></i>
+          </div>
         </div>
 
         <div class="schedule__repeat">

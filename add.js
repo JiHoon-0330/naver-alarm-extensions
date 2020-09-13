@@ -7,6 +7,7 @@ const repeatSelect = document.querySelector("#repeat__select");
 const scheduleDate = document.querySelector(".schedule__date");
 const scheduleTime = document.querySelector(".schedule__time");
 const scheduleExit = document.querySelector(".schedule__exit");
+const days = document.querySelectorAll(".days");
 
 const setDate = () => {
   const currentTimeObj = getTime();
@@ -98,6 +99,40 @@ scheduleAdd.addEventListener("click", () => {
 scheduleExit.addEventListener("click", () => {
   resetForm();
   iconContent.click();
+});
+
+const checkDays = () => {
+  let check = false;
+  for (let i = 0; i < days.length; i++) {
+    if (days[i].checked) {
+      check = true;
+    }
+  }
+  if (check) {
+    if (!document.querySelector(".date").classList.contains("hidden__input")) {
+      document.querySelector(".date").classList.add("hidden__input");
+      document
+        .querySelector(".schedule__repeat")
+        .classList.add("hidden__input");
+      repeatSelect.classList.add("readOnly");
+      scheduleDate.readOnly = true;
+      repeatInput.readOnly = true;
+    }
+  } else {
+    document.querySelector(".date").classList.remove("hidden__input");
+    document
+      .querySelector(".schedule__repeat")
+      .classList.remove("hidden__input");
+    repeatSelect.classList.remove("readOnly");
+    scheduleDate.readOnly = false;
+    repeatInput.readOnly = false;
+  }
+};
+
+days.forEach(day => {
+  day.addEventListener("click", () => {
+    checkDays();
+  });
 });
 
 const initAdd = () => {};
