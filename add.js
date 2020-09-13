@@ -25,6 +25,10 @@ const resetForm = () => {
       schedule[i].remove();
     }
   }
+  days.forEach(day => {
+    day.checked = false;
+  });
+  disableElement(checkDays());
   repeatSelect.value = 0;
   repeatInput.value = "";
 };
@@ -44,34 +48,43 @@ const getScheduleList = () => {
   return scheduleList;
 };
 
-const setData = () => {
+const getFormDate = checkDays => {
   const scheduleList = getScheduleList();
-  let dayArr = null;
+  const currentDate = new Date();
   let date = scheduleDate.value;
   const time = scheduleTime.value;
-  let repeat = repeatSelect.value;
-  console.log(repeat === "0");
-  let repeatTime = repeat === "0" ? "" : repeatInput.value;
-  const currentDate = new Date().getTime();
-  const getTimeDate = new Date(`${date} ${time}:00`).getTime();
-  const alarmDate = getTimeDate - currentDate;
-  let onAlarm = getTimeDate > currentDate;
-  let key = getTimeDate / 1000 + "" + currentDate;
-
-  if (checkDays()) {
+  let dayArr = null;
+  if (checkDays) {
+    let newDate = new Date();
+    let dateObj = null;
+    let getTimeDate = null;
+    let alarmDate = null;
+    let key = null;
+    let repeat = null;
+    let repeatTime = null;
+    let onAlarm = null;
+    let first = true;
     dayArr = getDays();
-    date = "";
-    repeat = "";
-    repeatTime = "";
-    onAlarm = true;
-    key = currentDate / 1000 + "" + currentDate;
-  }
-
-  if (alarmDate / 1000 <= 0) {
-    alert("일정 등록은 현재 시간 이후로 가능합니다.");
-    return;
-  } else {
-    const storageObj = {
+    for (let i = 0; i < dayArr.length; i++) {
+      day = dayArr[i];
+      if (day < currentDate.getDay()) {
+        day += 7;
+      } else if (first) {
+        first = false;
+        newDate.setTime(
+          currentDate.getTime() + (day - currentDate.getDay()) * 86400000
+        );
+        dateObj = getDate(newDate);
+        date = getDateFormat(dateObj);
+        getTimeDate = new Date(`${date} ${time}`).getTime();
+        alarmDate = getTimeDate - currentDate.getTime();
+        key = getTimeDate / 1000 + "" + currentDate.getTime();
+        repeat = "0";
+        repeatTime = "";
+        onAlarm = getTimeDate > currentDate.getTime();
+      }
+    }
+    const obj = {
       scheduleList,
       date,
       time,
@@ -80,12 +93,47 @@ const setData = () => {
       key,
       repeat,
       repeatTime,
-      onAlarm
+      onAlarm,
+      dayArr
     };
-    setStorage(storageObj);
-    resetForm();
-    successSubmit("일정이 등록되었습니다.", "schedule");
+
+    return obj;
+  } else {
+    const repeat = repeatSelect.value;
+    const repeatTime = repeat === "0" ? "" : repeatInput.value;
+    const getTimeDate = new Date(`${date} ${time}:00`).getTime();
+    const alarmDate = getTimeDate - currentDate.getTime();
+    const onAlarm = getTimeDate > currentDate.getTime();
+    const key = getTimeDate / 1000 + "" + currentDate.getTime();
+
+    if (alarmDate / 1000 <= 0) {
+      alert("일정 등록은 현재 시간 이후로 가능합니다.");
+      return;
+    } else {
+      const obj = {
+        scheduleList,
+        date,
+        time,
+        getTimeDate,
+        alarmDate,
+        key,
+        repeat,
+        repeatTime,
+        onAlarm,
+        dayArr
+      };
+
+      return obj;
+    }
   }
+};
+
+const setData = () => {
+  const storageObj = getFormDate(checkDays());
+  console.log(storageObj);
+  setStorage(storageObj);
+  resetForm();
+  successSubmit("일정이 등록되었습니다.", "schedule");
 };
 
 scheduleForm.addEventListener("submit", e => {

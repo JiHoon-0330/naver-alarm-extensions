@@ -34,13 +34,31 @@ const getPatten = (repeat, repeatTime) => {
   }
 };
 
+const getDayArr = days => {
+  const week = ["일", "월", "화", "수", "목", "금", "토"];
+  let iTag = `<i class="fas fa-history"></i>`;
+  if (!days) {
+    return "";
+  } else {
+    for (let i = 0; i < days.length; i++) {
+      iTag += week[days[i]];
+      if (i < days.length - 1) {
+        iTag += ",";
+      }
+    }
+    return iTag;
+  }
+};
+
 const printLi = (data, option) => {
   let li = "";
   const hidden = "hidden";
   const moreButton = `<i class="fas fa-angle-double-down content__more"></i>`;
   let span = "";
-  const { scheduleList, date, time, key, repeat, repeatTime } = data;
-  const test = getPatten(parseInt(repeat), repeatTime);
+  const { scheduleList, date, time, key, repeat, repeatTime, dayArr } = data;
+  const repeatSchedule = getPatten(parseInt(repeat), repeatTime);
+  const repeatDay = getDayArr(dayArr);
+
   for (let j = 0; j < scheduleList.length; j++) {
     span += `<span class="schedule ${option} ${j > 0 ? hidden : ""}">${
       scheduleList[j]
@@ -53,7 +71,7 @@ const printLi = (data, option) => {
       ${span}
       ${scheduleList.length > 1 ? moreButton : ""}
       <span class="datetime">${date} ${time} </span>
-      <span class="patten">${test}</span>
+      <span class="patten">${repeatSchedule}${repeatDay}</span>
     </div>
     <div class="content__icons">
       <i class="fas fa-pencil-alt"></i>
@@ -94,12 +112,14 @@ const setEvent = () => {
 
 const printContent = (result, keys) => {
   let contentOption = null;
+
   if (result["contentOption"]) {
     contentOption = result["contentOption"];
   } else {
     chrome.storage.local.set({ contentOption: "content" }, () => {});
     contentOption = "content";
   }
+
   let li = "";
   ul.innerHTML = "";
 
@@ -108,14 +128,13 @@ const printContent = (result, keys) => {
       continue;
     } else {
       const { getTimeDate } = result[keys[i]];
-
       if (contentOption === "content") {
-        if (getTimeDate < parseInt(Date.now())) {
+        if (getTimeDate < Date.now()) {
           continue;
         }
         li += printLi(result[keys[i]], contentOption);
       } else {
-        if (getTimeDate > parseInt(Date.now())) {
+        if (getTimeDate > Date.now()) {
           break;
         }
         li += printLi(result[keys[i]], contentOption);
@@ -127,18 +146,101 @@ const printContent = (result, keys) => {
   setEvent();
 };
 
-const test = (time, repeat) => {
-  while (time <= parseInt(Date.now())) {
+const getNewTimeDate = (time, repeat) => {
+  while (time <= Date.now()) {
     time += repeat; // 3600060000
-    console.log(``, time, parseInt(Date.now()));
   }
   return time;
 };
 
 const reStorage = data => {
-  const { scheduleList, getTimeDate: preTimeDate, repeat, repeatTime } = data;
+  const {
+    scheduleList,
+    getTimeDate: preTimeDate,
+    repeat,
+    repeatTime,
+    dayArr
+  } = data;
+
   let { alarmDate, key } = data;
-  let getTimeDate = test(preTimeDate, repeat * repeatTime);
+  let getTimeDate = getNewTimeDate(
+    preTimeDate,
+    parseInt(repeat) * parseInt(repeatTime)
+  );
+  const currentDate = new Date();
+  const newDate = new Date();
+  newDate.setTime(getTimeDate);
+  alarmDate = getTimeDate - currentDate.getTime();
+  const onAlarm = getTimeDate > currentDate.getTime();
+  key = getTimeDate / 1000 + "" + currentDate.getTime();
+  const dateObj = getDate(newDate);
+  const timeObj = getTime(newDate);
+  const date = getDateFormat(dateObj);
+  const time = getTimeFormat(timeObj);
+
+  const storageObj = {
+    scheduleList,
+    date,
+    time,
+    getTimeDate,
+    alarmDate,
+    key,
+    repeat,
+    repeatTime,
+    onAlarm,
+    dayArr
+  };
+
+  setStorage(storageObj);
+};
+
+const getNewTimeDateDays = (time, repeatArr, repeatDay, index) => {
+  console.log(repeatArr);
+  while (time <= Date.now()) {
+    time += repeatArr[index++ % repeatArr.length] * repeatDay;
+  }
+  return time;
+};
+
+const reStorageDay = (data, days, nowDay) => {
+  const tempArr = [];
+  let repeatArr = null;
+  // const repeatDay = 86400000;
+  const repeatDay = 60000;
+  let index;
+
+  if (days.length > 1) {
+    console.log(nowDay);
+    index = days.indexOf(nowDay);
+    for (let i = 0; i < days.length; i++) {
+      if (i < days.length - 1) {
+        tempArr.push(days[i + 1] - days[i]);
+      } else {
+        tempArr.push(days[0] - days[i] + 7);
+      }
+    }
+    repeatArr = tempArr;
+  } else {
+    repeatArr.push(7);
+  }
+
+  console.log(repeatArr);
+
+  const {
+    scheduleList,
+    getTimeDate: preTimeDate,
+    repeat,
+    repeatTime,
+    dayArr
+  } = data;
+
+  let { alarmDate, key } = data;
+  let getTimeDate = getNewTimeDateDays(
+    preTimeDate,
+    repeatArr,
+    repeatDay,
+    index
+  );
   const currentDate = new Date().getTime();
   const newDate = new Date();
   newDate.setTime(getTimeDate);
@@ -159,31 +261,42 @@ const reStorage = data => {
     key,
     repeat,
     repeatTime,
-    onAlarm
+    onAlarm,
+    dayArr
   };
-
   setStorage(storageObj);
 };
+
 const removeStorage = (data, keys) => {
   for (let i = 0; i < keys.length; i++) {
-    const { getTimeDate, repeat, repeatTime, key, onAlarm } = data[keys[i]];
+    const { getTimeDate, repeat, repeatTime, key, onAlarm, dayArr } = data[
+      keys[i]
+    ];
     if (keys[i] === "options" || keys[i] === "contentOption") {
       continue;
     } else {
       if (getTimeDate < parseInt(Date.now())) {
-        if (repeat * repeatTime > 0) {
-          reStorage(data[keys[i]]);
-          chrome.storage.local.remove(key);
-        } else if (onAlarm) {
-          const temp = {};
-          const obj = data[keys[i]];
-          obj.onAlarm = false;
-          temp[keys[i]] = obj;
-          chrome.storage.local.set(temp);
-        }
-        chrome.alarms.clear(key);
-        if (parseInt(getTimeDate) + 604800000 < parseInt(Date.now())) {
-          chrome.storage.local.remove(key);
+        if (!dayArr) {
+          if (repeat * repeatTime > 0) {
+            reStorage(data[keys[i]]);
+            chrome.storage.local.remove(key);
+          } else if (onAlarm) {
+            const temp = {};
+            const obj = data[keys[i]];
+            obj.onAlarm = false;
+            temp[keys[i]] = obj;
+            chrome.storage.local.set(temp);
+          }
+          chrome.alarms.clear(key);
+          if (parseInt(getTimeDate) + 604800000 < parseInt(Date.now())) {
+            chrome.storage.local.remove(key);
+          }
+        } else {
+          const nowDay = new Date().getDay();
+          if (dayArr.includes(nowDay + "")) {
+            reStorageDay(data[keys[i]], dayArr, nowDay + "");
+            chrome.storage.local.remove(key);
+          }
         }
       }
     }
