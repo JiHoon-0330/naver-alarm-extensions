@@ -137,7 +137,7 @@ form {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 34px;
+  height: 35px;
   width: 100%;
 }
 .repeat__days > ul > li {
@@ -222,6 +222,7 @@ form {
 
 .repeat__days > ul > li > div > input:checked + label::before {
   height: 100%;
+  border-bottom: none;
 }
 
 .hidden__input {

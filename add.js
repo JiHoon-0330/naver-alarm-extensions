@@ -46,17 +46,26 @@ const getScheduleList = () => {
 
 const setData = () => {
   const scheduleList = getScheduleList();
-
-  const date = scheduleDate.value;
+  let dayArr = null;
+  let date = scheduleDate.value;
   const time = scheduleTime.value;
-  const repeat = repeatSelect.value;
+  let repeat = repeatSelect.value;
   console.log(repeat === "0");
-  const repeatTime = repeat === "0" ? "" : repeatInput.value;
+  let repeatTime = repeat === "0" ? "" : repeatInput.value;
   const currentDate = new Date().getTime();
   const getTimeDate = new Date(`${date} ${time}:00`).getTime();
   const alarmDate = getTimeDate - currentDate;
-  const onAlarm = getTimeDate > currentDate;
-  const key = getTimeDate / 1000 + "" + currentDate;
+  let onAlarm = getTimeDate > currentDate;
+  let key = getTimeDate / 1000 + "" + currentDate;
+
+  if (checkDays()) {
+    dayArr = getDays();
+    date = "";
+    repeat = "";
+    repeatTime = "";
+    onAlarm = true;
+    key = currentDate / 1000 + "" + currentDate;
+  }
 
   if (alarmDate / 1000 <= 0) {
     alert("일정 등록은 현재 시간 이후로 가능합니다.");
@@ -106,8 +115,13 @@ const checkDays = () => {
   for (let i = 0; i < days.length; i++) {
     if (days[i].checked) {
       check = true;
+      return check;
     }
   }
+  return check;
+};
+
+const disableElement = check => {
   if (check) {
     if (!document.querySelector(".date").classList.contains("hidden__input")) {
       document.querySelector(".date").classList.add("hidden__input");
@@ -129,9 +143,20 @@ const checkDays = () => {
   }
 };
 
+const getDays = () => {
+  const arr = [];
+  days.forEach(day => {
+    if (day.checked) {
+      console.log(day.value);
+      arr.push(day.value);
+    }
+  });
+  return arr;
+};
+
 days.forEach(day => {
   day.addEventListener("click", () => {
-    checkDays();
+    disableElement(checkDays());
   });
 });
 
