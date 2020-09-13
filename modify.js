@@ -1,3 +1,12 @@
+const dayID = [
+  "sunday",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday"
+];
 const modifyContent = id => {
   iconForm.click();
   chrome.storage.local.get(id, result => {
@@ -10,7 +19,8 @@ const modifyContent = id => {
       alarmDate,
       key,
       repeat,
-      repeatTime
+      repeatTime,
+      dayArr
     } = result[id];
     scheduleDate.value = date;
     scheduleTime.value = time;
@@ -26,5 +36,9 @@ const modifyContent = id => {
       input.setAttribute("value", scheduleList[i]);
       scheduleContainer.appendChild(input);
     }
+    for (let i = 0; i < dayArr.length; i++) {
+      document.querySelector(`#${dayID[dayArr[i]]}`).checked = true;
+    }
+    disableElement(checkDays());
   });
 };

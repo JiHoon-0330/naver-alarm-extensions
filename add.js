@@ -203,7 +203,7 @@ const getDays = () => {
 };
 
 days.forEach(day => {
-  day.addEventListener("click", () => {
+  day.addEventListener("change", () => {
     disableElement(checkDays());
   });
 });

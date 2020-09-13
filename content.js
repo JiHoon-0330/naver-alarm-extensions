@@ -195,18 +195,20 @@ const reStorage = data => {
 };
 
 const getNewTimeDateDays = (time, repeatArr, repeatDay, index) => {
-  console.log(repeatArr);
   while (time <= Date.now()) {
+    console.log(``, index, repeatArr.length, repeatDay);
     time += repeatArr[index++ % repeatArr.length] * repeatDay;
   }
+
+  console.log(time);
   return time;
 };
 
 const reStorageDay = (data, days, nowDay) => {
   const tempArr = [];
   let repeatArr = null;
-  // const repeatDay = 86400000;
-  const repeatDay = 60000;
+  const repeatDay = 86400000;
+  // const repeatDay = 60000;
   let index;
 
   if (days.length > 1) {
@@ -219,11 +221,11 @@ const reStorageDay = (data, days, nowDay) => {
         tempArr.push(days[0] - days[i] + 7);
       }
     }
-    repeatArr = tempArr;
   } else {
-    repeatArr.push(7);
+    index = 0;
+    tempArr.push(7);
   }
-
+  repeatArr = tempArr;
   console.log(repeatArr);
 
   const {
