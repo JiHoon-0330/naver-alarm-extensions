@@ -7,7 +7,10 @@
   --second-text-color: ;
   --third-text-color: ;
 
-  --day-border: 1px;
+  --days-text-color: ;
+  --days-bg-color: ;
+  --sunday-text-color: ;
+  --saturday-text-color: ;
 }
 * {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,

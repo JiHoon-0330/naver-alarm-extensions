@@ -6,7 +6,11 @@ const themes = {
     thirdBgColor: "#292C30", // 컨텐츠 박스 색상
     mainTextColor: "#FFFFFF", // 텍스트 색상
     secondTextColor: "#D1D1D1", // input placeholder, 수정,삭제아이콘 색상
-    thirdTextColor: "#888888"
+    thirdTextColor: "#888888",
+    daysTextColor: "#FFFFFF",
+    daysBgColor: "#FFFFFF",
+    sundayTextColor: "#FF3019",
+    saturdayTextColor: "#0043D1"
   },
   white: {
     mainBgColor: "#E0E3DA",
@@ -15,7 +19,11 @@ const themes = {
     thirdBgColor: "#F5F5F5",
     mainTextColor: "#1e2022",
     secondTextColor: "#6A6B67",
-    thirdTextColor: "#5E5E5E"
+    thirdTextColor: "#5E5E5E",
+    daysTextColor: "#FFFFFF",
+    daysBgColor: "#FFFFFF",
+    sundayTextColor: "#FF3019",
+    saturdayTextColor: "#0043D1"
   },
   green: {
     mainBgColor: "#77AF9C",
@@ -24,7 +32,11 @@ const themes = {
     thirdBgColor: "#619191",
     mainTextColor: "#ffffff",
     secondTextColor: "#B5C9C0",
-    thirdTextColor: "#888888"
+    thirdTextColor: "#888888",
+    daysTextColor: "#FFFFFF",
+    daysBgColor: "#FFFFFF",
+    sundayTextColor: "#FF3019",
+    saturdayTextColor: "#0043D1"
   },
   purple: {
     mainBgColor: "#CBA6C3",
@@ -33,7 +45,11 @@ const themes = {
     thirdBgColor: "#8283a7",
     mainTextColor: "#F8FAFF",
     secondTextColor: "#C0C1CF",
-    thirdTextColor: "#888888"
+    thirdTextColor: "#888888",
+    daysTextColor: "#FFFFFF",
+    daysBgColor: "#FFFFFF",
+    sundayTextColor: "#FF3019",
+    saturdayTextColor: "#0043D1"
   },
   multi: {
     mainBgColor: "#ffc952",
@@ -42,7 +58,11 @@ const themes = {
     thirdBgColor: "#34314c",
     mainTextColor: "#F8FAFF",
     secondTextColor: "#BCBBC4",
-    thirdTextColor: "#888888"
+    thirdTextColor: "#888888",
+    daysTextColor: "#FFFFFF",
+    daysBgColor: "#FFFFFF",
+    sundayTextColor: "#FF3019",
+    saturdayTextColor: "#0043D1"
   }
 };
 
@@ -54,7 +74,11 @@ const setTheme = theme => {
     thirdBgColor,
     mainTextColor,
     secondTextColor,
-    thirdTextColor
+    thirdTextColor,
+    daysTextColor,
+    daysBgColor,
+    sundayTextColor,
+    saturdayTextColor
   } = themes[theme];
   selectTheme = theme;
 
@@ -74,7 +98,17 @@ const setTheme = theme => {
     secondTextColor
   );
   document.documentElement.style.setProperty(
-    "--third-text-color",
-    thirdTextColor
+    "--days-text-color",
+    daysTextColor
+  );
+  document.documentElement.style.setProperty("--days-bg-color", thirdTextColor);
+  document.documentElement.style.setProperty("--third-text-color", daysBgColor);
+  document.documentElement.style.setProperty(
+    "--sunday-text-color",
+    sundayTextColor
+  );
+  document.documentElement.style.setProperty(
+    "--saturday-text-color",
+    saturdayTextColor
   );
 };
