@@ -7,10 +7,11 @@ const themes = {
     mainTextColor: "#FFFFFF", // 텍스트 색상
     secondTextColor: "#D1D1D1", // input placeholder, 수정,삭제아이콘 색상
     thirdTextColor: "#888888",
-    daysTextColor: "#FFFFFF",
-    daysBgColor: "#FFFFFF",
-    sundayTextColor: "#FF3019",
-    saturdayTextColor: "#0043D1"
+    daysTextColor: "#454545",
+    daysSubColor: "#ffffff",
+    daysBgColor: "#DBDBDB",
+    sundayTextColor: "#FF5340",
+    saturdayTextColor: "#3370FF"
   },
   white: {
     mainBgColor: "#E0E3DA",
@@ -21,7 +22,8 @@ const themes = {
     secondTextColor: "#6A6B67",
     thirdTextColor: "#5E5E5E",
     daysTextColor: "#FFFFFF",
-    daysBgColor: "#FFFFFF",
+    daysSubColor: "#ffffff",
+    daysBgColor: "#6E6E6E",
     sundayTextColor: "#FF3019",
     saturdayTextColor: "#0043D1"
   },
@@ -33,8 +35,9 @@ const themes = {
     mainTextColor: "#ffffff",
     secondTextColor: "#B5C9C0",
     thirdTextColor: "#888888",
-    daysTextColor: "#FFFFFF",
-    daysBgColor: "#FFFFFF",
+    daysTextColor: "#397070",
+    daysSubColor: "#ffffff",
+    daysBgColor: "#ffffff",
     sundayTextColor: "#FF3019",
     saturdayTextColor: "#0043D1"
   },
@@ -46,8 +49,9 @@ const themes = {
     mainTextColor: "#F8FAFF",
     secondTextColor: "#C0C1CF",
     thirdTextColor: "#888888",
-    daysTextColor: "#FFFFFF",
-    daysBgColor: "#FFFFFF",
+    daysTextColor: "#737494",
+    daysSubColor: "#ffffff",
+    daysBgColor: "#ffffff",
     sundayTextColor: "#FF3019",
     saturdayTextColor: "#0043D1"
   },
@@ -59,10 +63,11 @@ const themes = {
     mainTextColor: "#F8FAFF",
     secondTextColor: "#BCBBC4",
     thirdTextColor: "#888888",
-    daysTextColor: "#FFFFFF",
-    daysBgColor: "#FFFFFF",
-    sundayTextColor: "#FF3019",
-    saturdayTextColor: "#0043D1"
+    daysTextColor: "#34314C",
+    daysSubColor: "#ffffff",
+    daysBgColor: "#ffffff",
+    sundayTextColor: "#FF5340",
+    saturdayTextColor: "#3370FF"
   }
 };
 
@@ -76,6 +81,7 @@ const setTheme = theme => {
     secondTextColor,
     thirdTextColor,
     daysTextColor,
+    daysSubColor,
     daysBgColor,
     sundayTextColor,
     saturdayTextColor
@@ -98,11 +104,15 @@ const setTheme = theme => {
     secondTextColor
   );
   document.documentElement.style.setProperty(
+    "--third-text-color",
+    thirdTextColor
+  );
+  document.documentElement.style.setProperty(
     "--days-text-color",
     daysTextColor
   );
-  document.documentElement.style.setProperty("--days-bg-color", thirdTextColor);
-  document.documentElement.style.setProperty("--third-text-color", daysBgColor);
+  document.documentElement.style.setProperty("--days-sub-color", daysSubColor);
+  document.documentElement.style.setProperty("--days-bg-color", daysBgColor);
   document.documentElement.style.setProperty(
     "--sunday-text-color",
     sundayTextColor

@@ -45,7 +45,7 @@ const getDayArr = days => {
     for (let i = 0; i < days.length; i++) {
       iTag += week[days[i]];
       if (i < days.length - 1) {
-        iTag += ",";
+        iTag += " · ";
       }
     }
     return iTag;
@@ -292,13 +292,14 @@ const removeStorage = (data, keys) => {
             chrome.storage.local.set(temp);
           }
           chrome.alarms.clear(key);
-          if (parseInt(getTimeDate) + 604800000 < parseInt(Date.now())) {
+          if (parseInt(getTimeDate) + 604800000 < Date.now()) {
             chrome.storage.local.remove(key);
           }
         } else {
           const nowDay = new Date().getDay();
           if (dayArr.includes(nowDay + "")) {
             reStorageDay(data[keys[i]], dayArr, nowDay + "");
+            console.log(key);
             chrome.storage.local.remove(key);
           }
         }

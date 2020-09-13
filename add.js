@@ -49,6 +49,7 @@ const getScheduleList = () => {
 };
 
 const getFormDate = checkDays => {
+  console.log(`getForm`);
   const scheduleList = getScheduleList();
   const currentDate = new Date();
   let date = scheduleDate.value;
@@ -63,27 +64,48 @@ const getFormDate = checkDays => {
     let repeat = null;
     let repeatTime = null;
     let onAlarm = null;
-    let first = true;
     dayArr = getDays();
-    for (let i = 0; i < dayArr.length; i++) {
-      day = dayArr[i];
-      if (day < currentDate.getDay()) {
-        day += 7;
-      } else if (first) {
-        first = false;
-        newDate.setTime(
-          currentDate.getTime() + (day - currentDate.getDay()) * 86400000
-        );
-        dateObj = getDate(newDate);
-        date = getDateFormat(dateObj);
-        getTimeDate = new Date(`${date} ${time}`).getTime();
-        alarmDate = getTimeDate - currentDate.getTime();
-        key = getTimeDate / 1000 + "" + currentDate.getTime();
-        repeat = "0";
-        repeatTime = "";
-        onAlarm = getTimeDate > currentDate.getTime();
-      }
+    const newTime = getTime();
+    const getNewTime = getTimeFormat(newTime);
+    console.log(``, time, getNewTime, time > getNewTime);
+    let resultDay = null;
+    if (time > getNewTime) {
+      console.log("큼");
+      resultDay = dayArr.filter(day => day >= currentDate.getDay());
+      console.log(resultDay);
+    } else {
+      console.log("작음");
+      resultDay = dayArr.filter(day => day > currentDate.getDay());
+      console.log(resultDay);
     }
+    console.log(`길이`, resultDay.length);
+    if (!resultDay.length) {
+      console.log(`길이 없음`, resultDay.length);
+      newDate.setTime(
+        currentDate.getTime() +
+          (parseInt(dayArr[0]) + 7 - currentDate.getDay()) * 86400000
+      );
+    } else {
+      console.log(`길이 있음`, resultDay.length);
+      newDate.setTime(
+        currentDate.getTime() +
+          (parseInt(resultDay[0]) - currentDate.getDay()) * 86400000
+      );
+      console.log(
+        currentDate.getTime() +
+          (parseInt(resultDay[0]) - currentDate.getDay()) * 86400000
+      );
+    }
+
+    dateObj = getDate(newDate);
+    date = getDateFormat(dateObj);
+    getTimeDate = new Date(`${date} ${time}`).getTime();
+    alarmDate = getTimeDate - currentDate.getTime();
+    key = getTimeDate / 1000 + "" + currentDate.getTime();
+    repeat = "0";
+    repeatTime = "";
+    onAlarm = getTimeDate > currentDate.getTime();
+
     const obj = {
       scheduleList,
       date,
@@ -140,6 +162,7 @@ scheduleForm.addEventListener("submit", e => {
   e.preventDefault();
   setData();
   if (scheduleKye.value) {
+    console.log(scheduleKye.value);
     chrome.alarms.clear(scheduleKye.value);
     chrome.storage.local.remove(scheduleKye.value);
   }

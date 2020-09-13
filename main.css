@@ -8,6 +8,7 @@
   --third-text-color: ;
 
   --days-text-color: ;
+  --days-sub-color: ;
   --days-bg-color: ;
   --sunday-text-color: ;
   --saturday-text-color: ;
@@ -64,7 +65,7 @@ input::placeholder {
   color: var(--main-text-color);
   border-radius: 20px;
   font-size: 2em;
-  font-weight: 300;
+  font-weight: 600;
   z-index: 2;
   transition: 0.5s linear;
 }
