@@ -39,6 +39,8 @@ const getDayArr = days => {
   let iTag = `<i class="fas fa-history"></i>`;
   if (!days) {
     return "";
+  } else if (days.length === 7) {
+    return `<i class="fas fa-history"></i>매일`;
   } else {
     for (let i = 0; i < days.length; i++) {
       iTag += week[days[i]];

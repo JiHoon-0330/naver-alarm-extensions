@@ -131,6 +131,7 @@ form {
   min-width: 70vw;
   max-width: 70vw;
   margin-bottom: 25px;
+  -webkit-user-select: none;
 }
 
 .repeat__days > ul {
